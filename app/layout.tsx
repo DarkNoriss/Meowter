@@ -1,15 +1,19 @@
+import { Navbar } from '@/components/Navbar';
 import '@/styles/globals.css';
 
 export const metadata = {
-  title: '',
-  description: '',
+  title: 'Meowter',
+  description: 'Twitter but for cats',
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en'>
       <body>
-        <main>{children}</main>
+        <div className='flex h-full '>
+          <Navbar />
+          <main>{children}</main>
+        </div>
       </body>
     </html>
   );
