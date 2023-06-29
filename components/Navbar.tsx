@@ -4,7 +4,10 @@ export const Navbar = () => {
   return (
     <header className='flex h-screen w-64 flex-col justify-between px-2'>
       <div>
-        <div>Navigation</div>
+        <div>
+          Navigation
+          <Image src='/assets/icons/cat.svg' alt='logo' height={30} width={30} />
+        </div>
         <div>
           <div>Home</div>
           <div>Explore</div>
