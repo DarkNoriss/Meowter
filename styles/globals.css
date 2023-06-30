@@ -10,3 +10,11 @@
 body {
   margin: 0;
 }
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.btnhover {
+  @apply cursor-pointer rounded-full p-3 transition-all duration-200 hover:bg-gray-900  hover:shadow-lg;
+}
