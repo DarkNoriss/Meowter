@@ -1,3 +1,4 @@
+import { Feed } from '@/components/Feed';
 import Image from 'next/image';
 
 const Home = () => {
@@ -22,16 +23,14 @@ const Home = () => {
               <span className='border-b py-3 text-xl text-gray-500'>
                 What is happening?!
               </span>
-              <div className='flex justify-end pb-1 text-base font-bold'>
+              <div className='flex justify-end pb-2 text-base font-bold'>
                 <div className='flex-center btnhover mt-3 h-9 rounded-full bg-gray-500 px-4 hover:bg-gray-600 '>
                   <span>Meow</span>
                 </div>
               </div>
             </div>
           </div>
-          <article className='px-4'>
-            <span>some day this will be a meow</span>
-          </article>
+          <Feed />
         </div>
       </div>
     </div>
