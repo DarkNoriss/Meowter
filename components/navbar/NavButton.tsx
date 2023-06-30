@@ -1,6 +1,10 @@
-import Image from 'next/image';
+'use client';
+
+import { useState } from 'react';
 
 export const NavButton = ({ name }: { name: string }) => {
+  const [isHere, setIsHere] = useState<boolean>(false);
+
   return (
     <div className='btnhover my-1 flex h-14 flex-row p-3'>
       <div>
@@ -14,7 +18,9 @@ export const NavButton = ({ name }: { name: string }) => {
           </g>
         </svg>
       </div>
-      <span className='ml-5 text-xl font-bold capitalize'>{name}</span>
+      <span className={`ml-5 text-xl ${isHere ? 'font-bold' : ''} capitalize`}>
+        {name}
+      </span>
     </div>
   );
 };
