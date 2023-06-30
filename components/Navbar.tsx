@@ -28,7 +28,7 @@ export const Navbar = () => {
         </div>
       </div>
       {isLogged && (
-        <div className='btnhover my-3 flex items-center '>
+        <div className='btnhover my-3 flex items-center  p-3'>
           <div>
             <Image
               src='/assets/avatar/avatar.jpg'
