@@ -16,5 +16,5 @@ body {
 }
 
 .btnhover {
-  @apply cursor-pointer rounded-full p-3 transition-all duration-200 hover:bg-gray-900  hover:shadow-lg;
+  @apply cursor-pointer rounded-full transition-all duration-200 hover:bg-gray-900  hover:shadow-lg;
 }
