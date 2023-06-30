@@ -10,9 +10,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en'>
       <body>
-        <div className='flex h-full '>
+        <div className='flex-center h-full'>
           <Navbar />
-          <main>{children}</main>
+          <main className='h-screen border-x'>{children}</main>
         </div>
       </body>
     </html>
