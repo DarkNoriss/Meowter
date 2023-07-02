@@ -1,11 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import { NavButton } from './navbar/NavButton';
-import { useState } from 'react';
+import { Button } from './navbar/Button';
+import { useSession } from 'next-auth/react';
+import { strToLink } from '@/utils/strToLink';
 
 export const Navbar = () => {
-  const [isLogged, setIsLogged] = useState<Boolean>(true);
+  const { data: session } = useSession();
 
   return (
     <header className='flex h-screen w-72 flex-col justify-between pl-2 pr-8'>
@@ -14,24 +15,24 @@ export const Navbar = () => {
           <Image src='/assets/icons/cat.svg' alt='logo' height={28} width={28} />
         </div>
         <div className='my-1'>
-          <NavButton name={'home'} />
-          <NavButton name={'explore'} />
-          <NavButton name={'notifications'} />
-          <NavButton name={'lists'} />
-          <NavButton name={'booksmarks'} />
-          <NavButton name={'verified'} />
-          <NavButton name={'profile'} />
-          <NavButton name={'more'} />
+          <Button name={'home'} />
+          <Button name={'explore'} />
+          <Button name={'notifications'} />
+          <Button name={'lists'} />
+          <Button name={'booksmarks'} />
+          <Button name={'verified'} />
+          <Button name={'profile'} />
+          <Button name={'more'} />
         </div>
         <div className='flex-center btnhover my-4 h-14 rounded-full bg-gray-500 hover:bg-gray-600'>
           <button className='text-lg font-bold'>Meow</button>
         </div>
       </div>
-      {isLogged && (
-        <div className='btnhover my-3 flex items-center  p-3'>
+      {session && (
+        <div className='btnhover my-3 flex items-center p-3'>
           <div>
             <Image
-              src='/assets/avatar/avatar.jpg'
+              src={session.user?.image as string}
               alt='Avatar'
               height={40}
               width={40}
@@ -39,8 +40,10 @@ export const Navbar = () => {
             />
           </div>
           <div className='mx-3 flex flex-col text-sm'>
-            <span className='font-bold'>DarkNoriss</span>
-            <span className='font-normal text-gray-500'>@DarkNoriss231</span>
+            <span className='font-bold'>{session.user?.name}</span>
+            <span className='font-normal text-gray-500'>
+              {strToLink(session.user?.name as string)}
+            </span>
           </div>
           <div className='flex flex-1 justify-end'>
             <svg viewBox='0 0 24 24' aria-hidden='true' className='h-5 fill-white '>

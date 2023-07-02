@@ -1,7 +1,12 @@
+'use client';
+
 import { Feed } from '@/components/Feed';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 
 const Home = () => {
+  const { data: session } = useSession();
+
   return (
     <div>
       <div className='w-screen max-w-xl'>
@@ -9,27 +14,29 @@ const Home = () => {
           <span className='text-xl font-bold'>Home</span>
         </div>
         <div className='-z-10'>
-          <div className='flex border px-4'>
-            <div className='mr-3 pt-3'>
-              <Image
-                src='/assets/avatar/avatar.jpg'
-                alt='Avatar'
-                height={40}
-                width={40}
-                className='rounded-full'
-              />
-            </div>
-            <div className='flex flex-1 flex-col py-1'>
-              <span className='border-b py-3 text-xl text-gray-500'>
-                What is happening?!
-              </span>
-              <div className='flex justify-end pb-2 text-base font-bold'>
-                <div className='flex-center btnhover mt-3 h-9 rounded-full bg-gray-500 px-4 hover:bg-gray-600 '>
-                  <span>Meow</span>
+          {session && (
+            <div className='flex border px-4'>
+              <div className='mr-3 pt-3'>
+                <Image
+                  src={session.user?.image as string}
+                  alt='Avatar'
+                  height={40}
+                  width={40}
+                  className='rounded-full'
+                />
+              </div>
+              <div className='flex flex-1 flex-col py-1'>
+                <span className='border-b py-3 text-xl text-gray-500'>
+                  What is happening?!
+                </span>
+                <div className='flex justify-end pb-2 text-base font-bold'>
+                  <div className='flex-center btnhover mt-3 h-9 rounded-full bg-gray-500 px-4 hover:bg-gray-600 '>
+                    <span>Meow</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
           <Feed />
         </div>
       </div>
