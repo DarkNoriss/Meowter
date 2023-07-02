@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-export const NavButton = ({ name }: { name: string }) => {
+export const Button = ({ name }: { name: string }) => {
   const [isHere, setIsHere] = useState<boolean>(false);
 
   return (
