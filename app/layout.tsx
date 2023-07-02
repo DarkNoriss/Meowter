@@ -1,3 +1,4 @@
+import { Login } from '@/components/Login';
 import { Navbar } from '@/components/Navbar';
 import '@/styles/globals.css';
 
@@ -10,9 +11,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en'>
       <body>
-        <div className='flex-center h-full'>
+        <div className='flex-center min-h-screen flex-row'>
           <Navbar />
           <main className='h-screen border-x'>{children}</main>
+          <Login />
         </div>
       </body>
     </html>
