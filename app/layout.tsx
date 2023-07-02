@@ -1,5 +1,8 @@
+'use client';
+
 import { Login } from '@/components/Login';
 import { Navbar } from '@/components/Navbar';
+import { SessionProvider } from 'next-auth/react';
 import '@/styles/globals.css';
 
 export const metadata = {
@@ -11,11 +14,13 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en'>
       <body>
-        <div className='flex-center min-h-screen flex-row'>
-          <Navbar />
-          <main className='h-screen border-x'>{children}</main>
-          <Login />
-        </div>
+        <SessionProvider>
+          <div className='flex-center min-h-screen flex-row'>
+            <Navbar />
+            <main className='h-screen border-x'>{children}</main>
+            <Login />
+          </div>
+        </SessionProvider>
       </body>
     </html>
   );
