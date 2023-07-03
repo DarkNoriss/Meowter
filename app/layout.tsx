@@ -17,7 +17,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <SessionProvider>
           <div className='flex-center min-h-screen flex-row'>
             <Navbar />
-            <main className='h-screen border-x'>{children}</main>
+            <main className='border-white-smoll h-screen overflow-y-scroll !border-y-0'>
+              {children}
+            </main>
             <Login />
           </div>
         </SessionProvider>
