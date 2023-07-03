@@ -18,3 +18,12 @@ body {
 .btnhover {
   @apply cursor-pointer rounded-full transition-all duration-200 hover:bg-gray-900  hover:shadow-lg;
 }
+
+.shadow-glow {
+  box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.2);
+}
+
+.border-white-smoll {
+  border: rgba(255, 255, 255, 0.2) solid thin;
+  box-sizing: border-box;
+}
