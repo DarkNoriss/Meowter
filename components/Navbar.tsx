@@ -6,6 +6,8 @@ import { useSession } from 'next-auth/react';
 import { strToLink } from '@/utils/strToLink';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { signOut } from 'next-auth/react';
+import { ImageAvatar } from './ImageAvatar';
+import Link from 'next/link';
 
 export const Navbar = () => {
   const { data: session } = useSession();
@@ -32,35 +34,38 @@ export const Navbar = () => {
   };
 
   return (
-    <header className='flex h-screen w-72 flex-col justify-between pl-2 pr-8'>
-      <div>
-        <div className='btnhover flex-center aspect-square h-14 py-[2px]'>
+    <header className='flex h-screen w-72 flex-col justify-between pl-2 pr-7'>
+      <div className='fixed top-0'>
+        <Link
+          href='/'
+          className='btnhover flex-center aspect-square h-14 py-[2px]'
+          passHref
+        >
           <Image src='/assets/icons/cat.svg' alt='logo' height={28} width={28} />
-        </div>
+        </Link>
         <div className='my-1'>
-          <Button name={'home'} />
+          <Link href='/' passHref>
+            <Button name={'home'} />
+          </Link>
           <Button name={'explore'} />
           <Button name={'notifications'} />
           <Button name={'lists'} />
           <Button name={'booksmarks'} />
           <Button name={'verified'} />
-          <Button name={'profile'} />
+          <Link href='/profile' passHref>
+            <Button name={'profile'} />
+          </Link>
+
           <Button name={'more'} />
         </div>
-        <div className='flex-center btnhover my-4 h-14 rounded-full bg-gray-500 hover:bg-gray-600'>
+        <div className='flex-center btnhover my-4 h-14 w-64 rounded-full bg-gray-500 hover:bg-gray-600'>
           <button className='text-lg font-bold'>Meow</button>
         </div>
       </div>
       {session && (
         <div className='relative' onClick={handleOpen} ref={menuRef}>
           <div className={`${open ? '' : 'btnhover'} my-3 flex w-full items-center p-3`}>
-            <Image
-              src={session.user?.image as string}
-              alt='Avatar'
-              height={40}
-              width={40}
-              className='rounded-full'
-            />
+            <ImageAvatar />
             <div className='mx-3 flex flex-col text-base'>
               <span className='font-bold'>{session.user?.name}</span>
               <span className='font-normal text-gray-500'>
