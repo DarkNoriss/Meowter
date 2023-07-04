@@ -29,6 +29,10 @@ body {
   box-sizing: border-box;
 }
 
+.bg-transnew {
+  background-color: rgba(12, 16, 22, 0.5);
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
