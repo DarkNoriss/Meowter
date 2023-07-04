@@ -1,9 +1,11 @@
+'use client';
+
 import Image from 'next/image';
 import { strToLink } from '@/utils/strToLink';
 
 export const MeowCard = () => {
   return (
-    <article className='border-white-smoll !border-t-0 px-4'>
+    <article className='border-white-smoll px-4'>
       <div className='flex flex-row py-3'>
         <div className='mr-3'>
           <Image

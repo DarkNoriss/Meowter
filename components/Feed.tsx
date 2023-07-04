@@ -7,7 +7,7 @@ export const Feed = () => {
   const [posts, setPosts] = useState([]);
 
   return (
-    <div className='max-h-full '>
+    <div className=''>
       <MeowCard />
       <MeowCard />
       <MeowCard />
