@@ -1,5 +1,3 @@
-'use client';
-
 import { Home as HomeComp } from '@/components/Home';
 
 const Home = () => {
