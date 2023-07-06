@@ -13,7 +13,7 @@ export const MeowList = () => {
     const response = await fetch('api/meow');
     const data = await response.json();
 
-    setMeows(data);
+    setMeows(data.reverse());
   };
 
   return (
