@@ -1,15 +1,7 @@
 import { useEffect, useState } from 'react';
+import { MeowCard } from './MeowCard';
+import { MeowType } from '@/types/custom-types';
 
-type MeowType = {
-  context: string;
-  date: Date;
-  ta: {
-    remeows: number;
-    comments: number;
-    likes: number;
-  };
-  _id: string;
-};
 export const MeowList = () => {
   const [meows, setMeows] = useState<MeowType[]>([]);
 
@@ -24,6 +16,11 @@ export const MeowList = () => {
     setMeows(data);
   };
 
-  console.log(meows[0]);
-  return <div>MeowList</div>;
+  return (
+    <>
+      {meows.map((meow) => (
+        <MeowCard key={meow._id} meow={meow} />
+      ))}
+    </>
+  );
 };
