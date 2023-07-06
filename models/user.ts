@@ -10,7 +10,7 @@ const UserSchema = new Schema({
     type: String,
     required: [true, 'Username is required!'],
   },
-  images: String,
+  image: String,
 });
 
 const User = models.User || model('User', UserSchema);
