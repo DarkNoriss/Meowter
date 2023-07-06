@@ -1,50 +1,52 @@
 'use client';
 
-import { MeowCard } from './MeowCard';
+import { MeowCardTemp } from './MeowCardTemp';
+import { MeowList } from './MeowList';
 
 export const Feed = () => {
   return (
     <div className=''>
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
-      <MeowCard />
+      <MeowList />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
+      <MeowCardTemp />
     </div>
   );
 };
