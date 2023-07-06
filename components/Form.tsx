@@ -41,7 +41,7 @@ export const Form = () => {
         <div className='flex justify-end pb-2 text-base font-bold'>
           <button
             className='flex-center btnhover mt-3 h-9 rounded-full bg-gray-500 px-4 hover:bg-gray-600'
-            disabled={sendingMeow}
+            disabled={sendingMeow || text.length === 0}
           >
             Meow
           </button>
