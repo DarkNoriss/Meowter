@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { ExpandingTextarea } from './ExpandingTextarea';
 import { ImageAvatar } from './ImageAvatar';
+import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
 export const Form = () => {
   const { data: session } = useSession();
+  const router = useRouter();
   const [text, setText] = useState('');
   const [sendingMeow, setSendingMeow] = useState<boolean>(false);
 
@@ -16,12 +18,13 @@ export const Form = () => {
       const response = await fetch('/api/meow/new', {
         method: 'POST',
         body: JSON.stringify({
-          creator: session?.user?.id as string,
+          userId: session?.user.id,
           context: text,
         }),
       });
       if (response.ok) {
         console.log('meow sended');
+        router.push('/');
       }
     } catch (err) {
       console.log(err);
@@ -32,7 +35,7 @@ export const Form = () => {
   };
 
   return (
-    <div className='border-white-smoll flex px-4'>
+    <div className='border-white-smoll flex !border-t-0 px-4'>
       <div className='mr-3 pt-3'>
         <ImageAvatar />
       </div>
