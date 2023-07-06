@@ -8,7 +8,7 @@ export const GET = async () => {
     const meows = await Meow.find({}).populate('creator');
 
     return new Response(JSON.stringify(meows), { status: 200 });
-  } catch (err) {
-    return new Response('Failed to fetch all meows', { status: 500 });
+  } catch (e) {
+    return new Response('Failed to fetch all prompts', { status: 500 });
   }
 };

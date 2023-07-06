@@ -13,8 +13,7 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session }) {
-      const sessionUser = await User.findOne({ email: session?.user?.email });
-
+      const sessionUser = await User.findOne({ email: session.user.email });
       session.user.id = sessionUser._id.toString();
 
       return session;
@@ -30,7 +29,7 @@ export const options: NextAuthOptions = {
           await User.create({
             email: profile.email,
             username: profile.name,
-            image: profile.picture,
+            image: profile.image ?? profile.picture,
           });
         }
 
