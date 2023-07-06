@@ -2,13 +2,13 @@ import Meow from '@/models/meow';
 import { connectToDB } from '@/utils/connectToDB';
 
 export const POST = async (req: Request) => {
-  const { userId, context } = await req.json();
-  console.log(context);
+  const { creator, context } = await req.json();
+
   try {
     await connectToDB();
 
     const newMeow = new Meow({
-      creator: userId,
+      creator: creator,
       context: context,
     });
 
