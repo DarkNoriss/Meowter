@@ -26,11 +26,11 @@ export const options: NextAuthOptions = {
 
         const userExists = await User.findOne({ email: profile?.email });
 
-        if (!userExists) {
+        if (!userExists && profile) {
           await User.create({
-            email: profile?.email,
-            username: profile?.name,
-            image: profile?.image,
+            email: profile.email,
+            username: profile.name,
+            image: profile.picture,
           });
         }
 
