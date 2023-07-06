@@ -1,13 +1,15 @@
 import Image from 'next/image';
 import { strToLink } from '@/utils/strToLink';
+import React from 'react';
+import { MeowType } from '@/types/custom-types';
 
-export const MeowCard = () => {
+export const MeowCard = ({ meow }: { meow: MeowType }) => {
   return (
     <article className='border-white-smoll px-4'>
       <div className='flex flex-row py-3'>
         <div className='mr-3'>
           <Image
-            src='/assets/avatar/avatar.jpg'
+            src={meow.creator.image}
             alt='Avatar'
             height={40}
             width={40}
@@ -17,9 +19,9 @@ export const MeowCard = () => {
         <div className='flex-1'>
           <div className='flex flex-row justify-between'>
             <div className='flex flex-row'>
-              <div className='text-base font-bold'>Patryk Przybylski</div>
+              <div className='text-base font-bold'>{meow.creator.username}</div>
               <div className='ml-1 text-base font-normal text-gray-500'>{`${strToLink(
-                'Patryk Przybylski'
+                meow.creator.username
               )}`}</div>
             </div>
             <div className='flex-center btnhover p-[4px]'>
@@ -31,7 +33,7 @@ export const MeowCard = () => {
             </div>
           </div>
           <div>
-            <span className=''>some day this will be a meow</span>
+            <span className=''>{meow.context}</span>
           </div>
           <div></div>
         </div>
