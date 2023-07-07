@@ -24,13 +24,13 @@ export const Form = () => {
       });
       if (response.ok) {
         console.log('meow sended');
-        router.push('/');
       }
     } catch (err) {
       console.log(err);
     } finally {
       setSendingMeow(false);
       setText('');
+      router.push('/');
     }
   };
 

@@ -3,8 +3,8 @@
 import { Login } from '@/components/Login';
 import { Navbar } from '@/components/Navbar';
 import { SessionProvider } from 'next-auth/react';
-import '@/styles/globals.css';
 import { SideBar } from '@/components/SideBar';
+import '@/styles/globals.css';
 
 export const metadata = {
   title: 'Meowter',
@@ -18,7 +18,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <SessionProvider>
           <div className='flex-center min-h-screen flex-row'>
             <Navbar />
-            <main className='h-screen !border-y-0'>{children}</main>
+            <main className='h-screen w-screen max-w-xl !border-y-0'>{children}</main>
             <SideBar />
             <Login />
           </div>
