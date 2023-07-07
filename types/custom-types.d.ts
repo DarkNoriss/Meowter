@@ -11,3 +11,7 @@ export type MeowType = {
   };
   _id: string;
 };
+export type SessionProviderType = {
+  children: React.ReactNode;
+  session?: Session;
+};

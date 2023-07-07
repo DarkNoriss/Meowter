@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import { Button } from './navbar/Button';
 import { useSession } from 'next-auth/react';

@@ -1,8 +1,6 @@
-'use client';
-
 import { Login } from '@/components/Login';
 import { Navbar } from '@/components/Navbar';
-import { SessionProvider } from 'next-auth/react';
+import Provider from '@/components/Provider';
 import { SideBar } from '@/components/SideBar';
 import '@/styles/globals.css';
 
@@ -15,14 +13,14 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en'>
       <body>
-        <SessionProvider>
+        <Provider>
           <div className='flex-center min-h-screen flex-row'>
             <Navbar />
             <main className='h-screen w-screen max-w-xl !border-y-0'>{children}</main>
             <SideBar />
             <Login />
           </div>
-        </SessionProvider>
+        </Provider>
       </body>
     </html>
   );
