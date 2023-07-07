@@ -10,6 +10,10 @@ const UserSchema = new Schema({
     type: String,
     required: [true, 'Username is required!'],
   },
+  userlink: {
+    type: String,
+    required: [true, 'Userlink is required!'],
+  },
   image: {
     type: String,
   },

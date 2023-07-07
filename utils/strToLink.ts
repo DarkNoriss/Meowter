@@ -1,4 +1,3 @@
 export const strToLink = (str: string) => {
-  const updatedStr = str.replace(/\s/g, '').toLowerCase();
-  return `@${updatedStr}`;
+  return str.replace(/\s/g, '').toLowerCase();
 };

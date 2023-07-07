@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { Button } from './navbar/Button';
 import { useSession } from 'next-auth/react';
-import { strToLink } from '@/utils/strToLink';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { signOut } from 'next-auth/react';
 import { ImageAvatar } from './ImageAvatar';
@@ -77,7 +76,7 @@ export const Navbar = () => {
                   <div className='mx-3 flex flex-col text-base'>
                     <span className='font-bold'>{session.user?.name}</span>
                     <span className='font-normal text-gray-500'>
-                      {strToLink(session.user?.name as string)}
+                      @{session.user.link}
                     </span>
                   </div>
                   <div className='flex flex-1 justify-end'>
@@ -98,9 +97,9 @@ export const Navbar = () => {
                       className='btnhover !rounded-none px-4 py-3'
                       onClick={() => signOut()}
                     >
-                      <span className='text-base font-bold'>{`Log out ${strToLink(
-                        session.user?.name as string
-                      )}`}</span>
+                      <span className='text-base font-bold'>
+                        Log out @{session.user.link}
+                      </span>
                     </div>
                   </div>
                 )}

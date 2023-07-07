@@ -21,8 +21,8 @@ const Profile = () => {
         <div>
           <Image src={`/assets/img/bg.jpg`} alt='logo' height={500} width={1500} />
         </div>
-        <div>
-          <div>
+        <div className='mb-4 px-4 pt-3'>
+          <div className='flex '>
             <div>
               <Image
                 src={session?.user.image}
@@ -36,7 +36,7 @@ const Profile = () => {
               <span>Edit profile</span>
             </div>
           </div>
-          <div>
+          <div className='flex flex-col'>
             <div>
               <span className='text-xl font-bold'>{session?.user.name}</span>
             </div>

@@ -3,6 +3,7 @@ import GoogleProvider from 'next-auth/providers/google';
 
 import User from '@/models/user';
 import { connectToDB } from '@/utils/connectToDB';
+import { strToLink } from '@/utils/strToLink';
 
 export const options: NextAuthOptions = {
   providers: [
@@ -15,6 +16,7 @@ export const options: NextAuthOptions = {
     async session({ session }) {
       const sessionUser = await User.findOne({ email: session.user.email });
       session.user.id = sessionUser._id.toString();
+      session.user.link = sessionUser.userlink;
 
       return session;
     },
@@ -29,6 +31,7 @@ export const options: NextAuthOptions = {
           await User.create({
             email: profile.email,
             username: profile.name,
+            userlink: strToLink(profile.name as string),
             image: profile.image ?? profile.picture,
           });
         }
