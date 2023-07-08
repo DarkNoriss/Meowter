@@ -15,7 +15,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
 
   return (
     <>
-      {getUser().length > 0 && (
+      {getUser().length > 0 && getUser()[0].userlink === params.id && (
         <>
           <div className='border-white-smoll bg-transblur sticky top-0 flex h-14 w-full max-w-xl items-center !border-t-0 px-4 backdrop-blur-md backdrop-filter'>
             <div className='min-w-[56px]'>
