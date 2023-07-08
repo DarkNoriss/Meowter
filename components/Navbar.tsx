@@ -43,27 +43,38 @@ export const Navbar = () => {
                 className='btnhover flex-center aspect-square h-14 py-[2px]'
                 passHref
               >
-                <Image src='/assets/icons/cat.svg' alt='logo' height={28} width={28} />
+                <Image
+                  src='/assets/icons/cat.svg'
+                  alt='logo'
+                  height={28}
+                  width={28}
+                  className='h-8 w-auto'
+                />
               </Link>
               <div className='my-1'>
                 <Link href='/' passHref>
                   <Button name={'home'} />
                 </Link>
-                <Button name={'explore'} />
-                <Button name={'notifications'} />
-                <Button name={'messages'} />
-                <Button name={'lists'} />
-                <Button name={'booksmarks'} />
-                <Button name={'verified'} />
-                <Link href='/profile' passHref>
-                  <Button name={'profile'} />
-                </Link>
-
-                <Button name={'more'} />
+                {session && (
+                  <>
+                    <Button name={'explore'} />
+                    <Button name={'notifications'} />
+                    <Button name={'messages'} />
+                    <Button name={'lists'} />
+                    <Button name={'booksmarks'} />
+                    <Button name={'verified'} />
+                    <Link href='/profile' passHref>
+                      <Button name={'profile'} />
+                    </Link>
+                    <Button name={'more'} />
+                  </>
+                )}
               </div>
-              <div className='flex-center btnhover my-4 h-14 w-full rounded-full bg-gray-500 hover:bg-gray-600'>
-                <button className='text-lg font-bold'>Meow</button>
-              </div>
+              {session && (
+                <div className='flex-center btnhover my-4 h-14 w-full rounded-full bg-gray-500 hover:bg-gray-600'>
+                  <button className='text-lg font-bold'>Meow</button>
+                </div>
+              )}
             </div>
             {session && (
               <div className='relative' onClick={handleOpen} ref={menuRef}>

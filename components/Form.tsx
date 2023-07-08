@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { ExpandingTextarea } from './ExpandingTextarea';
 import { ImageAvatar } from './ImageAvatar';
-import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { useMeowterContext } from '@/context/meowContext';
 
 export const Form = () => {
   const { data: session } = useSession();
-  const router = useRouter();
+  const { fetchMeows } = useMeowterContext();
   const [text, setText] = useState('');
   const [sendingMeow, setSendingMeow] = useState<boolean>(false);
 
@@ -20,6 +20,7 @@ export const Form = () => {
         body: JSON.stringify({
           userId: session?.user.id,
           context: text,
+          date: new Date(),
         }),
       });
       if (response.ok) {
@@ -30,7 +31,7 @@ export const Form = () => {
     } finally {
       setSendingMeow(false);
       setText('');
-      router.push('/');
+      fetchMeows();
     }
   };
 
