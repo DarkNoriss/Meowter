@@ -1,11 +1,22 @@
 'use client';
 
-import { MeowList } from './MeowList';
+import { useEffect } from 'react';
+
+import { useMeowterContext } from '@/context/meowContext';
+import { MeowCard } from './MeowCard';
 
 export const Feed = () => {
+  const { fetchMeows, getMeows } = useMeowterContext();
+
+  useEffect(() => {
+    fetchMeows();
+  }, []);
+
   return (
     <>
-      <MeowList />
+      {getMeows().map((meow) => (
+        <MeowCard key={meow._id} meow={meow} />
+      ))}
     </>
   );
 };
