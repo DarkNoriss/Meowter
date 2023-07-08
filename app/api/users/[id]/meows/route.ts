@@ -1,11 +1,11 @@
 import Meow from '@/models/meow';
 import { connectToDB } from '@/utils/connectToDB';
 
-export const GET = async (req: Request, { params }: { params: string }) => {
+export const GET = async (req: Request, { params }: { params: { id: string } }) => {
   try {
     await connectToDB();
 
-    const meows = await Meow.find({ creator: params })
+    const meows = await Meow.find({ creator: params.id })
       .populate('creator')
       .sort({ date: -1 });
 
