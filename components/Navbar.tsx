@@ -63,7 +63,7 @@ export const Navbar = () => {
                     <Button name={'lists'} />
                     <Button name={'booksmarks'} />
                     <Button name={'verified'} />
-                    <Link href='/profile' passHref>
+                    <Link href={`/${session.user.link}`} passHref>
                       <Button name={'profile'} />
                     </Link>
                     <Button name={'more'} />
