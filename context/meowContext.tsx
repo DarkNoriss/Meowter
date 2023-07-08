@@ -5,7 +5,7 @@ import { ReactNode, createContext, useContext, useReducer, useState } from 'reac
 
 type MeowterContextType = {
   fetchMeows: () => Promise<void>;
-  fetchUser: ({ userLink }: { userLink: string }) => Promise<void>;
+  fetchUser: ({ id }: { id: string }) => Promise<void>;
   fetchUserMeows: ({ userId }: { userId: string }) => Promise<void>;
   getMeows: () => MeowType[];
   getUser: () => UserType[];
@@ -24,20 +24,23 @@ export const MeowterProvider = ({ children }: { children: ReactNode }) => {
   const [userMeows, setUserMeows] = useState<MeowType[]>([]);
 
   const fetchMeows = async () => {
+    console.log('Fetching meows...');
     const response = await fetch('api/meow');
     const data = await response.json();
 
     setMeows(data);
   };
 
-  const fetchUser = async ({ userLink }: { userLink: string }) => {
-    const response = await fetch(`api/users/${userLink}`);
+  const fetchUser = async ({ id }: { id: string }) => {
+    console.log('Fetching user...');
+    const response = await fetch(`api/users/${id}`);
     const data = await response.json();
 
     setUser(data);
   };
 
   const fetchUserMeows = async ({ userId }: { userId: string }) => {
+    console.log('Fetching user meows...');
     const response = await fetch(`api/users/${userId}/meow`);
     const data = await response.json();
 
