@@ -1,15 +1,16 @@
 'use client';
 
 import { MeowType, UserType } from '@/types/custom-types';
+import { ObjectId } from 'mongoose';
 import { ReactNode, createContext, useContext, useReducer, useState } from 'react';
 
 type MeowterContextType = {
   fetchMeows: () => Promise<void>;
   fetchUser: ({ id }: { id: string }) => Promise<void>;
-  fetchUserMeows: ({ userId }: { userId: string }) => Promise<void>;
+  fetchUserMeows: ({ id }: { id: string }) => Promise<void>;
   getMeows: () => MeowType[];
   getUser: () => UserType[];
-  getUsersMeows: () => MeowType[];
+  getUserMeows: () => MeowType[];
 };
 
 const MeowterContext = createContext({} as MeowterContextType);
@@ -39,9 +40,9 @@ export const MeowterProvider = ({ children }: { children: ReactNode }) => {
     setUser(data);
   };
 
-  const fetchUserMeows = async ({ userId }: { userId: string }) => {
+  const fetchUserMeows = async ({ id }: { id: string }) => {
     console.log('Fetching user meows...');
-    const response = await fetch(`/api/users/${userId}/meow`);
+    const response = await fetch(`/api/users/${id}/meows`);
     const data = await response.json();
 
     setUserMeows(data);
@@ -49,11 +50,11 @@ export const MeowterProvider = ({ children }: { children: ReactNode }) => {
 
   const getMeows = () => meows;
   const getUser = () => user;
-  const getUsersMeows = () => userMeows;
+  const getUserMeows = () => userMeows;
 
   return (
     <MeowterContext.Provider
-      value={{ fetchMeows, fetchUser, fetchUserMeows, getMeows, getUser, getUsersMeows }}
+      value={{ fetchMeows, fetchUser, fetchUserMeows, getMeows, getUser, getUserMeows }}
     >
       {children}
     </MeowterContext.Provider>
