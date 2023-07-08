@@ -1,7 +1,7 @@
 import Meow from '@/models/meow';
 import { connectToDB } from '@/utils/connectToDB';
 
-export const GET = async (req: Request) => {
+export const GET = async () => {
   try {
     await connectToDB();
 

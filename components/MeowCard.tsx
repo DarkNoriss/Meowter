@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { MeowType } from '@/types/custom-types';
+import Link from 'next/link';
 
 export const MeowCard = ({ meow }: { meow: MeowType }) => {
   return (
@@ -17,10 +18,14 @@ export const MeowCard = ({ meow }: { meow: MeowType }) => {
         </div>
         <div className='flex-1'>
           <div className='flex flex-row justify-between'>
-            <div className='flex flex-row'>
+            <Link
+              href={`/${meow.creator.userlink}`}
+              className='flex cursor-pointer flex-row'
+              passHref
+            >
               <div className='text-base font-bold'>{meow.creator.username}</div>
               <div className='ml-1 text-base text-gray-500'>@{meow.creator.userlink}</div>
-            </div>
+            </Link>
             <div className='flex-center btnhover p-[4px]'>
               <svg viewBox='0 0 24 24' aria-hidden='true' className='h-4 fill-gray-500'>
                 <g>

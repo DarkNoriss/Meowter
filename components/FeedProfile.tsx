@@ -6,18 +6,19 @@ import { MeowCard } from './MeowCard';
 import { useMeowterContext } from '@/context/meowContext';
 
 export const FeedProfile = () => {
-  const { fetchUserMeows } = useMeowterContext();
+  const { fetchUserMeows, getUser, getUserMeows } = useMeowterContext();
 
   useEffect(() => {
-    // fetchUserMeows(session?.user.id);
+    const id = getUser()?.[0]._id.toString();
+    fetchUserMeows({ id });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      {/* {getUserMeows().map((meow) => (
+      {getUserMeows().map((meow) => (
         <MeowCard key={meow._id} meow={meow} />
-      ))} */}
+      ))}
     </>
   );
 };
