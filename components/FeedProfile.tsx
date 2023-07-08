@@ -4,11 +4,9 @@ import { useEffect } from 'react';
 
 import { MeowCard } from './MeowCard';
 import { useMeowterContext } from '@/context/meowContext';
-import { useSession } from 'next-auth/react';
 
 export const FeedProfile = () => {
-  const { data: session } = useSession();
-  const { fetchUserMeows, getUserMeows } = useMeowterContext();
+  const { fetchUserMeows } = useMeowterContext();
 
   useEffect(() => {
     // fetchUserMeows(session?.user.id);
@@ -17,9 +15,9 @@ export const FeedProfile = () => {
 
   return (
     <>
-      {getUserMeows().map((meow) => (
+      {/* {getUserMeows().map((meow) => (
         <MeowCard key={meow._id} meow={meow} />
-      ))}
+      ))} */}
     </>
   );
 };
