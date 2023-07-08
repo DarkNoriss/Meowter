@@ -1,7 +1,7 @@
 import Meow from '@/models/meow';
 import { connectToDB } from '@/utils/connectToDB';
 
-export const GET = async () => {
+export const GET = async (req: Request) => {
   try {
     await connectToDB();
 
@@ -9,6 +9,6 @@ export const GET = async () => {
 
     return new Response(JSON.stringify(meows), { status: 200 });
   } catch (e) {
-    return new Response('Failed to fetch all prompts', { status: 500 });
+    return new Response('Failed to fetch all meows', { status: 500 });
   }
 };

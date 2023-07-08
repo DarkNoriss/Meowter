@@ -25,7 +25,7 @@ export const MeowterProvider = ({ children }: { children: ReactNode }) => {
 
   const fetchMeows = async () => {
     console.log('Fetching meows...');
-    const response = await fetch('api/meow');
+    const response = await fetch('/api/meow', { cache: 'no-store' });
     const data = await response.json();
 
     setMeows(data);
@@ -33,7 +33,7 @@ export const MeowterProvider = ({ children }: { children: ReactNode }) => {
 
   const fetchUser = async ({ id }: { id: string }) => {
     console.log('Fetching user...');
-    const response = await fetch(`api/users/${id}`);
+    const response = await fetch(`/api/users/${id}`);
     const data = await response.json();
 
     setUser(data);
@@ -41,7 +41,7 @@ export const MeowterProvider = ({ children }: { children: ReactNode }) => {
 
   const fetchUserMeows = async ({ userId }: { userId: string }) => {
     console.log('Fetching user meows...');
-    const response = await fetch(`api/users/${userId}/meow`);
+    const response = await fetch(`/api/users/${userId}/meow`);
     const data = await response.json();
 
     setUserMeows(data);
