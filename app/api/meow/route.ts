@@ -5,7 +5,7 @@ export const GET = async () => {
   try {
     await connectToDB();
 
-    const meows = await Meow.find({}).populate('creator');
+    const meows = await Meow.find({}).populate('creator').sort({ date: -1 });
 
     return new Response(JSON.stringify(meows), { status: 200 });
   } catch (e) {
