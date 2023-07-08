@@ -9,7 +9,10 @@ const MeowSchema = new Schema({
     type: String,
     required: [true, 'Meow is required.'],
   },
-  date: { type: Date, default: Date.now() },
+  date: {
+    type: Date,
+    required: [true, 'Date is required.'],
+  },
   meta: {
     remeows: { type: Number, default: 0 },
     comments: { type: Number, default: 0 },
