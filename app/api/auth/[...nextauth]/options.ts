@@ -33,6 +33,7 @@ export const options: NextAuthOptions = {
             username: profile.name,
             userlink: strToLink(profile.name as string),
             image: profile.image ?? profile.picture,
+            date: new Date(),
           });
         }
 
