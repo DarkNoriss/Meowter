@@ -1,5 +1,14 @@
 import { Types } from 'mongoose';
 
+export type UserType = {
+  _id: Types.ObjectId;
+  email: string;
+  username: string;
+  userlink: string;
+  image: string;
+  date: Date;
+};
+
 export type MeowType = {
   creator: Types.Object;
   context: string;
@@ -11,6 +20,7 @@ export type MeowType = {
   };
   _id: string;
 };
+
 export type SessionProviderType = {
   children: React.ReactNode;
   session?: Session;
