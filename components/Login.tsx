@@ -10,7 +10,7 @@ export const Login = () => {
       {!session && (
         <div className='fixed bottom-0 left-0 flex w-full flex-row justify-around bg-gray-500'>
           <div className='flex flex-col p-4'>
-            <span className='text-2xl font-bold'>{`Don't miss that's happening`}</span>
+            <span className='text-2xl font-bold'>{`Don't miss what's happening`}</span>
             <span>{`People on Meowter are the first to know`}</span>
           </div>
           <div className='flex-center'>
