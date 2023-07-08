@@ -78,7 +78,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
               </div>
             </div>
             <div className='flex-center btnhover flex-1 !rounded-none px-4'>
-              <div className='flex-center  h-full '>
+              <div className='flex-center h-full '>
                 <span>Media</span>
               </div>
             </div>
@@ -88,7 +88,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
               </div>
             </div>
           </div>
-          {/* <FeedProfile /> */}
+          <FeedProfile />
         </>
       )}
     </>
