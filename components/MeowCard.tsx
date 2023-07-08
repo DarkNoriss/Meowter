@@ -37,7 +37,65 @@ export const MeowCard = ({ meow }: { meow: MeowType }) => {
           <div>
             <span className=''>{meow.context}</span>
           </div>
-          <div></div>
+          <div>
+            <div className='mt-3 flex max-w-[425px] justify-between gap-2'>
+              <div className='min-h-[20px]'>
+                <div>
+                  <Image
+                    src='/assets/icons/reply.svg'
+                    alt='Avatar'
+                    height={20}
+                    width={20}
+                  />
+                </div>
+                <div></div>
+              </div>
+              <div className='min-h-[20px]'>
+                <div>
+                  <Image
+                    src='/assets/icons/remeow.svg'
+                    alt='Avatar'
+                    height={20}
+                    width={20}
+                  />
+                </div>
+                <div></div>
+              </div>
+              <div className='min-h-[20px]'>
+                <div>
+                  <Image
+                    src='/assets/icons/like.svg'
+                    alt='Avatar'
+                    height={20}
+                    width={20}
+                  />
+                </div>
+                <div></div>
+              </div>
+              <div className='min-h-[20px]'>
+                <div>
+                  <Image
+                    src='/assets/icons/view.svg'
+                    alt='Avatar'
+                    height={20}
+                    width={20}
+                  />
+                </div>
+                <div></div>
+              </div>
+              <div className='min-h-[20px]'>
+                <div>
+                  <Image
+                    src='/assets/icons/share.svg'
+                    alt='Avatar'
+                    height={20}
+                    width={20}
+                  />
+                </div>
+                <div></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </article>
