@@ -10,6 +10,7 @@ export const Feed = () => {
 
   useEffect(() => {
     fetchMeows();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
