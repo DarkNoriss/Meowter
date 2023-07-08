@@ -38,7 +38,7 @@ export const MeowCard = ({ meow }: { meow: MeowType }) => {
             <span className=''>{meow.context}</span>
           </div>
           <div>
-            <div className='mt-3 flex max-w-[425px] justify-between gap-2'>
+            <div className='max-w-[425px ] mt-3 flex justify-between gap-2'>
               <div className='min-h-[20px]'>
                 <div>
                   <Image
