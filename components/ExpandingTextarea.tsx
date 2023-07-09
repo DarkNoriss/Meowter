@@ -14,6 +14,7 @@ export const ExpandingTextarea: React.FC<ExpandingTextProps> = ({ text, setText 
 
   const adjustTextarea = () => {
     if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   };
@@ -23,7 +24,7 @@ export const ExpandingTextarea: React.FC<ExpandingTextProps> = ({ text, setText 
       ref={textareaRef}
       value={text}
       onChange={handleChange}
-      className='border-white-smoll min-w-1 h-[52px] resize-none !border-x-0 !border-t-0 bg-transparent py-3 text-xl focus:outline-none'
+      className='border-white-smoll min-w-1 over h-[52px] resize-none overflow-hidden !border-x-0 !border-t-0 bg-transparent py-3 text-xl focus:outline-none'
       placeholder='What is happening?!'
       maxLength={500}
     />
