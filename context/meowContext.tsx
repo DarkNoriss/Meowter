@@ -1,16 +1,11 @@
 'use client';
 
-import { MeowType, UserType } from '@/types/custom-types';
-import { ObjectId } from 'mongoose';
-import { ReactNode, createContext, useContext, useReducer, useState } from 'react';
+import { MeowType } from '@/types/custom-types';
+import { ReactNode, createContext, useContext, useState } from 'react';
 
 type MeowterContextType = {
   fetchMeows: () => Promise<void>;
-  fetchUser: ({ id }: { id: string }) => Promise<void>;
-  fetchUserMeows: ({ id }: { id: string }) => Promise<void>;
-  getMeows: () => MeowType[];
-  getUser: () => UserType[];
-  getUserMeows: () => MeowType[];
+  meows: MeowType[];
 };
 
 const MeowterContext = createContext({} as MeowterContextType);
@@ -21,8 +16,6 @@ export const useMeowterContext = () => {
 
 export const MeowterProvider = ({ children }: { children: ReactNode }) => {
   const [meows, setMeows] = useState<MeowType[]>([]);
-  const [user, setUser] = useState<UserType[]>([]);
-  const [userMeows, setUserMeows] = useState<MeowType[]>([]);
 
   const fetchMeows = async () => {
     console.log('Fetching meows...');
@@ -32,30 +25,8 @@ export const MeowterProvider = ({ children }: { children: ReactNode }) => {
     setMeows(data);
   };
 
-  const fetchUser = async ({ id }: { id: string }) => {
-    console.log('Fetching user...');
-    const response = await fetch(`/api/users/${id}`);
-    const data = await response.json();
-
-    setUser(data);
-  };
-
-  const fetchUserMeows = async ({ id }: { id: string }) => {
-    console.log('Fetching user meows...');
-    const response = await fetch(`/api/users/${id}/meows`);
-    const data = await response.json();
-
-    setUserMeows(data);
-  };
-
-  const getMeows = () => meows;
-  const getUser = () => user;
-  const getUserMeows = () => userMeows;
-
   return (
-    <MeowterContext.Provider
-      value={{ fetchMeows, fetchUser, fetchUserMeows, getMeows, getUser, getUserMeows }}
-    >
+    <MeowterContext.Provider value={{ fetchMeows, meows }}>
       {children}
     </MeowterContext.Provider>
   );
