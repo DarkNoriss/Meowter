@@ -1,22 +1,36 @@
 'use client';
 
-import { useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { MeowCard } from './MeowCard';
-import { useMeowterContext } from '@/context/meowContext';
+import { MeowType } from '@/types/custom-types';
 
-export const FeedProfile = () => {
-  const { fetchUserMeows, getUser, getUserMeows } = useMeowterContext();
+export const FeedProfile = ({
+  id,
+  setUserMeowsNb,
+}: {
+  id: string;
+  setUserMeowsNb: Dispatch<SetStateAction<number>>;
+}) => {
+  const [userMeows, setUserMeows] = useState<MeowType[]>([]);
 
   useEffect(() => {
-    const id = getUser()?.[0]._id.toString();
-    fetchUserMeows({ id });
+    const fetchUserMeows = async () => {
+      console.log('Fetching user meows...');
+      const response = await fetch(`/api/users/${id}/meows`);
+      const data = await response.json();
+
+      setUserMeowsNb(data.length);
+      setUserMeows(data);
+    };
+
+    fetchUserMeows();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      {getUserMeows().map((meow) => (
+      {userMeows.map((meow) => (
         <MeowCard key={meow._id} meow={meow} />
       ))}
     </>
