@@ -14,6 +14,7 @@ export const ExpandingTextarea: React.FC<ExpandingTextProps> = ({ text, setText 
 
   const adjustTextarea = () => {
     if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   };
