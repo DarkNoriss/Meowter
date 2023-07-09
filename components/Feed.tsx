@@ -2,11 +2,11 @@
 
 import { useEffect } from 'react';
 
-import { useMeowterContext } from '@/context/meowContext';
 import { MeowCard } from './MeowCard';
+import { useMeowterContext } from '@/context/meowContext';
 
 export const Feed = () => {
-  const { fetchMeows, getMeows } = useMeowterContext();
+  const { fetchMeows, meows } = useMeowterContext();
 
   useEffect(() => {
     fetchMeows();
@@ -15,7 +15,7 @@ export const Feed = () => {
 
   return (
     <>
-      {getMeows().map((meow) => (
+      {meows.map((meow) => (
         <MeowCard key={meow._id} meow={meow} />
       ))}
     </>
