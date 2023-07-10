@@ -11,6 +11,6 @@ export const GET = async (req: Request, { params }: { params: { id: string } }) 
 
     return new Response(JSON.stringify(meows), { status: 200 });
   } catch (e) {
-    return new Response('Failed to fetch all prompts', { status: 500 });
+    return new Response('Failed to fetch all user meows', { status: 500 });
   }
 };

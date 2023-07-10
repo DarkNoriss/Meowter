@@ -1,9 +1,9 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { FeedProfile } from '@/components/FeedProfile';
 import { UserType } from '@/types/custom-types';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
 
 const Profile = ({ params }: { params: { id: string } }) => {
   const [userData, setUserData] = useState<UserType[]>([]);
@@ -41,7 +41,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
             <div className='mb-4 px-4 pt-3'>
               <div className='-mb-4 flex justify-between'>
                 <div className='mt-[15%] w-1/4'>
-                  <div className='relative bottom-0 left-0 top-0'>
+                  <div className='relative'>
                     <div className='absolute bottom-1/2 -translate-y-1/4'>
                       <Image
                         src={user.image}
