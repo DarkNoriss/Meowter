@@ -20,7 +20,6 @@ export const Form = () => {
         body: JSON.stringify({
           userId: session?.user.id,
           context: text,
-          date: new Date(),
         }),
       });
       if (response.ok) {
