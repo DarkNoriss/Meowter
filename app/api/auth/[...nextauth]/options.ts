@@ -13,17 +13,12 @@ export const options: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async session(props) {
-      try {
-        const { session } = props;
-        const sessionUser = await User.findOne({ email: session.user.email });
-        session.user.id = sessionUser._id.toString();
-        session.user.link = sessionUser.userlink;
-        return session;
-      } catch (err) {
-        console.error(err);
-        return props.session;
-      }
+    async session({ session }) {
+      const sessionUser = await User.findOne({ email: session.user.email });
+      session.user.id = sessionUser._id.toString();
+      session.user.link = sessionUser.userlink;
+
+      return session;
     },
 
     async signIn({ profile }) {
