@@ -1,5 +1,5 @@
 import { Login } from '@/components/Login';
-import { Navbar } from '@/components/Navbar';
+import { Navbar } from '@/components/Navbar/Navbar';
 import Provider from '@/components/Provider';
 import { SideBar } from '@/components/SideBar';
 import { MeowterProvider } from '@/context/meowContext';
