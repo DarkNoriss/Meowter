@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ExpandingTextarea } from './ExpandingTextarea';
 import { ImageAvatar } from '../ImageAvatar';
 import { useMeowterContext } from '@/context/meowContext';
+import { clsx } from 'clsx';
 
 export const Form = () => {
   const { fetchMeows } = useMeowterContext();
@@ -40,7 +41,10 @@ export const Form = () => {
         <ExpandingTextarea text={text} setText={setText} />
         <div className='flex justify-end pb-2 text-base font-bold'>
           <button
-            className='flex-center btnhover mt-3 h-9 rounded-full bg-gray-500 px-4 hover:bg-gray-600'
+            className={clsx(
+              `flex-center mt-3 h-9 rounded-full bg-gray-500 px-4 `,
+              text.length === 0 ? 'bg-gray-700' : 'btnhover hover:bg-gray-600'
+            )}
             disabled={sendingMeow || text.length === 0}
           >
             Meow
