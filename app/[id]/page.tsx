@@ -21,7 +21,6 @@ const Profile = ({ params }: { params: { id: string } }) => {
 
     fetchUser();
   }, [params]);
-
   return (
     <>
       {userData.map((user) => (
