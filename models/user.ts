@@ -25,6 +25,12 @@ const UserSchema = new Schema({
   birthday: {
     type: Date,
   },
+  meows: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Meow',
+    },
+  ],
 });
 
 const User = models.User || model('User', UserSchema);
