@@ -14,7 +14,13 @@ export const Login = () => {
             <span>{`People on Meowter are the first to know`}</span>
           </div>
           <div className='flex-center'>
-            <button className='btnhover border px-4 py-2' onClick={() => signIn()}>
+            <button
+              className='btnhover border px-4 py-2'
+              onClick={(e) => {
+                e.preventDefault();
+                signIn();
+              }}
+            >
               <span className='text-xl font-bold'>Log in</span>
             </button>
           </div>
