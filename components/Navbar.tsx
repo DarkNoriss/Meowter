@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Button } from './navbar/Button';
+import { Button } from './Navbar/Button';
 import { useSession } from 'next-auth/react';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { signOut } from 'next-auth/react';
@@ -106,7 +106,7 @@ export const Navbar = () => {
                     </div>
                     <div
                       className='btnhover !rounded-none px-4 py-3'
-                      onClick={() => signOut()}
+                      onClick={void signOut}
                     >
                       <span className='text-base font-bold'>
                         Log out @{session.user.link}
