@@ -8,6 +8,9 @@ export type UserType = {
   image: string;
   date: Date;
   meows: MeowType[];
+  remeows: [];
+  likes: [];
+  comments: CommentType[];
 };
 
 export type MeowType = {
@@ -15,9 +18,17 @@ export type MeowType = {
   context: string;
   date: Date;
   remeows: [];
-  comments: [];
+  comments: CommentType[];
   likes: [];
   _id: string;
+};
+
+export type CommentType = {
+  creator: Types.Object;
+  meow: Types.Object;
+  content: string;
+  date: Date;
+  likes: [];
 };
 
 export type SessionProviderType = {
