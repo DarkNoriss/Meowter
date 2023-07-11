@@ -3,12 +3,13 @@ import { connectToDB } from '@/utils/connectToDB';
 import { getServerSession } from 'next-auth';
 import { options } from '../../auth/[...nextauth]/options';
 import User from '@/models/user';
-import { updateUsersWithMeowsField } from '@/utils/updateUsersWithMeowsField';
+import { updateMeowReactions } from '@/utils/updateMeowReactions';
 
 export const POST = async (req: Request) => {
   const { context } = await req.json();
   const session = await getServerSession(options);
 
+  // updateMeowReactions();
   try {
     if (session) {
       await connectToDB();

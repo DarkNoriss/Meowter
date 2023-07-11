@@ -5,9 +5,12 @@ export const GET = async (req: Request, { params }: { params: { id: string } }) 
   try {
     await connectToDB();
 
-    const user = await User.find({ userlink: params.id });
+    const user = await User.find({ userlink: params.id }).populate({
+      path: 'meows',
+      options: { sort: { date: -1 } },
+    });
 
-    return new Response(JSON.stringify(user), { status: 200 });
+    return new Response(JSON.stringify(user[0]), { status: 200 });
   } catch (e) {
     return new Response('Failed to fetch user', { status: 500 });
   }

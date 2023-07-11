@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import { clsx } from 'clsx';
+import React from 'react';
 
 export const NavButtons = () => {
   return (
@@ -30,28 +32,30 @@ const Buttons = () => {
         <Button name={'booksmarks'} />
         <Button name={'verified'} />
         <Link href={`/${session.user.link}`} passHref>
-          <Button name={'profile'} />
+          <Button name={'profile'} link={session.user.link} />
         </Link>
         <Button name={'more'} />
       </>
     );
 };
 
-const Button = ({ name }: { name: string }) => {
+const Button = ({ name, link }: { name: string; link?: string }) => {
   const [isHere, setIsHere] = useState<boolean>(false);
   const path = usePathname();
 
   useEffect(() => {
-    const isPathMatched = (name === 'home' && path === '/') || path === `/${name}`;
+    const isPathMatched =
+      (name === 'home' && path === '/') || path === `/${name}` || path === `/${link}`;
+
     setIsHere(isPathMatched);
-  }, [name, path]);
+  }, [link, name, path]);
 
   return (
     <div className='btnhover my-1 flex h-14 flex-row p-3'>
       <div>
         <Image src={`/assets/icons/${name}.svg`} alt='logo' height={28} width={28} />
       </div>
-      <span className={`ml-5 text-xl ${isHere ? 'font-bold' : ''} capitalize`}>
+      <span className={clsx(`ml-5 text-xl capitalize`, `${isHere ? 'font-bold' : ''}`)}>
         {name}
       </span>
     </div>

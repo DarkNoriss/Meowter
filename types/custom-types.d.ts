@@ -7,18 +7,16 @@ export type UserType = {
   userlink: string;
   image: string;
   date: Date;
-  meows: [];
+  meows: MeowType[];
 };
 
 export type MeowType = {
   creator: Types.Object;
   context: string;
   date: Date;
-  meta: {
-    remeows: number;
-    comments: number;
-    likes: number;
-  };
+  remeows: [];
+  comments: [];
+  likes: [];
   _id: string;
 };
 

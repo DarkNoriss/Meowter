@@ -7,17 +7,30 @@ const MeowSchema = new Schema({
   },
   context: {
     type: String,
-    required: [true, 'Meow is required.'],
+    required: [true, 'Meow context is required.'],
   },
   date: {
     type: Date,
     required: [true, 'Date is required.'],
   },
-  meta: {
-    remeows: { type: Number, default: 0 },
-    comments: { type: Number, default: 0 },
-    likes: { type: Number, default: 0 },
-  },
+  remeows: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Meow',
+    },
+  ],
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Comment',
+    },
+  ],
+  likes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Meow',
+    },
+  ],
 });
 
 const Meow = models.Meow || model('Meow', MeowSchema);
