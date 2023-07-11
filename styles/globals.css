@@ -17,7 +17,7 @@ body {
 }
 
 .btnhover {
-  @apply cursor-pointer rounded-full transition-all duration-200 hover:bg-gray-700  hover:shadow-lg;
+  @apply cursor-pointer rounded-full transition-all duration-200 hover:bg-gray-700 hover:shadow-lg;
 }
 
 .shadow-glow {
