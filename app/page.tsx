@@ -1,7 +1,7 @@
 'use client';
 
 import { Feed } from '@/components/Feed';
-import { Form } from '@/components/Form';
+import { Form } from '@/components/Form/Form';
 import { useSession } from 'next-auth/react';
 
 const Home = () => {

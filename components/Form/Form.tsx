@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ExpandingTextarea } from './ExpandingTextarea';
-import { ImageAvatar } from './ImageAvatar';
+import { ImageAvatar } from '../ImageAvatar';
 import { useMeowterContext } from '@/context/meowContext';
 
 export const Form = () => {
@@ -20,7 +20,7 @@ export const Form = () => {
         }),
       });
       if (response.ok) {
-        console.log('meow sended');
+        console.log('Meow sended!');
       }
     } catch (err) {
       console.log(err);
