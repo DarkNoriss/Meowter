@@ -7,8 +7,7 @@ export const GET = async () => {
     await connectToDB();
 
     const meows = await Meow.find({}).populate('creator').sort({ date: -1 });
-    console.log(meows.length);
-    console.log(meows);
+
     return new Response(JSON.stringify(meows), { status: 200 });
   } catch (e) {
     return new Response('Failed to fetch all meows', { status: 500 });
