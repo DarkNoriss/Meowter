@@ -12,20 +12,20 @@ export const metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang='en'>
-      <body>
-        <Provider>
-          <MeowterProvider>
+    <Provider>
+      <MeowterProvider>
+        <html lang='en'>
+          <body>
             <div className='flex-center min-h-screen flex-row'>
               <Navbar />
               <main className='h-screen w-screen max-w-xl !border-y-0'>{children}</main>
               <SideBar />
               <Login />
             </div>
-          </MeowterProvider>
-        </Provider>
-      </body>
-    </html>
+          </body>
+        </html>
+      </MeowterProvider>
+    </Provider>
   );
 };
 
