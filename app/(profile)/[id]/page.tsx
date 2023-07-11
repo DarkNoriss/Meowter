@@ -11,7 +11,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Profile = ({ params }: { params: { id: string } }) => {
   const { data: session } = useSession();
-  const { data, isLoading } = useSWR<UserType>(`/api/users/${params.id}`, fetcher);
+  const { data } = useSWR<UserType>(`/api/users/${params.id}`, fetcher);
 
   return (
     <>
