@@ -22,6 +22,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
 
     fetchUser();
   }, [params]);
+
   return (
     <>
       {user && (
