@@ -31,3 +31,7 @@ body {
 .bg-transblur {
   background-color: rgba(12, 16, 22, 0.5);
 }
+
+.text-reactions {
+  color: rgb(113, 118, 123);
+}
