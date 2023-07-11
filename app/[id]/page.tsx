@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { FeedProfile } from '@/components/FeedProfile';
 import { UserType } from '@/types/custom-types';
+import Link from 'next/link';
 
 const Profile = ({ params }: { params: { id: string } }) => {
   const [userData, setUserData] = useState<UserType[]>([]);
@@ -26,9 +27,9 @@ const Profile = ({ params }: { params: { id: string } }) => {
       {userData.map((user) => (
         <div key={user._id}>
           <div className='border-white-smoll bg-transblur sticky top-0 flex h-14 w-full max-w-xl items-center !border-t-0 px-4 backdrop-blur-md backdrop-filter'>
-            <div className='min-w-[56px]'>
+            <Link href='/' className='min-w-[56px]' passHref>
               <Image src={`/assets/icons/arrow.svg`} alt='logo' height={22} width={22} />
-            </div>
+            </Link>
             <div className='flex flex-col'>
               <span className='text-xl font-bold'>{user.username}</span>
               <span className='text-sm text-gray-500'>{userMeowsNb} Meows</span>
