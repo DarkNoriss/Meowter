@@ -5,7 +5,6 @@ import User from '@/models/user';
 import { connectToDB } from '@/utils/connectToDB';
 import { strToLink } from '@/utils/strToLink';
 
-export const revalidate = 1;
 export const options: NextAuthOptions = {
   providers: [
     GoogleProvider({
