@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useRef } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
 type ExpandingTextProps = {
   text: string;
@@ -7,16 +7,17 @@ type ExpandingTextProps = {
 export const ExpandingTextarea: React.FC<ExpandingTextProps> = ({ text, setText }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = '0px';
+      const scrollHeight = textareaRef.current.scrollHeight;
+
+      textareaRef.current.style.height = scrollHeight + 'px';
+    }
+  }, [textareaRef, text]);
+
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(event.target.value);
-    adjustTextarea();
-  };
-
-  const adjustTextarea = () => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
-    }
   };
 
   return (
@@ -24,9 +25,9 @@ export const ExpandingTextarea: React.FC<ExpandingTextProps> = ({ text, setText 
       ref={textareaRef}
       value={text}
       onChange={handleChange}
-      className='border-white-smoll min-w-1 over h-[52px] resize-none overflow-hidden !border-x-0 !border-t-0 bg-transparent py-3 text-xl focus:outline-none'
       placeholder='What is happening?!'
-      maxLength={500}
+      rows={1}
+      className='border-white-smoll resize-none overflow-hidden !border-x-0 !border-t-0 bg-transparent py-3 text-xl focus:outline-none'
     />
   );
 };
