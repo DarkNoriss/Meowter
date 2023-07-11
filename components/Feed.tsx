@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-import { MeowCard } from './MeowCard';
+import { MeowCard } from './MeowCard/MeowCard';
 import { useMeowterContext } from '@/context/meowContext';
 
 export const Feed = () => {
