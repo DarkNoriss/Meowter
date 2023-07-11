@@ -1,7 +1,7 @@
 export const CardContext = ({ context }: { context: string }) => {
   return (
     <div>
-      <span>{context}</span>
+      <span className='break-all'>{context}</span>
     </div>
   );
 };
