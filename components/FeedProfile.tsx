@@ -1,6 +1,6 @@
 'use client';
 
-import { MeowCard } from './MeowCard';
+import { MeowCard } from './MeowCard/MeowCard';
 import { MeowType, UserType } from '@/types/custom-types';
 
 export const FeedProfile = ({
