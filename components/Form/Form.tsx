@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { ExpandingTextarea } from './ExpandingTextarea';
-import { ImageAvatar } from './ImageAvatar';
-import { useSession } from 'next-auth/react';
+import { ImageAvatar } from '../ImageAvatar';
 import { useMeowterContext } from '@/context/meowContext';
+import { clsx } from 'clsx';
 
 export const Form = () => {
-  const { data: session } = useSession();
   const { fetchMeows } = useMeowterContext();
   const [text, setText] = useState('');
   const [sendingMeow, setSendingMeow] = useState<boolean>(false);
@@ -18,13 +17,11 @@ export const Form = () => {
       const response = await fetch('/api/meow/new', {
         method: 'POST',
         body: JSON.stringify({
-          userId: session?.user.id,
           context: text,
-          date: new Date(),
         }),
       });
       if (response.ok) {
-        console.log('meow sended');
+        console.log('Meow sended!');
       }
     } catch (err) {
       console.log(err);
@@ -44,7 +41,10 @@ export const Form = () => {
         <ExpandingTextarea text={text} setText={setText} />
         <div className='flex justify-end pb-2 text-base font-bold'>
           <button
-            className='flex-center btnhover mt-3 h-9 rounded-full bg-gray-500 px-4 hover:bg-gray-600'
+            className={clsx(
+              `flex-center mt-3 h-9 rounded-full bg-gray-500 px-4 `,
+              text.length === 0 ? 'bg-gray-700' : 'btnhover hover:bg-gray-600'
+            )}
             disabled={sendingMeow || text.length === 0}
           >
             Meow

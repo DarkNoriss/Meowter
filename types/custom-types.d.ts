@@ -7,6 +7,7 @@ export type UserType = {
   userlink: string;
   image: string;
   date: Date;
+  meows: [];
 };
 
 export type MeowType = {
