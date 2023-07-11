@@ -1,14 +1,17 @@
 import Meow from '@/models/meow';
 import { connectToDB } from '@/utils/connectToDB';
+import { getServerSession } from 'next-auth';
+import { options } from '../../auth/[...nextauth]/options';
 
 export const POST = async (req: Request) => {
-  const { userId, context } = await req.json();
+  const { context } = await req.json();
+  const session = await getServerSession(options);
 
   try {
     await connectToDB();
 
     const newMeow = new Meow({
-      creator: userId,
+      creator: session?.user.id,
       context,
       date: new Date(),
     });

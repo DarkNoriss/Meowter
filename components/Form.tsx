@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { ExpandingTextarea } from './ExpandingTextarea';
 import { ImageAvatar } from './ImageAvatar';
-import { useSession } from 'next-auth/react';
 import { useMeowterContext } from '@/context/meowContext';
 
 export const Form = () => {
-  const { data: session } = useSession();
   const { fetchMeows } = useMeowterContext();
   const [text, setText] = useState('');
   const [sendingMeow, setSendingMeow] = useState<boolean>(false);
@@ -18,7 +16,6 @@ export const Form = () => {
       const response = await fetch('/api/meow/new', {
         method: 'POST',
         body: JSON.stringify({
-          userId: session?.user.id,
           context: text,
         }),
       });
