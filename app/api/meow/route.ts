@@ -1,5 +1,6 @@
 import Meow from '@/models/meow';
 import { connectToDB } from '@/utils/connectToDB';
+export const revalidate = 1;
 
 export const GET = async () => {
   try {
