@@ -5,10 +5,11 @@ import Image from 'next/image';
 import { FeedProfile } from '@/components/FeedProfile';
 import { UserType } from '@/types/custom-types';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 const Profile = ({ params }: { params: { id: string } }) => {
-  const [userData, setUserData] = useState<UserType[]>([]);
-  const [userMeowsNb, setUserMeowsNb] = useState<number>(0);
+  const { data: session } = useSession();
+  const [user, setUser] = useState<UserType>();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -16,14 +17,14 @@ const Profile = ({ params }: { params: { id: string } }) => {
       const response = await fetch(`/api/users/${params.id}`);
       const data = await response.json();
 
-      setUserData(data);
+      setUser(data);
     };
 
     fetchUser();
   }, [params]);
   return (
     <>
-      {userData.map((user) => (
+      {user && (
         <div key={user._id}>
           <div className='border-white-smoll bg-transblur sticky top-0 flex h-14 w-full max-w-xl items-center !border-t-0 px-4 backdrop-blur-md backdrop-filter'>
             <Link href='/' className='min-w-[56px]' passHref>
@@ -31,7 +32,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
             </Link>
             <div className='flex flex-col'>
               <span className='text-xl font-bold'>{user.username}</span>
-              <span className='text-sm text-gray-500'>{userMeowsNb} Meows</span>
+              <span className='text-sm text-gray-500'>{user.meows.length} Meows</span>
             </div>
           </div>
           <div>
@@ -53,9 +54,11 @@ const Profile = ({ params }: { params: { id: string } }) => {
                     </div>
                   </div>
                 </div>
-                <div className='flex-center btnhover mb-3 h-9 rounded-full border px-4'>
-                  <span className='text-base font-bold'>Edit profile</span>
-                </div>
+                {session?.user.link === params.id && (
+                  <div className='flex-center btnhover mb-3 h-9 rounded-full border px-4'>
+                    <span className='text-base font-bold'>Edit profile</span>
+                  </div>
+                )}
               </div>
               <div className='mb-3 mt-1 flex flex-col'>
                 <div>
@@ -98,9 +101,9 @@ const Profile = ({ params }: { params: { id: string } }) => {
               </div>
             </div>
           </div>
-          <FeedProfile id={user._id} setUserMeowsNb={setUserMeowsNb} />
+          <FeedProfile meows={user.meows} creator={user} />
         </div>
-      ))}
+      )}
     </>
   );
 };

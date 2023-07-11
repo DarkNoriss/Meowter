@@ -1,15 +1,20 @@
 import Image from 'next/image';
 import React from 'react';
-import { MeowType } from '@/types/custom-types';
+import { MeowType, UserType } from '@/types/custom-types';
 import Link from 'next/link';
 
-export const MeowCard = ({ meow }: { meow: MeowType }) => {
+type MeowCardType = {
+  meow: MeowType;
+  creator?: UserType;
+};
+
+export const MeowCard: React.FC<MeowCardType> = ({ meow, creator }) => {
   return (
     <article className='border-white-smoll !border-t-0 px-4'>
       <div className='flex flex-row py-3'>
         <div className='mr-3'>
           <Image
-            src={meow.creator.image}
+            src={meow.creator.image ?? creator?.image}
             alt='Avatar'
             height={40}
             width={40}
@@ -19,12 +24,16 @@ export const MeowCard = ({ meow }: { meow: MeowType }) => {
         <div className='flex-1'>
           <div className='flex flex-row justify-between'>
             <Link
-              href={`/${meow.creator.userlink}`}
+              href={`/${meow.creator.userlink ?? creator?.userlink}`}
               className='flex cursor-pointer flex-row'
               passHref
             >
-              <div className='text-base font-bold'>{meow.creator.username}</div>
-              <div className='ml-1 text-base text-gray-500'>@{meow.creator.userlink}</div>
+              <div className='text-base font-bold'>
+                {meow.creator.username ?? creator?.username}
+              </div>
+              <div className='ml-1 text-base text-gray-500'>
+                @{meow.creator.userlink ?? creator?.userlink}
+              </div>
             </Link>
             <div className='flex-center btnhover p-[4px]'>
               <svg viewBox='0 0 24 24' aria-hidden='true' className='h-4 fill-gray-500'>
