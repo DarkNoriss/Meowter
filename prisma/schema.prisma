@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  username      String
+  email         String    @unique(map: "email_1")
+  userlink      String    @unique
+  bio           String?
+  avatar        String
+  // followers     User[]     @relation("Followers", references: [id])
+  // following     User[]     @relation("Following", references: [id])
+  created_at    DateTime  @default(now())
+  birthday_date DateTime?
+  tweets        Tweet[]
+}
+
+model Tweet {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  author     User     @relation(fields: [authorId], references: [id])
+  authorId   String   @db.ObjectId
+  created_at DateTime @default(now())
+  text       String
+  // retweets   Tweet[]    @relation("Retweets", references: [id])
+  // replies    Tweet[]    @relation("Replies", references: [id])
+  // likes      User[]     @relation("Likes", references: [id])
+}
