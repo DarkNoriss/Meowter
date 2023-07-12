@@ -13,13 +13,14 @@ const MeowterContext = createContext({} as MeowterContextType);
 export const useMeowterContext = () => {
   return useContext(MeowterContext);
 };
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export const MeowterProvider = ({ children }: { children: ReactNode }) => {
   const [meows, setMeows] = useState<MeowWithAuthor[]>([]);
 
   const fetchMeows = useCallback(async () => {
     console.log('Fetching meows...');
-    const response = await fetch('/api/meow');
+    const response = await fetch('/api/meow', { cache: 'no-store' });
     const data = await response.json();
 
     setMeows(data);

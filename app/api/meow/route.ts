@@ -12,8 +12,13 @@ export const GET = async () => {
       },
     });
 
-    return new Response(JSON.stringify(meows), { status: 200 });
+    return new Response(JSON.stringify(meows), {
+      status: 200,
+      headers: { 'Cache-Control': 'no-store' },
+    });
   } catch (e) {
     return new Response('Failed to fetch all meows', { status: 500 });
   }
 };
+
+export const fetchCache = 'force-no-store';
