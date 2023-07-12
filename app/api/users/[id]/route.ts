@@ -23,16 +23,3 @@ export const GET = async (req: Request, { params }: { params: { id: string } }) 
     return new Response('Failed to fetch user', { status: 500 });
   }
 };
-
-// try {
-//   await connectToDB();
-
-//   const user = await User.find({ userlink: params.id }).populate({
-//     path: 'meows',
-//     options: { sort: { date: -1 } },
-//   });
-
-//   return new Response(JSON.stringify(user[0]), { status: 200 });
-// } catch (e) {
-//   return new Response('Failed to fetch user', { status: 500 });
-// }

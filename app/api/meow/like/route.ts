@@ -1,5 +1,3 @@
-import Meow from '@/models/meow';
-import { connectToDB } from '@/utils/connectToDB';
 import { getServerSession } from 'next-auth';
 import { options } from '../../auth/[...nextauth]/options';
 
