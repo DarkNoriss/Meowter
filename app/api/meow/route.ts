@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
-export const revalidate = 0;
 
 export const GET = async () => {
   console.log('Fetching meows...');
@@ -23,3 +22,4 @@ export const GET = async () => {
 };
 
 export const fetchCache = 'force-no-store';
+export const revalidate = 0;
