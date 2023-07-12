@@ -21,7 +21,7 @@ export const MeowterProvider = ({ children }: { children: ReactNode }) => {
     console.log('Fetching meows...');
     const response = await fetch('/api/meow', { cache: 'no-store' });
     const data = await response.json();
-
+    console.log(data);
     setMeows(data);
   }, []);
 
