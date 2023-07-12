@@ -2,15 +2,10 @@
 
 import { Feed } from '@/components/Feed';
 import { Form } from '@/components/Form/Form';
-import { UserWithMeows } from '@/types/custom-types';
 import { useSession } from 'next-auth/react';
-import useSWR from 'swr';
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Home = () => {
   const { data: session } = useSession();
-  // const { data } = useSWR<UserWithMeows>('/api/meow', fetcher);
 
   return (
     <>
@@ -26,3 +21,6 @@ const Home = () => {
 };
 
 export default Home;
+
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
