@@ -1,11 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import { FeedProfile } from '@/components/FeedProfile';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
 import useSWR from 'swr';
+import { useSession } from 'next-auth/react';
 import { UserWithMeows } from '@/types/custom-types';
+import { FeedProfile } from '@/components/FeedProfile';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 

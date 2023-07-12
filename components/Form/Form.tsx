@@ -3,13 +3,11 @@
 import { useState } from 'react';
 import { ExpandingTextarea } from './ExpandingTextarea';
 import { ImageAvatar } from '../ImageAvatar';
-import { useMeowterContext } from '@/context/meowContext';
 import { clsx } from 'clsx';
 import { useSession } from 'next-auth/react';
 
 export const Form = () => {
   const { data: session } = useSession();
-  const { fetchMeows } = useMeowterContext();
   const [text, setText] = useState('');
   const [sendingMeow, setSendingMeow] = useState<boolean>(false);
 

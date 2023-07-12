@@ -1,9 +1,9 @@
 'use client';
 
+import Image from 'next/image';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { ImageAvatar } from '../ImageAvatar';
 import { signOut, useSession } from 'next-auth/react';
-import Image from 'next/image';
 
 export const ProfileButton = () => {
   const { data: session } = useSession();
