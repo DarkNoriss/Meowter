@@ -4,7 +4,7 @@
       "src": "/api/meow",
       "methods": ["GET"],
       "headers": {
-        "Cache-Control": "s-maxage=0, stale-while-revalidate"
+        "Cache-Control": "s-maxage=0, no-cache"
       }
     }
   ]
