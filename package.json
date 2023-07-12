@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prismaDev": "dotenv -e .env.local prisma migrate dev "
   },
   "dependencies": {
     "@prisma/client": "5.0.0",
@@ -15,6 +16,7 @@
     "@types/react-dom": "^18.2.6",
     "autoprefixer": "^10.4.14",
     "clsx": "^1.2.1",
+    "dotenv-cli": "^7.2.1",
     "eslint": "^7.32.0",
     "eslint-config-next": "^12.3.4",
     "eslint-config-prettier": "^8.8.0",
