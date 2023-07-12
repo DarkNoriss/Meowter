@@ -1,39 +1,29 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { FeedProfile } from '@/components/FeedProfile';
 import { UserType } from '@/types/custom-types';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import useSWR from 'swr';
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Profile = ({ params }: { params: { id: string } }) => {
   const { data: session } = useSession();
-  const [user, setUser] = useState<UserType>();
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      console.log('Fetching user...');
-      const response = await fetch(`/api/users/${params.id}`);
-      const data = await response.json();
-
-      setUser(data);
-    };
-
-    fetchUser();
-  }, [params]);
+  const { data } = useSWR<UserType>(`/api/users/${params.id}`, fetcher);
 
   return (
     <>
-      {user && (
-        <div key={user._id}>
+      {data && (
+        <div key={data._id}>
           <div className='border-white-smoll bg-transblur sticky top-0 flex h-14 w-full max-w-xl items-center !border-t-0 px-4 backdrop-blur-md backdrop-filter'>
             <Link href='/' className='min-w-[56px]' passHref>
               <Image src={`/assets/icons/arrow.svg`} alt='logo' height={22} width={22} />
             </Link>
             <div className='flex flex-col'>
-              <span className='text-xl font-bold'>{user.username}</span>
-              <span className='text-sm text-gray-500'>{user.meows.length} Meows</span>
+              <span className='text-xl font-bold'>{data.username}</span>
+              <span className='text-sm text-gray-500'>{data.meows.length} Meows</span>
             </div>
           </div>
           <div>
@@ -46,7 +36,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
                   <div className='relative'>
                     <div className='absolute bottom-1/2 -translate-y-1/4'>
                       <Image
-                        src={user.image}
+                        src={data.image}
                         alt='Avatar'
                         height={135}
                         width={135}
@@ -63,10 +53,10 @@ const Profile = ({ params }: { params: { id: string } }) => {
               </div>
               <div className='mb-3 mt-1 flex flex-col'>
                 <div>
-                  <span className='text-xl font-bold'>{user.username}</span>
+                  <span className='text-xl font-bold'>{data.username}</span>
                 </div>
                 <div>
-                  <span className='font-normal text-gray-500'>@{user.userlink}</span>
+                  <span className='font-normal text-gray-500'>@{data.userlink}</span>
                 </div>
               </div>
               <div className='flex flex-row font-normal text-gray-500'>
@@ -102,7 +92,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
               </div>
             </div>
           </div>
-          <FeedProfile meows={user.meows} creator={user} />
+          <FeedProfile meows={data.meows} creator={data} />
         </div>
       )}
     </>

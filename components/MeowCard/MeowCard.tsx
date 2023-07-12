@@ -13,8 +13,8 @@ export type MeowCardType = {
 export const MeowCard: React.FC<MeowCardType> = ({ meow, creator }) => {
   return (
     <article className='border-white-smoll !border-t-0 px-4'>
-      <div className='flex flex-row py-3'>
-        <div className='mr-3'>
+      <div className='flex max-w-full flex-row py-3'>
+        <div className='mr-3 min-w-max'>
           <Image
             src={meow.creator.image ?? creator?.image}
             alt='Avatar'
@@ -23,7 +23,7 @@ export const MeowCard: React.FC<MeowCardType> = ({ meow, creator }) => {
             className='rounded-full'
           />
         </div>
-        <div className='flex-1'>
+        <div className='max-w-full flex-1'>
           <CardHeader meow={meow} creator={creator} />
           <CardContext context={meow.context} />
           <CardReactions meow={meow} />
