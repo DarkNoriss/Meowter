@@ -2,21 +2,21 @@
 
 import Image from 'next/image';
 import { FeedProfile } from '@/components/FeedProfile';
-import { UserType } from '@/types/custom-types';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import useSWR from 'swr';
+import { UserWithMeows } from '@/types/custom-types';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Profile = ({ params }: { params: { id: string } }) => {
   const { data: session } = useSession();
-  const { data } = useSWR<UserType>(`/api/users/${params.id}`, fetcher);
+  const { data } = useSWR<UserWithMeows>(`/api/users/${params.id}`, fetcher);
 
   return (
     <>
       {data && (
-        <div key={data._id}>
+        <div key={data.id}>
           <div className='border-white-smoll bg-transblur sticky top-0 flex h-14 w-full max-w-xl items-center !border-t-0 px-4 backdrop-blur-md backdrop-filter'>
             <Link href='/' className='min-w-[56px]' passHref>
               <Image src={`/assets/icons/arrow.svg`} alt='logo' height={22} width={22} />
@@ -36,7 +36,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
                   <div className='relative'>
                     <div className='absolute bottom-1/2 -translate-y-1/4'>
                       <Image
-                        src={data.image}
+                        src={data.avatar}
                         alt='Avatar'
                         height={135}
                         width={135}
@@ -92,7 +92,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
               </div>
             </div>
           </div>
-          <FeedProfile meows={data.meows} creator={data} />
+          <FeedProfile meows={data.meows} />
         </div>
       )}
     </>

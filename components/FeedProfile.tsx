@@ -1,19 +1,13 @@
 'use client';
 
 import { MeowCard } from './MeowCard/MeowCard';
-import { MeowType, UserType } from '@/types/custom-types';
+import { MeowWithAuthor } from '@/types/custom-types';
 
-export const FeedProfile = ({
-  meows,
-  creator,
-}: {
-  meows: MeowType[];
-  creator: UserType;
-}) => {
+export const FeedProfile = ({ meows }: { meows: MeowWithAuthor[] }) => {
   return (
     <>
       {meows.map((meow) => (
-        <MeowCard key={meow._id} meow={meow} creator={creator} />
+        <MeowCard key={meow.id} meow={meow} />
       ))}
     </>
   );

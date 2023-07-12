@@ -1,20 +1,16 @@
 import Link from 'next/link';
-import { MeowCardType } from './MeowCard';
+import { MeowWithAuthor } from '@/types/custom-types';
 
-export const CardHeader: React.FC<MeowCardType> = ({ meow, creator }) => {
+export const CardHeader = ({ meow }: { meow: MeowWithAuthor }) => {
   return (
     <div className='flex flex-row justify-between'>
       <Link
-        href={`/${meow.creator.userlink ?? creator?.userlink}`}
+        href={`/${meow.author.userlink}`}
         className='flex cursor-pointer flex-row'
         passHref
       >
-        <div className='text-base font-bold'>
-          {meow.creator.username ?? creator?.username}
-        </div>
-        <div className='ml-1 text-base text-gray-500'>
-          @{meow.creator.userlink ?? creator?.userlink}
-        </div>
+        <div className='text-base font-bold'>{meow.author.username}</div>
+        <div className='ml-1 text-base text-gray-500'>@{meow.author.userlink}</div>
       </Link>
       <div className='flex-center btnhover p-[4px]'>
         <svg viewBox='0 0 24 24' aria-hidden='true' className='h-4 fill-gray-500'>
