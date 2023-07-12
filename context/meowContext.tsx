@@ -13,6 +13,7 @@ const MeowterContext = createContext({} as MeowterContextType);
 export const useMeowterContext = () => {
   return useContext(MeowterContext);
 };
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export const MeowterProvider = ({ children }: { children: ReactNode }) => {
   const [meows, setMeows] = useState<MeowWithAuthor[]>([]);
