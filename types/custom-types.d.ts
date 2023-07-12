@@ -1,27 +1,20 @@
 import { Types } from 'mongoose';
 
-export type UserType = {
-  _id: string;
-  email: string;
-  username: string;
-  userlink: string;
-  image: string;
-  date: Date;
-  meows: MeowType[];
-  remeows: [];
-  likes: [];
-  comments: CommentType[];
-};
+export type UserWithMeows = Prisma.MeowGetPayload<{
+  include: {
+    meows: {
+      include: {
+        author: true;
+      };
+    };
+  } & User;
+}>;
 
-export type MeowType = {
-  creator: Types.Object;
-  context: string;
-  date: Date;
-  remeows: [];
-  comments: CommentType[];
-  likes: [];
-  _id: string;
-};
+export type MeowWithAuthor = Prisma.MeowGetPayload<{
+  include: {
+    author: true;
+  } & Meow;
+}>;
 
 export type CommentType = {
   creator: Types.Object;
