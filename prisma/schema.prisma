@@ -14,20 +14,22 @@ model User {
   userlink      String    @unique
   bio           String?
   avatar        String
-  // followers     User[]     @relation("Followers", references: [id])
-  // following     User[]     @relation("Following", references: [id])
   created_at    DateTime  @default(now())
   birthday_date DateTime?
-  tweets        Tweet[]
+  meows         Meow[]
 }
 
-model Tweet {
+model Meow {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   author     User     @relation(fields: [authorId], references: [id])
   authorId   String   @db.ObjectId
   created_at DateTime @default(now())
   text       String
-  // retweets   Tweet[]    @relation("Retweets", references: [id])
-  // replies    Tweet[]    @relation("Replies", references: [id])
-  // likes      User[]     @relation("Likes", references: [id])
 }
+
+// followers     User[]     @relation("Followers", references: [id])
+// following     User[]     @relation("Following", references: [id])
+
+// retweets   Tweet[]    @relation("Retweets", references: [id])
+// replies    Tweet[]    @relation("Replies", references: [id])
+// likes      User[]     @relation("Likes", references: [id])
