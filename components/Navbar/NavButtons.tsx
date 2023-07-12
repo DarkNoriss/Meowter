@@ -1,12 +1,11 @@
 'use client';
-
+import Link from 'next/link';
 import Image from 'next/image';
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { clsx } from 'clsx';
-import React from 'react';
 
 export const NavButtons = () => {
   return (
