@@ -1,16 +1,17 @@
 import { MeowCard } from './MeowCard/MeowCard';
-
-import useSWR from 'swr';
-import { MeowWithAuthor } from '@/types/custom-types';
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { useMeowterContext } from '@/context/meowContext';
+import { useEffect } from 'react';
 
 export const Feed = () => {
-  const { data } = useSWR<MeowWithAuthor[]>('/api/meow', fetcher);
+  const { meows, fetchMeows } = useMeowterContext();
+
+  useEffect(() => {
+    fetchMeows();
+  }, [fetchMeows]);
 
   return (
     <>
-      {data?.map((meow) => (
+      {meows?.map((meow) => (
         <MeowCard key={meow.id} meow={meow} />
       ))}
     </>

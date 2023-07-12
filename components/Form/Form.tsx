@@ -5,8 +5,10 @@ import { ExpandingTextarea } from './ExpandingTextarea';
 import { ImageAvatar } from '../ImageAvatar';
 import { clsx } from 'clsx';
 import { useSession } from 'next-auth/react';
+import { useMeowterContext } from '@/context/meowContext';
 
 export const Form = () => {
+  const { fetchMeows } = useMeowterContext();
   const { data: session } = useSession();
   const [text, setText] = useState('');
   const [sendingMeow, setSendingMeow] = useState<boolean>(false);
@@ -30,7 +32,7 @@ export const Form = () => {
     } finally {
       setSendingMeow(false);
       setText('');
-      // fetchMeows();
+      fetchMeows();
     }
   };
 
