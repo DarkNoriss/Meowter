@@ -3,7 +3,10 @@ const nextConfig = {
   images: {
     domains: ['lh3.googleusercontent.com'],
   },
-  experimental: { appDir: true, serverComponentsExternalPackages: ['mongoose'] },
+  experimental: {
+    appDir: true,
+    serverComponentsExternalPackages: ['mongoose', 'mongodb'],
+  },
 };
 
 module.exports = nextConfig;
