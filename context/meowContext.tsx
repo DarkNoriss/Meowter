@@ -19,7 +19,7 @@ export const MeowterProvider = ({ children }: { children: ReactNode }) => {
 
   const fetchMeows = useCallback(async () => {
     console.log('Fetching meows...');
-    const response = await fetch('/api/meow', { cache: 'no-store' });
+    const response = await fetch('/api/meow');
     const data = await response.json();
     console.log('data', data);
     setMeows(data);
