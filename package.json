@@ -6,14 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prismaDev": "dotenv -e .env.local prisma migrate dev "
   },
   "dependencies": {
+    "@prisma/client": "5.0.0",
     "@types/node": "^20.4.1",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "autoprefixer": "^10.4.14",
     "clsx": "^1.2.1",
+    "dotenv-cli": "^7.2.1",
     "eslint": "^7.32.0",
     "eslint-config-next": "^12.3.4",
     "eslint-config-prettier": "^8.8.0",
@@ -22,6 +25,7 @@
     "next": "^13.4.9",
     "next-auth": "^4.22.1",
     "postcss": "^8.4.25",
+    "prisma": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "swr": "^2.2.0",
