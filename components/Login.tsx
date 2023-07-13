@@ -17,7 +17,6 @@ export const Login = () => {
               <span className='text-sm lg:text-base'>
                 People on Meowter are the first to know
               </span>
-              di
             </div>
             <div className='flex-center'>
               <button
