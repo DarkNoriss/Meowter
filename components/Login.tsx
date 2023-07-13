@@ -12,7 +12,7 @@ export const Login = () => {
           <div className='flex flex-row justify-evenly'>
             <div className='flex flex-col p-2 py-4 lg:p-4'>
               <span className='text-base font-bold lg:text-2xl'>
-                Don't miss what's happening
+                Don&apos;t miss what&apos;s happening
               </span>
               <span className='text-sm lg:text-base'>
                 People on Meowter are the first to know
