@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 export const CardContext = ({ context }: { context: string }) => {
   const words = context.split(' ');
 
@@ -5,7 +7,14 @@ export const CardContext = ({ context }: { context: string }) => {
 
   return (
     <div>
-      <span className={` ${hasLongWord ? 'break-all' : 'break-words'}`}>{context}</span>
+      <span
+        className={clsx(
+          'text-sm lg:text-base',
+          ` ${hasLongWord ? 'break-all' : 'break-words'}`
+        )}
+      >
+        {context}
+      </span>
     </div>
   );
 };

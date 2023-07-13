@@ -3,8 +3,8 @@ import Image from 'next/image';
 export const SideBar = () => {
   return (
     <div>
-      <div className='hidden h-screen w-96 lg:block'>
-        <div className='border-white-smoll fixed top-0 h-full w-96 !border-y-0 !border-r-0 pl-7'>
+      <div className='hidden h-screen w-80 lg:block'>
+        <div className='border-white-smoll fixed top-0 h-full w-80 !border-y-0 !border-r-0 pl-7'>
           <div className='mt-2'>
             <div className='flex-center w-full rounded-full bg-slate-800'>
               <div className='pl-4'>

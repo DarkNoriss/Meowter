@@ -51,7 +51,7 @@ const Button = ({ name, link }: { name: string; link?: string }) => {
   }, [link, name, path]);
 
   return (
-    <div className='h-14 xl:mr-6'>
+    <div className='flex h-14 justify-end xl:mr-6'>
       <div className='btnhover flex-center my-1 h-14 w-14 flex-row p-3 xl:flex xl:w-full xl:items-start xl:justify-start'>
         <div className='flex-center h-7 w-7'>
           <Image

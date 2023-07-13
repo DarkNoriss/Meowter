@@ -14,7 +14,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <Provider>
       <html lang='en'>
         <body>
-          <div className='flex-center min-h-screen flex-row'>
+          <div className='flex-center min-h-screen max-w-full flex-row'>
             <Navbar />
             <main className='h-screen w-screen max-w-xl !border-y-0'>{children}</main>
             <SideBar />
