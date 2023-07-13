@@ -9,6 +9,7 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
   const { comments, remeows, likes } = meow;
 
   const handleLike = async () => {
+    if (!session) return;
     try {
       for (const like of likes) {
         if (like.userId === session?.user.id) {
