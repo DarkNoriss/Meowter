@@ -5,7 +5,7 @@ import Link from 'next/link';
 import useSWR from 'swr';
 import { useSession } from 'next-auth/react';
 import { UserWithMeows } from '@/types/custom-types';
-import { FeedProfile } from '@/components/FeedProfile';
+import { Feed } from '@/components/Feed';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -92,7 +92,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
               </div>
             </div>
           </div>
-          <FeedProfile meows={data.meows} />
+          <Feed meows={data.meows} />
         </div>
       )}
     </>
