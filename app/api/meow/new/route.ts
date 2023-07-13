@@ -1,8 +1,6 @@
 import { getServerSession } from 'next-auth';
 import { options } from '../../auth/[...nextauth]/options';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/utils/connectToDb';
 
 export const POST = async (req: Request) => {
   const { context } = await req.json();

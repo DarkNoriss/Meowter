@@ -1,6 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/utils/connectToDb';
 
 export const GET = async (req: Request, { params }: { params: { id: string } }) => {
   try {
