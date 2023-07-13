@@ -9,10 +9,10 @@ export const CardHeader = ({ meow }: { meow: MeowWithAuthor }) => {
         className='flex cursor-pointer flex-row'
         passHref
       >
-        <div className='max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap'>
+        <div className='max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap lg:max-w-none'>
           <span className='text-sm font-bold lg:text-base'>{meow.author.username}</span>
         </div>
-        <div className='ml-1 max-w-[100px] overflow-hidden text-ellipsis whitespace-nowrap text-gray-500'>
+        <div className='ml-1 max-w-[100px] overflow-hidden text-ellipsis whitespace-nowrap text-gray-500 lg:max-w-none'>
           <span className='text-sm lg:text-base'>@{meow.author.userlink}</span>
         </div>
       </Link>

@@ -17,6 +17,7 @@ model User {
   created_at    DateTime  @default(now())
   birthday_date DateTime?
   meows         Meow[]
+  likes         Like[]
 }
 
 model Meow {
@@ -25,6 +26,15 @@ model Meow {
   authorId   String   @db.ObjectId
   created_at DateTime @default(now())
   text       String
+  likes      Like[]
+}
+
+model Like {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @db.ObjectId
+  meow   Meow   @relation(fields: [meowId], references: [id])
+  meowId String @db.ObjectId
 }
 
 // followers     User[]     @relation("Followers", references: [id])
@@ -32,4 +42,3 @@ model Meow {
 
 // retweets   Tweet[]    @relation("Retweets", references: [id])
 // replies    Tweet[]    @relation("Replies", references: [id])
-// likes      User[]     @relation("Likes", references: [id])

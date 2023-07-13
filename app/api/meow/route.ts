@@ -1,14 +1,12 @@
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/utils/connectToDb';
 
 export const GET = async () => {
-  console.log('Fetching meows...');
   try {
     const meows = await prisma.meow.findMany({
       orderBy: [{ created_at: 'desc' }],
       include: {
         author: true,
+        likes: true,
       },
     });
 
