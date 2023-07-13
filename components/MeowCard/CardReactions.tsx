@@ -41,7 +41,7 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
       <div className='mt-3 flex justify-between gap-2'>
         <div className='flex min-h-[20px] flex-row'>
           <div>
-            <Image src='/assets/icons/reply.svg' alt='Avatar' height={20} width={20} />
+            <Image src='/assets/icons/reply.svg' alt='reply' height={20} width={20} />
           </div>
           <span className={'text-reactions px-3 text-sm'}>
             {/* {comments?.length !== 0 ? comments?.length : ''} */}
@@ -49,7 +49,7 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
         </div>
         <div className='flex min-h-[20px] flex-row'>
           <div>
-            <Image src='/assets/icons/remeow.svg' alt='Avatar' height={20} width={20} />
+            <Image src='/assets/icons/remeow.svg' alt='remeow' height={20} width={20} />
           </div>
           <span className={'text-reactions px-3 text-sm'}>
             {/* {remeows?.length !== 0 ? remeows?.length : ''} */}
@@ -57,7 +57,7 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
         </div>
         <div className='flex min-h-[20px] cursor-pointer flex-row' onClick={handleLike}>
           <div>
-            <Image src='/assets/icons/like.svg' alt='Avatar' height={20} width={20} />
+            <Image src='/assets/icons/like.svg' alt='like' height={20} width={20} />
           </div>
           <span className={'text-reactions px-3 text-sm'}>
             {likes?.length !== 0 ? likes?.length : ''}
@@ -65,13 +65,13 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
         </div>
         <div className='flex min-h-[20px] flex-row'>
           <div>
-            <Image src='/assets/icons/view.svg' alt='Avatar' height={20} width={20} />
+            <Image src='/assets/icons/view.svg' alt='view' height={20} width={20} />
           </div>
           <span className={'text-reactions px-3 text-sm'}></span>
         </div>
         <div className='flex min-h-[20px] flex-row'>
           <div>
-            <Image src='/assets/icons/share.svg' alt='Avatar' height={20} width={20} />
+            <Image src='/assets/icons/share.svg' alt='share' height={20} width={20} />
           </div>
           <div></div>
         </div>
