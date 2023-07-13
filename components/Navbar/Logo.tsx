@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export const Logo = () => {
   return (
-    <div>
+    <div className='flex justify-end xl:justify-start'>
       <Link
         href='/'
         className='btnhover flex-center aspect-square h-14 py-[2px]'
