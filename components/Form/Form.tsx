@@ -5,12 +5,12 @@ import { ExpandingTextarea } from './ExpandingTextarea';
 import { ImageAvatar } from '../ImageAvatar';
 import { clsx } from 'clsx';
 import { useSession } from 'next-auth/react';
-import { useMeowterContext } from '@/context/meowContext';
+import { useSWRConfig } from 'swr';
 
 export const Form = () => {
-  const { fetchMeows } = useMeowterContext();
   const { data: session } = useSession();
   const [text, setText] = useState('');
+  const { mutate } = useSWRConfig();
   const [sendingMeow, setSendingMeow] = useState<boolean>(false);
 
   const createMeow = async (e: any) => {
@@ -30,9 +30,9 @@ export const Form = () => {
     } catch (err) {
       console.log(err);
     } finally {
-      setSendingMeow(false);
       setText('');
-      fetchMeows();
+      setSendingMeow(false);
+      mutate('/api/meow');
     }
   };
 
