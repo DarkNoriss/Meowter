@@ -9,8 +9,12 @@ export const CardHeader = ({ meow }: { meow: MeowWithAuthor }) => {
         className='flex cursor-pointer flex-row'
         passHref
       >
-        <div className='text-base font-bold'>{meow.author.username}</div>
-        <div className='ml-1 text-base text-gray-500'>@{meow.author.userlink}</div>
+        <div className='max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap'>
+          <span className='text-sm font-bold lg:text-base'>{meow.author.username}</span>
+        </div>
+        <div className='ml-1 max-w-[100px] overflow-hidden text-ellipsis whitespace-nowrap text-gray-500'>
+          <span className='text-sm lg:text-base'>@{meow.author.userlink}</span>
+        </div>
       </Link>
       <div className='flex-center btnhover p-[4px]'>
         <svg viewBox='0 0 24 24' aria-hidden='true' className='h-4 fill-gray-500'>
