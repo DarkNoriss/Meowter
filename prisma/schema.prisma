@@ -26,7 +26,7 @@ model Meow {
   authorId   String   @db.ObjectId
   created_at DateTime @default(now())
   text       String
-  Like       Like[]
+  likes      Like[]
 }
 
 model Like {
