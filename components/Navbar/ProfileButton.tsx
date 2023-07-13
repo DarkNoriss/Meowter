@@ -33,16 +33,18 @@ export const ProfileButton = () => {
       <div className='relative' onClick={handleOpen} ref={menuRef}>
         <div className={`${open ? '' : 'btnhover'} my-3 flex w-full items-center p-3`}>
           <ImageAvatar />
-          <div className='mx-3 flex flex-col text-base'>
-            <span className='font-bold'>{session.user?.name}</span>
-            <span className='font-normal text-gray-500'>@{session.user.link}</span>
-          </div>
-          <div className='flex flex-1 justify-end'>
-            <Image src='/assets/icons/dots.svg' alt='logo' height={22} width={22} />
+          <div className=' hidden flex-row xl:flex'>
+            <div className='mx-3 flex flex-col text-base'>
+              <span className='font-bold'>{session.user?.name}</span>
+              <span className='font-normal text-gray-500'>@{session.user.link}</span>
+            </div>
+            <div className='flex flex-1 justify-end'>
+              <Image src='/assets/icons/dots.svg' alt='logo' height={22} width={22} />
+            </div>
           </div>
         </div>
         {open && (
-          <div className='shadow-glow shadow-white border-white-smoll active absolute bottom-1/2 left-1/2 w-72 -translate-x-1/2 -translate-y-1/2 rounded-xl py-3'>
+          <div className='shadow-glow shadow-white border-white-smoll active absolute bottom-1/2 left-1/2 w-72 -translate-y-1/2 rounded-xl bg-gray-950 py-3 xl:-translate-x-1/2'>
             <div className='btnhover border-white-smoll !rounded-none !border-x-0 !border-b-0 px-4 py-3'>
               <span className='text-base font-bold'>Add an existing account</span>
             </div>

@@ -6,8 +6,8 @@ import { ProfileButton } from './ProfileButton';
 export const Navbar = () => {
   return (
     <header>
-      <div className='h-screen w-72'>
-        <div className='border-white-smoll fixed top-0 h-full w-72 !border-y-0 !border-l-0 pr-7'>
+      <div className='sm h-screen w-20 xl:w-64'>
+        <div className='border-white-smoll fixed top-0 h-full w-20 !border-y-0 !border-l-0 px-2 xl:w-64'>
           <div className='flex h-full flex-col justify-between'>
             <div>
               <Logo />
