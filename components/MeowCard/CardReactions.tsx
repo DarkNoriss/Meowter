@@ -43,7 +43,7 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
             <Image src='/assets/icons/reply.svg' alt='Avatar' height={20} width={20} />
           </div>
           <span className={'text-reactions px-3 text-sm'}>
-            {/* {comments.length !== 0 ?? comments.length} */}
+            {/* {comments?.length !== 0 ? comments?.length : ''} */}
           </span>
         </div>
         <div className='flex min-h-[20px] flex-row'>
@@ -51,7 +51,7 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
             <Image src='/assets/icons/remeow.svg' alt='Avatar' height={20} width={20} />
           </div>
           <span className={'text-reactions px-3 text-sm'}>
-            {/* {remeows.length !== 0 ? remeows.length : ''} */}
+            {/* {remeows?.length !== 0 ? remeows?.length : ''} */}
           </span>
         </div>
         <div className='flex min-h-[20px] cursor-pointer flex-row' onClick={handleLike}>
@@ -59,7 +59,7 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
             <Image src='/assets/icons/like.svg' alt='Avatar' height={20} width={20} />
           </div>
           <span className={'text-reactions px-3 text-sm'}>
-            {likes.length !== 0 ? likes.length : ''}
+            {likes?.length !== 0 ? likes?.length : ''}
           </span>
         </div>
         <div className='flex min-h-[20px] flex-row'>
