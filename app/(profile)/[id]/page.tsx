@@ -26,7 +26,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
               <span className='text-sm text-gray-500'>{data.meows.length} Meows</span>
             </div>
           </div>
-          <div>
+          <div className='border-white-smoll !border-t-0'>
             <div>
               <Image src={`/assets/img/bg.jpg`} alt='logo' height={500} width={1500} />
             </div>
@@ -60,12 +60,12 @@ const Profile = ({ params }: { params: { id: string } }) => {
                 </div>
               </div>
               <div className='flex flex-row font-normal text-gray-500'>
-                <span className='mr-5'>Born</span>
+                {data.birtday_date && <span className='mr-5'>Born</span>}
                 <span>Joined</span>
               </div>
             </div>
           </div>
-          <div className='border-white-smoll flex h-14 flex-row !border-x-0 !border-t-0 font-normal text-gray-500'>
+          <div className='border-white-smoll flex h-14 flex-row !border-t-0 font-normal text-gray-500'>
             <div className='flex-center btnhover flex-1 !rounded-none px-4'>
               <div className='flex-center h-full'>
                 <span>Meows</span>

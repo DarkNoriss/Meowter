@@ -1,10 +1,10 @@
 'use client';
 
+import useSWR from 'swr';
 import { Feed } from '@/components/Feed';
 import { Form } from '@/components/Form/Form';
 import { MeowWithAuthor } from '@/types/custom-types';
 import { useSession } from 'next-auth/react';
-import useSWR from 'swr';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
