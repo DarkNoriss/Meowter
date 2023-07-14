@@ -7,7 +7,7 @@ import { CardReactions } from './CardReactions';
 
 export const MeowCard = ({ meow }: { meow: MeowWithAuthor }) => {
   return (
-    <article className='border-white-smoll !border-t-0 px-4'>
+    <article className='border-white-smoll !border-t-0 px-2 lg:px-4'>
       <div className='flex max-w-full flex-row py-3'>
         <div className='mr-3 min-w-max'>
           <Image src={meow.author.avatar} alt='Avatar' height={40} width={40} className='rounded-full' />

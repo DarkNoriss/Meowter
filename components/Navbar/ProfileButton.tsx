@@ -2,7 +2,7 @@
 
 import DotsIcon from '@/public/assets/icons/dots.svg';
 import { RefObject, useEffect, useRef, useState } from 'react';
-import { ImageAvatar } from '../ImageAvatar';
+import { ImageAvatar } from './ImageAvatar';
 import { signOut, useSession } from 'next-auth/react';
 
 export const ProfileButton = () => {
@@ -33,7 +33,7 @@ export const ProfileButton = () => {
       <div className='relative mr-2' onClick={handleOpen} ref={menuRef}>
         <div className={`${open ? '' : 'btnhover'} my-3 flex w-full items-center p-3`}>
           <ImageAvatar />
-          <div className='w-full flex-row xl:flex'>
+          <div className='hidden w-full flex-row xl:flex'>
             <div className='mx-3 flex flex-1 flex-col text-base'>
               <span className='font-bold'>{session.user?.name}</span>
               <span className='text-gray-500'>@{session.user.link}</span>

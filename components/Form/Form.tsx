@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { ExpandingTextarea } from './ExpandingTextarea';
-import { ImageAvatar } from '../ImageAvatar';
+import { ImageAvatar } from '../Navbar/ImageAvatar';
 import { clsx } from 'clsx';
 import { useSession } from 'next-auth/react';
 import { useSWRConfig } from 'swr';
