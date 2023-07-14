@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import DotsIcon from '@/public/assets/icons/dots.svg';
 import { MeowWithAuthor } from '@/types/custom-types';
 
 export const CardHeader = ({ meow }: { meow: MeowWithAuthor }) => {
@@ -13,11 +14,7 @@ export const CardHeader = ({ meow }: { meow: MeowWithAuthor }) => {
         </div>
       </Link>
       <div className='flex-center btnhover p-[4px]'>
-        <svg viewBox='0 0 24 24' aria-hidden='true' className='h-4 fill-gray-500'>
-          <g>
-            <path d='M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z'></path>
-          </g>
-        </svg>
+        <DotsIcon alt='dots' className='aspect-square h-4 fill-gray-500' />
       </div>
     </div>
   );
