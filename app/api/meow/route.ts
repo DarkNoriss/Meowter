@@ -10,10 +10,7 @@ export const GET = async () => {
       },
     });
 
-    return new Response(JSON.stringify(meows), {
-      status: 200,
-      headers: { 'Cache-Control': 'no-store' },
-    });
+    return new Response(JSON.stringify(meows), { status: 200 });
   } catch (e) {
     return new Response('Failed to fetch all meows', { status: 500 });
   }
