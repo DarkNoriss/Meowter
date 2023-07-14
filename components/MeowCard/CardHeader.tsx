@@ -4,11 +4,7 @@ import { MeowWithAuthor } from '@/types/custom-types';
 export const CardHeader = ({ meow }: { meow: MeowWithAuthor }) => {
   return (
     <div className='flex flex-row justify-between'>
-      <Link
-        href={`/${meow.author.userlink}`}
-        className='flex cursor-pointer flex-row'
-        passHref
-      >
+      <Link href={`/${meow.author.userlink}`} className='flex cursor-pointer flex-row' passHref>
         <div className='max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap lg:max-w-none'>
           <span className='text-sm font-bold lg:text-base'>{meow.author.username}</span>
         </div>

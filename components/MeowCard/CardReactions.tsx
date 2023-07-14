@@ -61,25 +61,19 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
           <div className='p-2 group-hover:rounded-full group-hover:bg-blue-600 group-hover:bg-opacity-25'>
             <ReplyIcon alt='reply' className='aspect-square h-5' />
           </div>
-          <span className='flex-center px-3 text-sm'>
-            {/* {comments?.length !== 0 ? comments?.length : ''} */}
-          </span>
+          <span className='flex-center px-3 text-sm'>{/* {comments?.length !== 0 ? comments?.length : ''} */}</span>
         </div>
         <div
           className={clsx(
             divClasses,
             'group hover:fill-green-600 hover:text-green-600',
-            `${
-              remeowed ? 'fill-green-600 text-green-600' : 'fill-gray-400 text-gray-400'
-            }`
+            `${remeowed ? 'fill-green-600 text-green-600' : 'fill-gray-400 text-gray-400'}`
           )}
         >
           <div className='p-2 group-hover:rounded-full group-hover:bg-green-600 group-hover:bg-opacity-25'>
             <RemeowIcon alt='remeow' className='aspect-square h-5' />
           </div>
-          <span className='flex-center px-3 text-sm'>
-            {/* {remeows?.length !== 0 ? remeows?.length : ''} */}
-          </span>
+          <span className='flex-center px-3 text-sm'>{/* {remeows?.length !== 0 ? remeows?.length : ''} */}</span>
         </div>
         <div
           className={clsx(
@@ -92,9 +86,7 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
           <div className='p-2 group-hover:rounded-full group-hover:bg-red-600 group-hover:bg-opacity-25'>
             <LikeIcon alt='like' className='aspect-square h-5' />
           </div>
-          <span className='flex-center px-3 text-sm'>
-            {likes?.length !== 0 ? likes?.length : ''}
-          </span>
+          <span className='flex-center px-3 text-sm'>{likes?.length !== 0 ? likes?.length : ''}</span>
         </div>
         <div className={clsx(divClasses, 'fill-gray-400 text-gray-400')}>
           <div className='btnhover p-2 hover:bg-opacity-75'>
