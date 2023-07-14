@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import DotsIcon from '@/public/assets/icons/dots.svg';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { ImageAvatar } from '../ImageAvatar';
 import { signOut, useSession } from 'next-auth/react';
@@ -30,16 +30,16 @@ export const ProfileButton = () => {
 
   if (session)
     return (
-      <div className='relative' onClick={handleOpen} ref={menuRef}>
+      <div className='relative mr-2' onClick={handleOpen} ref={menuRef}>
         <div className={`${open ? '' : 'btnhover'} my-3 flex w-full items-center p-3`}>
           <ImageAvatar />
-          <div className=' hidden flex-row xl:flex'>
-            <div className='mx-3 flex flex-col text-base'>
+          <div className='w-full flex-row xl:flex'>
+            <div className='mx-3 flex flex-1 flex-col text-base'>
               <span className='font-bold'>{session.user?.name}</span>
-              <span className='font-normal text-gray-500'>@{session.user.link}</span>
+              <span className='text-gray-500'>@{session.user.link}</span>
             </div>
-            <div className='flex flex-1 justify-end'>
-              <Image src='/assets/icons/dots.svg' alt='logo' height={22} width={22} />
+            <div className='flex-center justify-end'>
+              <DotsIcon alt='dots' className='aspect-square h-5 fill-gray-300' />
             </div>
           </div>
         </div>
