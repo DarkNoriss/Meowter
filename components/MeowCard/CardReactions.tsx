@@ -97,13 +97,13 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
           </span>
         </div>
         <div className={clsx(divClasses, 'fill-gray-400 text-gray-400')}>
-          <div className='btnhover p-2 hover:bg-opacity-25'>
+          <div className='btnhover p-2 hover:bg-opacity-75'>
             <ViewIcon alt='like' className='aspect-square h-5' />
           </div>
           <span className='flex-center px-3 text-sm'></span>
         </div>
         <div className={clsx(divClasses, 'fill-gray-400 text-gray-400')}>
-          <div className='btnhover p-2 hover:bg-opacity-25'>
+          <div className='btnhover p-2 hover:bg-opacity-75'>
             <ShareIcon alt='like' className='aspect-square h-5' />
           </div>
           <div></div>
