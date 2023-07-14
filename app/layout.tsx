@@ -6,29 +6,24 @@ import '@/styles/globals.css';
 
 export const metadata = {
   title: 'Meowter - Your Social Network for Cats',
-  description:
-    'Meowter is a social networking platform for cats to connect and share their thoughts. Join the cat community today!',
+  description: 'Meowter is a social networking platform for cats to connect and share their thoughts. Join the cat community today!',
   keywords: ['meowter', 'social network', 'cats', 'cat lovers', 'tweets', 'meows'],
   og: {
     title: 'Meowter - Your Social Network for Cats',
-    description:
-      'Meowter is a social networking platform for cats to connect and share their thoughts. Join the cat community today!',
+    description: 'Meowter is a social networking platform for cats to connect and share their thoughts. Join the cat community today!',
     type: 'website',
-    image:
-      'https://raw.githubusercontent.com/DarkNoriss/Meowter/main/public/assets/icons/cat.svg',
+    image: 'https://raw.githubusercontent.com/DarkNoriss/Meowter/main/public/assets/icons/cat.svg',
     imageAlt: 'Meowter Logo',
     url: 'https://meowter-cat.vercel.app',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Meowter - Your Social Network for Cats',
-    description:
-      'Meowter is a social networking platform for cats to connect and share their thoughts. Join the cat community today!',
-    image:
-      'https://raw.githubusercontent.com/DarkNoriss/Meowter/main/public/assets/icons/cat.svg',
+    description: 'Meowter is a social networking platform for cats to connect and share their thoughts. Join the cat community today!',
+    image: 'https://raw.githubusercontent.com/DarkNoriss/Meowter/main/public/assets/icons/cat.svg',
     imageAlt: 'Meowter Logo',
   },
-  favicon: 'https://meowter-cat.vercel.app/assets/icons/cat.svg',
+  favicon: 'https://meowter-cat.vercel.app/assets/icons/cat3.svg',
   metadataBase: 'https://meowter-cat.vercel.app',
 };
 
