@@ -3,11 +3,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import useSWR from 'swr';
+import CalendarIcon from '@/public/assets/icons/calendar.svg';
 import ArrowIcon from '@/public/assets/icons/arrow.svg';
 import { useSession } from 'next-auth/react';
 import { UserWithMeows } from '@/types/custom-types';
 import { Feed } from '@/components/Feed';
 import { ProfileNavigation } from '@/components/Profile/ProfileNavigation';
+import { formatDateProfile } from '@/utils/formatDate';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -49,9 +51,12 @@ const Profile = ({ params }: { params: { id: string } }) => {
                 <span className='text-xl font-bold'>{data.username}</span>
                 <span className='text-sm font-normal text-gray-500 lg:text-base'>@{data.userlink}</span>
               </div>
-              <div className='flex flex-row font-normal text-gray-500'>
+              <div className='flex flex-row fill-gray-500 font-normal text-gray-500'>
                 {data.birtday_date && <span className='mr-5 text-sm lg:text-base'>Born</span>}
-                <span className='text-sm lg:text-base'>Joined</span>
+                <div className='flex-center flex-row'>
+                  <CalendarIcon className={'mr-1 aspect-square h-5'} />
+                  <span className='text-sm lg:text-base'>Joined {formatDateProfile(data.created_at)}</span>
+                </div>
               </div>
             </div>
           </div>
