@@ -28,7 +28,8 @@ export const metadata = {
       'https://raw.githubusercontent.com/DarkNoriss/Meowter/main/public/assets/icons/cat.svg',
     imageAlt: 'Meowter Logo',
   },
-  favicon: '/favicon.ico',
+  favicon: 'https://meowter-cat.vercel.app/assets/icons/cat.svg',
+  metadataBase: 'https://meowter-cat.vercel.app',
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
