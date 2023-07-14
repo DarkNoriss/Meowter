@@ -30,7 +30,7 @@ export const ProfileButton = () => {
 
   if (session)
     return (
-      <div className='relative mr-2' onClick={handleOpen} ref={menuRef}>
+      <div className='relative' onClick={handleOpen} ref={menuRef}>
         <div className={`${open ? '' : 'btnhover'} my-3 flex w-full items-center p-3`}>
           <ImageAvatar />
           <div className='hidden w-full flex-row xl:flex'>
