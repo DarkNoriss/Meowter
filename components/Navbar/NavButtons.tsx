@@ -44,8 +44,7 @@ const Button = ({ name, link }: { name: string; link?: string }) => {
   const path = usePathname();
 
   useEffect(() => {
-    const isPathMatched =
-      (name === 'home' && path === '/') || path === `/${name}` || path === `/${link}`;
+    const isPathMatched = (name === 'home' && path === '/') || path === `/${name}` || path === `/${link}`;
 
     setIsHere(isPathMatched);
   }, [link, name, path]);
@@ -54,22 +53,9 @@ const Button = ({ name, link }: { name: string; link?: string }) => {
     <div className='flex h-14 justify-end xl:mr-6'>
       <div className='btnhover flex-center my-1 h-14 w-14 flex-row p-3 xl:flex xl:w-full xl:items-start xl:justify-start'>
         <div className='flex-center h-7 w-7'>
-          <Image
-            src={`/assets/icons/${name}.svg`}
-            alt='logo'
-            height={28}
-            width={28}
-            className='h-full w-full'
-          />
+          <Image src={`/assets/icons/${name}.svg`} alt='logo' height={28} width={28} className='h-full w-full' />
         </div>
-        <span
-          className={clsx(
-            `ml-5 hidden text-xl capitalize xl:block`,
-            `${isHere ? 'font-bold' : ''}`
-          )}
-        >
-          {name}
-        </span>
+        <span className={clsx(`ml-5 hidden text-xl capitalize xl:block`, `${isHere ? 'font-bold' : ''}`)}>{name}</span>
       </div>
     </div>
   );

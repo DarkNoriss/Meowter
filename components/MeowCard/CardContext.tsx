@@ -7,14 +7,7 @@ export const CardContext = ({ context }: { context: string }) => {
 
   return (
     <div>
-      <span
-        className={clsx(
-          'text-sm lg:text-base',
-          ` ${hasLongWord ? 'break-all' : 'break-words'}`
-        )}
-      >
-        {context}
-      </span>
+      <span className={clsx('text-sm lg:text-base', ` ${hasLongWord ? 'break-all' : 'break-words'}`)}>{context}</span>
     </div>
   );
 };

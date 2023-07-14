@@ -21,12 +21,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
           <div className='border-white-smoll bg-transblur sticky top-0 z-10 flex h-14 w-full max-w-xl items-center !border-t-0 px-4 backdrop-blur-md backdrop-filter'>
             <div className='btnhover mr-4 p-2'>
               <Link href='/' className='min-w-[56px]' passHref>
-                <Image
-                  src={`/assets/icons/arrow.svg`}
-                  alt='logo'
-                  height={22}
-                  width={22}
-                />
+                <Image src={`/assets/icons/arrow.svg`} alt='logo' height={22} width={22} />
               </Link>
             </div>
             <div className='flex flex-col'>
@@ -43,13 +38,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
                 <div className='mt-[15%] w-1/4'>
                   <div className='relative'>
                     <div className='absolute bottom-1/2 -translate-y-1/4'>
-                      <Image
-                        src={data.avatar}
-                        alt='Avatar'
-                        height={135}
-                        width={135}
-                        className='rounded-full border-4 border-gray-900'
-                      />
+                      <Image src={data.avatar} alt='Avatar' height={135} width={135} className='rounded-full border-4 border-gray-900' />
                     </div>
                   </div>
                 </div>
@@ -61,14 +50,10 @@ const Profile = ({ params }: { params: { id: string } }) => {
               </div>
               <div className=' mb-3 flex flex-col'>
                 <span className='text-xl font-bold'>{data.username}</span>
-                <span className='text-sm font-normal text-gray-500 lg:text-base'>
-                  @{data.userlink}
-                </span>
+                <span className='text-sm font-normal text-gray-500 lg:text-base'>@{data.userlink}</span>
               </div>
               <div className='flex flex-row font-normal text-gray-500'>
-                {data.birtday_date && (
-                  <span className='mr-5 text-sm lg:text-base'>Born</span>
-                )}
+                {data.birtday_date && <span className='mr-5 text-sm lg:text-base'>Born</span>}
                 <span className='text-sm lg:text-base'>Joined</span>
               </div>
             </div>
