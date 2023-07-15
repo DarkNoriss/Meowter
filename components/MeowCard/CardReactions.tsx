@@ -21,26 +21,18 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
   const divClasses = clsx('flex min-h-[20px] cursor-pointer flex-row');
 
   const handleLike = async () => {
-    if (!session) return;
+    if (!session || !session.user) return;
+
+    const { id: userId } = session.user;
+
     try {
       for (const like of likes) {
-        if (like.userId === session?.user.id) {
-          await fetch('/api/like/remove', {
-            method: 'POST',
-            body: JSON.stringify({
-              meowId: meow.id,
-            }),
-          });
+        if (like.userId === userId) {
+          sendLikeRequest('/api/like/remove', meow.id);
           return;
         }
       }
-
-      await fetch('/api/like/add', {
-        method: 'POST',
-        body: JSON.stringify({
-          meowId: meow.id,
-        }),
-      });
+      sendLikeRequest('/api/like/add', meow.id);
     } catch (err) {
       console.log(err);
     } finally {
@@ -103,4 +95,13 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
       </div>
     </div>
   );
+};
+
+const sendLikeRequest = async (url: string, meowId: string) => {
+  await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify({
+      meowId: meowId,
+    }),
+  });
 };

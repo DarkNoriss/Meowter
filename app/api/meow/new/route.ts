@@ -10,7 +10,7 @@ export const POST = async (req: Request) => {
     if (session) {
       const newMeow = await prisma.meow.create({
         data: {
-          authorId: session.user.id as string,
+          userId: session.user.id as string,
           text: context,
         },
       });

@@ -1,5 +1,5 @@
 import Provider from '@/components/Provider';
-import { SideBar } from '@/components/SideBar';
+import { SideBar } from '@/components/Sidebar/SideBar';
 import { Login } from '@/components/Login';
 import { Navbar } from '@/components/Navbar/Navbar';
 import '@/styles/globals.css';
@@ -12,7 +12,7 @@ export const metadata = {
     title: 'Meowter - Your Social Network for Cats',
     description: 'Meowter is a social networking platform for cats to connect and share their thoughts. Join the cat community today!',
     type: 'website',
-    image: 'https://raw.githubusercontent.com/DarkNoriss/Meowter/main/public/assets/icons/cat.svg',
+    image: 'https://raw.githubusercontent.com/DarkNoriss/Meowter/main/public/assets/icons/cat3.svg',
     imageAlt: 'Meowter Logo',
     url: 'https://meowter-cat.vercel.app',
   },
@@ -20,7 +20,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Meowter - Your Social Network for Cats',
     description: 'Meowter is a social networking platform for cats to connect and share their thoughts. Join the cat community today!',
-    image: 'https://raw.githubusercontent.com/DarkNoriss/Meowter/main/public/assets/icons/cat.svg',
+    image: 'https://raw.githubusercontent.com/DarkNoriss/Meowter/main/public/assets/icons/cat3.svg',
     imageAlt: 'Meowter Logo',
   },
   favicon: 'https://meowter-cat.vercel.app/assets/icons/cat3.svg',

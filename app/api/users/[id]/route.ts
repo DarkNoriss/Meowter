@@ -1,16 +1,17 @@
+import { UserWithMeows } from '@/types/custom-types';
 import { prisma } from '@/utils/connectToDb';
 
 export const GET = async (req: Request, { params }: { params: { id: string } }) => {
   try {
-    const userMeows = await prisma.user.findUnique({
+    const userMeows: UserWithMeows = await prisma.user.findUnique({
       where: { userlink: params.id },
       include: {
         meows: {
           include: {
-            author: true,
+            user: true,
           },
           orderBy: {
-            created_at: 'desc',
+            createdAt: 'desc',
           },
         },
       },
