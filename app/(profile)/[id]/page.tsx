@@ -52,10 +52,10 @@ const Profile = ({ params }: { params: { id: string } }) => {
                 <span className='text-sm font-normal text-gray-500 lg:text-base'>@{data.userlink}</span>
               </div>
               <div className='flex flex-row fill-gray-500 font-normal text-gray-500'>
-                {data.birtday_date && <span className='mr-5 text-sm lg:text-base'>Born</span>}
+                {data.birthdayDate && <span className='mr-5 text-sm lg:text-base'>Born</span>}
                 <div className='flex-center flex-row'>
                   <CalendarIcon className={'mr-1 aspect-square h-5'} />
-                  <span className='text-sm lg:text-base'>Joined {formatDateProfile(data.created_at)}</span>
+                  <span className='text-sm lg:text-base'>Joined {formatDateProfile(data.createdAt)}</span>
                 </div>
               </div>
             </div>

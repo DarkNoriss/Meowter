@@ -8,10 +8,10 @@ export const GET = async (req: Request, { params }: { params: { id: string } }) 
       include: {
         meows: {
           include: {
-            author: true,
+            user: true,
           },
           orderBy: {
-            created_at: 'desc',
+            createdAt: 'desc',
           },
         },
       },
