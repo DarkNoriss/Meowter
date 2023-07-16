@@ -5,12 +5,11 @@ import { Feed } from '@/components/Feed';
 import { Form } from '@/components/Form/Form';
 import { MeowWithAuthor } from '@/types/custom-types';
 import { useSession } from 'next-auth/react';
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { fetcher } from '@/utils/useSWRFetcher';
 
 const Home = () => {
   const { data: session } = useSession();
-  const { data } = useSWR<MeowWithAuthor[]>('/api/meow', fetcher);
+  const { data } = useSWR<MeowWithAuthor[]>('/api/meow', fetcher, { refreshInterval: 5000 });
 
   return (
     <div>
