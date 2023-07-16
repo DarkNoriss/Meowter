@@ -36,8 +36,9 @@ export const ProfileNavigation = ({ params }: { params: { id: string } }) => {
 const ProfileButton = ({ name, link, isActive }: { name: string; link: string; isActive: boolean }) => {
   return (
     <Link href={link} passHref className='flex-center btnhover flex-1 !rounded-none px-2 lg:px-4'>
-      <div className='flex-center h-full'>
+      <div className='flex-center relative h-full flex-col'>
         <span className={clsx('text-sm lg:text-base', `${isActive ? 'font-bold text-gray-200' : 'text-gray-500'}`)}>{name}</span>
+        <div className={clsx('absolute bottom-0 h-1 w-full rounded-full bg-slate-400', `${isActive ? '' : 'hidden'}`)}></div>
       </div>
     </Link>
   );
