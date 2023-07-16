@@ -5,13 +5,14 @@ import LikeIcon from '@/public/assets/icons/like.svg';
 import ViewIcon from '@/public/assets/icons/view.svg';
 import ShareIcon from '@/public/assets/icons/share.svg';
 import { MeowWithAuthor } from '@/types/custom-types';
-import { useSWRConfig } from 'swr';
+import { mutate } from 'swr';
 import { useSession } from 'next-auth/react';
 import { Like } from '@prisma/client';
+import { useState } from 'react';
 
 export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
   const { data: session } = useSession();
-  const { mutate } = useSWRConfig();
+  const [sendingLike, setSendingLike] = useState<boolean>(false);
   const { comments, remeows, likes } = meow;
 
   const commented: boolean = false;
@@ -21,22 +22,39 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
   const divClasses = clsx('flex min-h-[20px] cursor-pointer flex-row');
 
   const handleLike = async () => {
-    if (!session || !session.user) return;
+    if (!session || !session.user || sendingLike) {
+      console.log('Cannot like yet');
+      return;
+    }
 
     const { id: userId } = session.user;
 
+    console.log('Trying to like');
     try {
-      for (const like of likes) {
-        if (like.userId === userId) {
-          sendLikeRequest('/api/like/remove', meow.id);
-          return;
-        }
+      const userHasLiked = likes.some((like: Like) => like.userId === userId);
+
+      if (userHasLiked) {
+        console.log('Removing like!');
+        sendLikeRequest('/api/like/remove', meow.id);
+      } else {
+        console.log('Sending like!');
+        sendLikeRequest('/api/like/add', meow.id);
       }
-      sendLikeRequest('/api/like/add', meow.id);
     } catch (err) {
       console.log(err);
     } finally {
-      mutate('/api/meow');
+      try {
+        console.log('Fetching new like!');
+        mutate('/api/meow');
+      } catch (err) {
+        console.log(err);
+      }
+
+      setSendingLike(true);
+
+      setTimeout(() => {
+        setSendingLike(false);
+      }, 5000);
     }
   };
 
