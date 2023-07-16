@@ -43,6 +43,7 @@ const Button = ({ name, link }: { name: string; link?: string }) => {
   const [isHere, setIsHere] = useState<boolean>(false);
   const path = usePathname();
 
+  console.log();
   useEffect(() => {
     const isPathMatched = (name === 'home' && path === '/') || path === `/${name}` || path === `/${link}`;
 
