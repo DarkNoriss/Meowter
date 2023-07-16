@@ -8,13 +8,20 @@ export const GET = async (req: Request, { params }: { params: { id: string } }) 
     });
 
     if (!user) return;
-    const userMeows: MeowWithAuthor = await prisma.meow.findMany({
+    const userLikes = await prisma.like.findMany({
       where: { userId: user.id },
-      orderBy: { createdAt: 'desc' },
-      include: { user: true, likes: true },
+      orderBy: { meow: { createdAt: 'desc' } },
+      include: {
+        meow: {
+          include: {
+            user: true,
+            likes: true,
+          },
+        },
+      },
     });
 
-    return new Response(JSON.stringify(userMeows), { status: 200 });
+    return new Response(JSON.stringify(userLikes), { status: 200 });
   } catch (e) {
     return new Response('Failed to fetch user meows', { status: 500 });
   }
