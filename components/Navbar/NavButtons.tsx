@@ -1,8 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import React from 'react';
+import HomeIcon from '@/public/assets/icons/home.svg';
+import ExploreIcon from '@/public/assets/icons/Explore.svg';
+import NotificationsIcon from '@/public/assets/icons/notifications.svg';
+import MessagesIcon from '@/public/assets/icons/messages.svg';
+import ListsIcon from '@/public/assets/icons/lists.svg';
+import BookmarksIcon from '@/public/assets/icons/bookmarks.svg';
+import CommunitiesIcon from '@/public/assets/icons/communities.svg';
+import VerifiedIcon from '@/public/assets/icons/verified.svg';
+import ProfileIcon from '@/public/assets/icons/profile.svg';
+import MoreIcon from '@/public/assets/icons/more.svg';
 import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { clsx } from 'clsx';
@@ -47,14 +56,41 @@ export const NavButtons = () => {
 };
 
 const NavButton = ({ name, link, isActive }: { name: string; link: string; isActive: boolean }) => {
+  const Icon = getIconComponent(name);
+
   return (
     <Link href={link} className='flex h-14 justify-end xl:mr-6'>
       <div className='btnhover flex-center my-1 h-14 w-14 flex-row p-3 xl:flex xl:w-full xl:items-start xl:justify-start'>
-        <div className='flex-center h-7 w-7'>
-          <Image src={`/assets/icons/${name}.svg`} alt='logo' height={28} width={28} className='h-full w-full' />
-        </div>
+        <Icon className={clsx('flex-center h-7 w-7 ', `${isActive ? 'fill-gray-200' : 'fill-gray-400'}`)} />
         <span className={clsx(`ml-5 hidden text-xl capitalize xl:block`, `${isActive ? 'font-bold' : ''}`)}>{name}</span>
       </div>
     </Link>
   );
+};
+
+const getIconComponent = (name: string) => {
+  switch (name) {
+    case 'home':
+      return HomeIcon;
+    case 'explore':
+      return ExploreIcon;
+    case 'notifications':
+      return NotificationsIcon;
+    case 'messages':
+      return MessagesIcon;
+    case 'lists':
+      return ListsIcon;
+    case 'bookmarks':
+      return BookmarksIcon;
+    case 'communities':
+      return CommunitiesIcon;
+    case 'verified':
+      return VerifiedIcon;
+    case 'profile':
+      return ProfileIcon;
+    case 'more':
+      return MoreIcon;
+    default:
+      return null;
+  }
 };
