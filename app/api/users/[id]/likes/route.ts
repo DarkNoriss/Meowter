@@ -1,4 +1,3 @@
-import { MeowWithAuthor } from '@/types/custom-types';
 import { prisma } from '@/utils/connectToDb';
 
 export const GET = async (req: Request, { params }: { params: { id: string } }) => {
