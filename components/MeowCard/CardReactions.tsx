@@ -8,9 +8,11 @@ import { MeowWithAuthor } from '@/types/custom-types';
 import { useSession } from 'next-auth/react';
 import { Like } from '@prisma/client';
 import { useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
 
 export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
   const { data: session } = useSession();
+  const [sendingLike, setSendingLike] = useState(false);
   const queryClient = useQueryClient();
   const { comments, remeows, likes } = meow;
 
@@ -21,12 +23,11 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
   const divClasses = clsx('flex min-h-[20px] cursor-pointer flex-row');
 
   const handleLike = async () => {
-    if (!session || !session.user) return;
-
-    const { id: userId } = session.user;
+    if (!session || sendingLike) return;
 
     try {
-      const userHasLiked = likes.some((like: Like) => like.userId === userId);
+      setSendingLike(true);
+      const userHasLiked = await checkLike(meow.id);
 
       if (userHasLiked) {
         console.log('Removing like!');
@@ -39,6 +40,8 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
       await queryClient.invalidateQueries(['meows']);
     } catch (err) {
       console.log(err);
+    } finally {
+      setSendingLike(false);
     }
   };
 
@@ -106,4 +109,18 @@ const sendLike = async (url: string, meowId: string) => {
       meowId: meowId,
     }),
   });
+};
+
+const checkLike = async (meowId: string) => {
+  const response = await fetch('/api/like', {
+    method: 'POST',
+    body: JSON.stringify({
+      meowId: meowId,
+    }),
+  });
+
+  const data = await response.json();
+  const { exists } = data;
+
+  return exists;
 };
