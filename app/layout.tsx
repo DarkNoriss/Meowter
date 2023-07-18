@@ -1,4 +1,4 @@
-import Provider from '@/components/Provider';
+import { Providers } from '@/utils/providers';
 import { SideBar } from '@/components/Sidebar/SideBar';
 import { Login } from '@/components/Login';
 import { Navbar } from '@/components/Navbar/Navbar';
@@ -29,7 +29,7 @@ export const metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Provider>
+    <Providers>
       <html lang='en'>
         <body>
           <div className='flex-center min-h-screen max-w-full flex-row'>
@@ -40,7 +40,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </body>
       </html>
-    </Provider>
+    </Providers>
   );
 };
 

@@ -1,16 +1,19 @@
 'use client';
 
-import useSWR from 'swr';
 import { Feed } from '@/components/Feed';
 import { Form } from '@/components/Form/Form';
 import { MeowWithAuthor } from '@/types/custom-types';
 import { useSession } from 'next-auth/react';
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
 const Home = () => {
   const { data: session } = useSession();
-  const { data } = useSWR<MeowWithAuthor[]>('/api/meow', fetcher);
+  const { data, refetch } = useQuery({ queryKey: ['meows'], queryFn: fetchMeows });
+
+  useEffect(() => {
+    refetch();
+  }, [session, refetch]);
 
   return (
     <div>
@@ -26,3 +29,9 @@ const Home = () => {
 };
 
 export default Home;
+
+const fetchMeows = async () => {
+  const response = await fetch('/api/meow');
+  const data = await response.json();
+  return data;
+};

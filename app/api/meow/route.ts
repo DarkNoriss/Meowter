@@ -3,11 +3,8 @@ import { prisma } from '@/utils/connectToDb';
 export const GET = async () => {
   try {
     const meows = await prisma.meow.findMany({
-      orderBy: [{ createdAt: 'desc' }],
-      include: {
-        user: true,
-        likes: true,
-      },
+      orderBy: { createdAt: 'desc' },
+      include: { user: true, likes: true },
     });
 
     return new Response(JSON.stringify(meows), { status: 200 });

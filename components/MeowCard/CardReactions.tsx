@@ -5,13 +5,13 @@ import LikeIcon from '@/public/assets/icons/like.svg';
 import ViewIcon from '@/public/assets/icons/view.svg';
 import ShareIcon from '@/public/assets/icons/share.svg';
 import { MeowWithAuthor } from '@/types/custom-types';
-import { useSWRConfig } from 'swr';
 import { useSession } from 'next-auth/react';
 import { Like } from '@prisma/client';
+import { useQueryClient } from '@tanstack/react-query';
 
 export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
   const { data: session } = useSession();
-  const { mutate } = useSWRConfig();
+  const queryClient = useQueryClient();
   const { comments, remeows, likes } = meow;
 
   const commented: boolean = false;
@@ -26,17 +26,19 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
     const { id: userId } = session.user;
 
     try {
-      for (const like of likes) {
-        if (like.userId === userId) {
-          sendLikeRequest('/api/like/remove', meow.id);
-          return;
-        }
+      const userHasLiked = likes.some((like: Like) => like.userId === userId);
+
+      if (userHasLiked) {
+        console.log('Removing like!');
+        await sendLike('/api/like/remove', meow.id);
+      } else {
+        console.log('Sending like!');
+        await sendLike('/api/like/add', meow.id);
       }
-      sendLikeRequest('/api/like/add', meow.id);
+
+      await queryClient.invalidateQueries(['meows']);
     } catch (err) {
       console.log(err);
-    } finally {
-      mutate('/api/meow');
     }
   };
 
@@ -97,7 +99,7 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
   );
 };
 
-const sendLikeRequest = async (url: string, meowId: string) => {
+const sendLike = async (url: string, meowId: string) => {
   await fetch(url, {
     method: 'POST',
     body: JSON.stringify({

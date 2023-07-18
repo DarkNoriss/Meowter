@@ -5,12 +5,12 @@ import { ExpandingTextarea } from './ExpandingTextarea';
 import { ImageAvatar } from '../Navbar/ImageAvatar';
 import { clsx } from 'clsx';
 import { useSession } from 'next-auth/react';
-import { useSWRConfig } from 'swr';
+import { useQueryClient } from '@tanstack/react-query';
 
 export const Form = () => {
   const { data: session } = useSession();
   const [text, setText] = useState('');
-  const { mutate } = useSWRConfig();
+  const queryClient = useQueryClient();
   const [sendingMeow, setSendingMeow] = useState<boolean>(false);
 
   const createMeow = async (e: any) => {
@@ -18,21 +18,13 @@ export const Form = () => {
     setSendingMeow(true);
 
     try {
-      const response = await fetch('/api/meow/new', {
-        method: 'POST',
-        body: JSON.stringify({
-          context: text,
-        }),
-      });
-      if (response.ok) {
-        console.log('Meow sended!');
-      }
+      await sendMeow(text);
     } catch (err) {
       console.log(err);
     } finally {
       setText('');
       setSendingMeow(false);
-      mutate('/api/meow');
+      queryClient.invalidateQueries(['meows']);
     }
   };
 
@@ -61,4 +53,16 @@ export const Form = () => {
       )}
     </>
   );
+};
+
+const sendMeow = async (text: string) => {
+  const response = await fetch('/api/meow/new', {
+    method: 'POST',
+    body: JSON.stringify({
+      context: text,
+    }),
+  });
+
+  const data = await response.json();
+  return data;
 };
