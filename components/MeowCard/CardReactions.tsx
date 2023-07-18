@@ -5,14 +5,13 @@ import LikeIcon from '@/public/assets/icons/like.svg';
 import ViewIcon from '@/public/assets/icons/view.svg';
 import ShareIcon from '@/public/assets/icons/share.svg';
 import { MeowWithAuthor } from '@/types/custom-types';
-import { mutate } from 'swr';
 import { useSession } from 'next-auth/react';
 import { Like } from '@prisma/client';
-import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 
 export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
   const { data: session } = useSession();
-  const [sendingLike, setSendingLike] = useState<boolean>(false);
+  const queryClient = useQueryClient();
   const { comments, remeows, likes } = meow;
 
   const commented: boolean = false;
@@ -22,39 +21,24 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
   const divClasses = clsx('flex min-h-[20px] cursor-pointer flex-row');
 
   const handleLike = async () => {
-    if (!session || !session.user || sendingLike) {
-      console.log('Cannot like yet');
-      return;
-    }
+    if (!session || !session.user) return;
 
     const { id: userId } = session.user;
 
-    console.log('Trying to like');
     try {
       const userHasLiked = likes.some((like: Like) => like.userId === userId);
 
       if (userHasLiked) {
         console.log('Removing like!');
-        sendLikeRequest('/api/like/remove', meow.id);
+        await sendLike('/api/like/remove', meow.id);
       } else {
         console.log('Sending like!');
-        sendLikeRequest('/api/like/add', meow.id);
+        await sendLike('/api/like/add', meow.id);
       }
+
+      await queryClient.invalidateQueries(['meows']);
     } catch (err) {
       console.log(err);
-    } finally {
-      try {
-        console.log('Fetching new like!');
-        mutate('/api/meow');
-      } catch (err) {
-        console.log(err);
-      }
-
-      setSendingLike(true);
-
-      setTimeout(() => {
-        setSendingLike(false);
-      }, 5000);
     }
   };
 
@@ -115,7 +99,7 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
   );
 };
 
-const sendLikeRequest = async (url: string, meowId: string) => {
+const sendLike = async (url: string, meowId: string) => {
   await fetch(url, {
     method: 'POST',
     body: JSON.stringify({

@@ -1,12 +1,10 @@
 'use client';
 
-import useSWR from 'swr';
-import { UserWithMeows } from '@/types/custom-types';
-import { fetcher } from '@/utils/useSWRFetcher';
 import { MeowCard } from '@/components/MeowCard/MeowCard';
+import { useQuery } from '@tanstack/react-query';
 
 const ProfileLikes = ({ params }: { params: { id: string } }) => {
-  const { data } = useSWR<UserWithMeows>(`/api/users/${params.id}/likes`, fetcher);
+  const { data } = useQuery({ queryKey: ['userLikes'], queryFn: () => fetchUserLikes(params.id) });
 
   if (data)
     return (
@@ -19,3 +17,9 @@ const ProfileLikes = ({ params }: { params: { id: string } }) => {
 };
 
 export default ProfileLikes;
+
+const fetchUserLikes = async (id: string) => {
+  const response = await fetch(`/api/users/${id}/likes`);
+  const data = await response.json();
+  return data;
+};

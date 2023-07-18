@@ -2,18 +2,16 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import useSWR from 'swr';
 import CalendarIcon from '@/public/assets/icons/calendar.svg';
 import ArrowIcon from '@/public/assets/icons/arrow.svg';
 import { useSession } from 'next-auth/react';
-import { UserWithMeows } from '@/types/custom-types';
 import { ProfileNavigation } from '@/components/Profile/ProfileNavigation';
 import { formatDateProfile } from '@/utils/formatDate';
-import { fetcher } from '@/utils/useSWRFetcher';
+import { useQuery } from '@tanstack/react-query';
 
 const ProfileLayout = ({ children, params }: { children: React.ReactNode; params: { id: string } }) => {
   const { data: session } = useSession();
-  const { data } = useSWR<UserWithMeows>(`/api/users/${params.id}`, fetcher);
+  const { data } = useQuery({ queryKey: ['user'], queryFn: () => fetchUser(params.id) });
 
   return (
     <>
@@ -67,3 +65,9 @@ const ProfileLayout = ({ children, params }: { children: React.ReactNode; params
 };
 
 export default ProfileLayout;
+
+const fetchUser = async (id: string) => {
+  const response = await fetch(`/api/users/${id}`);
+  const data = await response.json();
+  return data;
+};
