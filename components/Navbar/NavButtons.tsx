@@ -15,6 +15,7 @@ import MoreIcon from '@/public/assets/icons/more.svg';
 import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { clsx } from 'clsx';
+import { Login } from '../Login';
 
 export const NavButtons = () => {
   const { data: session } = useSession();
@@ -25,16 +26,16 @@ export const NavButtons = () => {
   };
 
   const buttons = [
-    { name: 'home', link: `/` },
-    { name: 'explore', link: `/` },
-    { name: 'notifications', link: `/` },
-    { name: 'messages', link: `/` },
-    { name: 'lists', link: `/` },
-    { name: 'bookmarks', link: `/` },
-    { name: 'communities', link: `/` },
-    { name: 'verified', link: `/` },
-    { name: 'profile', link: `/${session?.user.link}` },
-    { name: 'more', link: `/` },
+    { name: 'home', link: `/`, login: false },
+    { name: 'explore', link: `/`, login: true },
+    { name: 'notifications', link: `/`, login: true },
+    { name: 'messages', link: `/`, login: true },
+    { name: 'lists', link: `/`, login: true },
+    { name: 'bookmarks', link: `/`, login: true },
+    { name: 'communities', link: `/`, login: true },
+    { name: 'verified', link: `/`, login: true },
+    { name: 'profile', link: `/${session?.user.link}`, login: true },
+    { name: 'more', link: `/`, login: false },
   ];
 
   const isActive = (name: string) => {
@@ -49,17 +50,17 @@ export const NavButtons = () => {
   return (
     <div className='my-1'>
       {buttons.map((button) => (
-        <NavButton key={button.name} name={button.name} link={button.link} isActive={isActive(button.name)} />
+        <NavButton key={button.name} name={button.name} link={button.link} isActive={isActive(button.name)} login={session ? false : button.login} />
       ))}
     </div>
   );
 };
 
-const NavButton = ({ name, link, isActive }: { name: string; link: string; isActive: boolean }) => {
+const NavButton = ({ name, link, isActive, login }: { name: string; link: string; isActive: boolean; login: boolean }) => {
   const Icon = getIconComponent(name);
 
   return (
-    <Link href={link} className='flex h-14 justify-end xl:mr-6'>
+    <Link href={link} className={clsx('flex h-14 justify-end xl:mr-6', `${login ? 'hidden' : ''}`)}>
       <div className='btnhover flex-center my-1 h-14 w-14 flex-row p-3 xl:flex xl:w-full xl:items-start xl:justify-start'>
         <Icon className={clsx('flex-center h-7 w-7 ', `${isActive ? 'fill-gray-200' : 'fill-gray-400'}`)} />
         <span className={clsx(`ml-5 hidden text-xl capitalize xl:block`, `${isActive ? 'font-bold' : ''}`)}>{name}</span>
