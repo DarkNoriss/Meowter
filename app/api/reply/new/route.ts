@@ -3,7 +3,7 @@ import { options } from '../../auth/[...nextauth]/options';
 import { prisma } from '@/utils/connectToDb';
 
 export const POST = async (req: Request) => {
-  const { meowId, context } = await req.json();
+  const { meowId, text } = await req.json();
   const session = await getServerSession(options);
 
   try {
@@ -11,8 +11,8 @@ export const POST = async (req: Request) => {
       const newReply = await prisma.reply.create({
         data: {
           userId: session.user.id as string,
-          meowId: meowId,
-          text: context,
+          meowId,
+          text,
         },
       });
 
