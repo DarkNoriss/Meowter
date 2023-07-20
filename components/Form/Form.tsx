@@ -13,6 +13,8 @@ export const Form = () => {
   const queryClient = useQueryClient();
   const [sendingMeow, setSendingMeow] = useState<boolean>(false);
 
+  const placeholder = 'What is happening?!';
+
   const createMeow = async (e: any) => {
     e.preventDefault();
     setSendingMeow(true);
@@ -36,7 +38,7 @@ export const Form = () => {
             <ImageAvatar />
           </div>
           <form className='flex flex-1 flex-col py-1' onSubmit={createMeow}>
-            <ExpandingTextarea text={text} setText={setText} />
+            <ExpandingTextarea text={text} setText={setText} placeholder={placeholder} />
             <div className='flex justify-end pb-2 text-base font-bold'>
               <button
                 className={clsx(
