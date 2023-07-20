@@ -7,7 +7,7 @@ import { CardReactionLike } from './Reactions/Like';
 import { CardReactionReply } from './Reactions/Reply';
 
 export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
-  const { comments, remeows, likes } = meow;
+  const { replies, remeows, likes } = meow;
 
   const remeowed: boolean = false;
 
@@ -16,7 +16,7 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
   return (
     <div className='max-w-[425px]'>
       <div className='-mb-2 -ml-2 flex justify-between gap-2'>
-        <CardReactionReply meow={meow} reply={comments} divClasses={divClasses} />
+        <CardReactionReply meow={meow} replies={replies} divClasses={divClasses} />
         <div
           className={clsx(
             divClasses,
