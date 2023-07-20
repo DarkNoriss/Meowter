@@ -48,6 +48,7 @@ export const ReplyModal = ({ closeModal, meow }: { closeModal: () => void; meow:
     setSendingReply(true);
 
     try {
+      console.log('Sending reply!');
       await sendReply(meow.id, text);
     } catch (err) {
       console.log(err);
