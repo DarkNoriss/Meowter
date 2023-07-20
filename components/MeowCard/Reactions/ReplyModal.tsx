@@ -6,10 +6,12 @@ import { clsx } from 'clsx';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { MeowWithAuthor } from '@/types/custom-types';
 import { CardContext } from '../CardContext';
+import { useQueryClient } from '@tanstack/react-query';
 
 export const ReplyModal = ({ closeModal, meow }: { closeModal: () => void; meow: MeowWithAuthor }) => {
   const [text, setText] = useState('');
-  const [sendingMeow, setSendingMeow] = useState<boolean>(false);
+  const [sendingReply, setSendingReply] = useState<boolean>(false);
+  const queryClient = useQueryClient();
   const modalRef: RefObject<HTMLDivElement> = useRef(null);
 
   const placeholder = 'Meow your reply!';
@@ -40,6 +42,22 @@ export const ReplyModal = ({ closeModal, meow }: { closeModal: () => void; meow:
       document.body.classList.remove('overflow-hidden');
     };
   }, [closeModal]);
+
+  const createReply = async (e: any) => {
+    e.preventDefault();
+    setSendingReply(true);
+
+    try {
+      await sendReply(meow.id, text);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setText('');
+      setSendingReply(false);
+      await queryClient.invalidateQueries(['meows']);
+      closeModal();
+    }
+  };
 
   return (
     <div className='flex-center not-in-group fixed left-0 top-0 z-10 h-full w-full bg-gray-700 bg-opacity-50'>
@@ -88,7 +106,7 @@ export const ReplyModal = ({ closeModal, meow }: { closeModal: () => void; meow:
           <div className='mr-3 pt-3'>
             <ImageAvatar />
           </div>
-          <div className='w-full'>
+          <form className='w-full' onSubmit={createReply}>
             <ExpandingTextarea text={text} setText={setText} placeholder={placeholder} />
             <div className='flex justify-end pb-2 text-base font-bold'>
               <button
@@ -96,14 +114,27 @@ export const ReplyModal = ({ closeModal, meow }: { closeModal: () => void; meow:
                   `flex-center mt-3 h-9 rounded-full bg-gray-500 px-4 `,
                   text.length === 0 ? 'bg-gray-700' : 'btnhover hover:bg-gray-600'
                 )}
-                disabled={sendingMeow || text.length === 0}
+                disabled={sendingReply || text.length === 0}
               >
                 Reply
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
   );
+};
+
+const sendReply = async (meowId: string, text: string) => {
+  const response = await fetch('/api/reply/new', {
+    method: 'POST',
+    body: JSON.stringify({
+      meowId,
+      text,
+    }),
+  });
+
+  const data = await response.json();
+  return data;
 };
