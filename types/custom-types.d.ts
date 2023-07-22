@@ -1,3 +1,4 @@
+import { Like } from '@prisma/client';
 import { Types } from 'mongoose';
 
 export type UserWithMeows = Prisma.MeowGetPayload<{
@@ -12,7 +13,7 @@ export type UserWithMeows = Prisma.MeowGetPayload<{
 
 export type MeowWithAuthor = Prisma.MeowGetPayload<{
   include: {
-    author: true;
+    user: true;
   } & Meow;
 }>;
 
@@ -23,6 +24,12 @@ export type CommentType = {
   date: Date;
   likes: [];
 };
+
+export type ReplyWithAuthor = Prisma.ReplyGetPayload<{
+  include: {
+    user: true;
+  } & Reply;
+}>;
 
 export type SessionProviderType = {
   children: React.ReactNode;
