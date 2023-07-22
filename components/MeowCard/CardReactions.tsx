@@ -29,7 +29,7 @@ export const CardReactions = ({ meow, type }: { meow: MeowWithAuthor; type: stri
           </div>
           <span className='flex-center px-3 text-sm'>{/* {remeows?.length !== 0 ? remeows?.length : ''} */}</span>
         </div>
-        <CardReactionLike meowId={meow.id} likes={likes} divClasses={divClasses} />
+        <CardReactionLike meowId={meow.id} likes={likes} divClasses={divClasses} type={type} />
         <div className={clsx(divClasses, 'fill-gray-400 text-gray-400')}>
           <div className='btnhover p-2 hover:bg-opacity-75'>
             <ViewIcon alt='like' className='aspect-square h-5' />
