@@ -6,7 +6,17 @@ import { useSession } from 'next-auth/react';
 import { ReplyModal } from './ReplyModal';
 import { MeowWithAuthor } from '@/types/custom-types';
 
-export const CardReactionReply = ({ meow, replies, divClasses }: { meow: MeowWithAuthor; replies: Reply[]; divClasses: string }) => {
+export const CardReactionReply = ({
+  meow,
+  replies,
+  divClasses,
+  type,
+}: {
+  meow: MeowWithAuthor;
+  replies: Reply[];
+  divClasses: string;
+  type?: string;
+}) => {
   const { data: session } = useSession();
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -23,7 +33,7 @@ export const CardReactionReply = ({ meow, replies, divClasses }: { meow: MeowWit
           'group hover:fill-blue-600 hover:text-blue-600',
           `${commented ? 'fill-blue-600 text-blue-600' : 'fill-gray-400 text-gray-400'}`
         )}
-        onClick={openModal}
+        onClick={() => (type === 'meow' ? openModal() : null)}
       >
         <div className='p-2 group-hover:rounded-full group-hover:bg-blue-600 group-hover:bg-opacity-25'>
           <ReplyIcon alt='reply' className='aspect-square h-5' />
