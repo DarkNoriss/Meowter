@@ -1,6 +1,6 @@
 import { prisma } from '@/utils/connectToDb';
 import { getServerSession } from 'next-auth';
-import { options } from '../auth/[...nextauth]/options';
+import { options } from '../../auth/[...nextauth]/options';
 
 export const POST = async (req: Request) => {
   const session = await getServerSession(options);
@@ -10,7 +10,7 @@ export const POST = async (req: Request) => {
     const like = await prisma.like.findFirst({
       where: {
         userId: session?.user.id,
-        meowId: id,
+        replyId: id,
       },
     });
 
