@@ -6,7 +6,7 @@ import { MeowWithAuthor } from '@/types/custom-types';
 import { CardReactionLike } from './Reactions/Like';
 import { CardReactionReply } from './Reactions/Reply';
 
-export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
+export const CardReactions = ({ meow, type }: { meow: MeowWithAuthor; type: string }) => {
   const { replies, remeows, likes } = meow;
 
   const remeowed: boolean = false;
@@ -16,7 +16,7 @@ export const CardReactions = ({ meow }: { meow: MeowWithAuthor }) => {
   return (
     <div className='max-w-[425px]'>
       <div className='-mb-2 -ml-2 flex justify-between gap-2'>
-        <CardReactionReply meow={meow} replies={replies} divClasses={divClasses} />
+        <CardReactionReply meow={meow} replies={replies} divClasses={divClasses} type={type} />
         <div
           className={clsx(
             divClasses,
