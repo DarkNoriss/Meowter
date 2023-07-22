@@ -53,9 +53,7 @@ export const ReplyModal = ({ closeModal, meow }: { closeModal: () => void; meow:
     } catch (err) {
       console.log(err);
     } finally {
-      setText('');
-      setSendingReply(false);
-      await queryClient.invalidateQueries(['meows']);
+      queryClient.invalidateQueries(['meows']);
       closeModal();
     }
   };
@@ -77,9 +75,9 @@ export const ReplyModal = ({ closeModal, meow }: { closeModal: () => void; meow:
           </div>
         </div>
         <div className='flex h-full px-4'>
-          <div className='mr-3 flex flex-col pt-3'>
+          <div className='mr-3 flex flex-col pt-3 '>
             <Image src={meow.user.avatar} alt='Avatar' height={40} width={40} className='rounded-full' />
-            <div className='flex-center -mb-2 mt-1 flex-1'>
+            <div className='flex-center -mb-2 flex-1 pt-1'>
               <div className='h-full w-[2px] -translate-x-1/2 bg-gray-600'></div>
             </div>
           </div>
