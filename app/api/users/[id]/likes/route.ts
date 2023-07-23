@@ -15,6 +15,7 @@ export const GET = async (req: Request, { params }: { params: { id: string } }) 
           include: {
             user: true,
             likes: true,
+            replies: { include: { user: true } },
           },
         },
       },
