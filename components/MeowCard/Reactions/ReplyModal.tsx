@@ -18,7 +18,6 @@ export const ReplyModal = ({ closeModal, meow }: { closeModal: () => void; meow:
 
   useEffect(() => {
     const handleOutsideClick = (event: any) => {
-      // Check if the click is outside the modal
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
         closeModal();
       }
@@ -30,12 +29,10 @@ export const ReplyModal = ({ closeModal, meow }: { closeModal: () => void; meow:
       }
     };
 
-    // Attach the event listener when the modal is open
     document.addEventListener('click', handleOutsideClick);
     document.addEventListener('keydown', handleEscapeKey);
     document.body.classList.add('overflow-hidden');
 
-    // Clean up the event listener when the modal is closed or unmounted
     return () => {
       document.removeEventListener('click', handleOutsideClick);
       document.removeEventListener('keydown', handleEscapeKey);
