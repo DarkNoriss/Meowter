@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const fs = require("fs")
+
 module.exports = {
   extends: ["next", "prettier", "plugin:@typescript-eslint/recommended", "plugin:tailwindcss/recommended"],
   rules: {
@@ -48,4 +51,15 @@ module.exports = {
       },
     ],
   },
+}
+
+function getDirectoriesToSort() {
+  const ignoredSortingDirectories = [".git", ".next", ".vscode", "node_modules"]
+  return getDirectories(process.cwd()).filter((f) => !ignoredSortingDirectories.includes(f))
+}
+
+function getDirectories(path) {
+  return fs.readdirSync(path).filter(function (file) {
+    return fs.statSync(path + "/" + file).isDirectory()
+  })
 }
