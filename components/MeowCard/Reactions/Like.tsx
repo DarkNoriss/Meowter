@@ -1,99 +1,75 @@
-import LikeIcon from '@/public/assets/icons/like.svg';
-import { Like } from '@prisma/client';
-import { useQueryClient } from '@tanstack/react-query';
-import { clsx } from 'clsx';
-import { useSession } from 'next-auth/react';
-import { useState } from 'react';
+import LikeIcon from "@/public/assets/icons/like.svg"
+import { Like } from "@prisma/client"
+import { useQueryClient } from "@tanstack/react-query"
+import { clsx } from "clsx"
+import { useSession } from "next-auth/react"
+import { useState } from "react"
 
-export const CardReactionLike = ({ meowId, likes, divClasses, type }: { meowId: string; likes: Like[]; divClasses: string; type?: string }) => {
-  const { data: session } = useSession();
-  const [sendingLike, setSendingLike] = useState(false);
-  const queryClient = useQueryClient();
+export const CardReactionLike = ({
+  meowId,
+  likes,
+  divClasses,
+  type,
+}: {
+  meowId: string
+  likes: Like[]
+  divClasses: string
+  type?: string
+}) => {
+  const { data: session } = useSession()
+  const [sendingLike, setSendingLike] = useState(false)
+  const queryClient = useQueryClient()
 
-  const liked: boolean = !!likes?.find((like: Like) => like.userId === session?.user.id);
+  const liked: boolean = !!likes?.find((like: Like) => like.userId === session?.user.id)
 
-  const handleLikeMeow = async () => {
-    if (!session || sendingLike) return;
-
-    try {
-      setSendingLike(true);
-      const userHasLiked = await checkLike(meowId);
-
-      if (userHasLiked) {
-        console.log('Removing like!');
-        await sendLike('/api/like/remove', meowId);
-      } else {
-        console.log('Sending like!');
-        await sendLike('/api/like/add', meowId);
-      }
-
-      await queryClient.invalidateQueries(['meows']);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setSendingLike(false);
-    }
-  };
-
-  const handleLikeReply = async () => {
-    if (!session || sendingLike) return;
+  const handleLike = async () => {
+    if (!session || sendingLike) return
 
     try {
-      setSendingLike(true);
-      const userHasLiked = await checkLike(meowId);
+      setSendingLike(true)
 
-      if (userHasLiked) {
-        console.log('Removing like!');
-        await sendLike('/api/like/remove', meowId);
-      } else {
-        console.log('Sending like!');
-        await sendLike('/api/like/add', meowId);
-      }
+      console.log("Sending like!")
+      if (type === "meow") await sendLikeMeow("/api/like", meowId)
+      else await sendLikeReply("/api/like", meowId)
 
-      await queryClient.invalidateQueries(['meows']);
+      await queryClient.invalidateQueries(["meows"])
     } catch (err) {
-      console.log(err);
+      console.log(err)
     } finally {
-      setSendingLike(false);
+      setSendingLike(false)
     }
-  };
+  }
 
   return (
     <div
       className={clsx(
         divClasses,
-        'group hover:fill-red-600 hover:text-red-600',
-        `${liked ? 'fill-red-600 text-red-600' : 'fill-gray-400 text-gray-400'}`
+        "group hover:fill-red-600 hover:text-red-600",
+        `${liked ? "fill-red-600 text-red-600" : "fill-gray-400 text-gray-400"}`
       )}
-      onClick={() => (type === 'meow' ? handleLikeMeow() : handleLikeReply())}
+      onClick={handleLike}
     >
-      <div className='p-2 group-hover:rounded-full group-hover:bg-red-600 group-hover:bg-opacity-25'>
-        <LikeIcon alt='like' className='aspect-square h-5' />
+      <div className="p-2 group-hover:rounded-full group-hover:bg-red-600 group-hover:bg-opacity-25">
+        <LikeIcon alt="like" className="aspect-square h-5" />
       </div>
-      <span className='flex-center px-3 text-sm'>{likes?.length !== 0 ? likes?.length : ''}</span>
+      <span className="flex-center px-3 text-sm">{likes?.length !== 0 ? likes?.length : ""}</span>
     </div>
-  );
-};
+  )
+}
 
-const sendLike = async (url: string, meowId: string) => {
+const sendLikeMeow = async (url: string, id: string) => {
   await fetch(url, {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify({
-      meowId: meowId,
+      meowId: id,
     }),
-  });
-};
-
-const checkLike = async (id: string) => {
-  const response = await fetch('/api/like', {
-    method: 'POST',
+  })
+}
+const sendLikeReply = async (url: string, id: string) => {
+  await fetch(url, {
+    method: "POST",
     body: JSON.stringify({
-      id,
+      replyId: id,
     }),
-  });
-
-  const data = await response.json();
-  const { exists } = data;
-
-  return exists;
-};
+  })
+}
