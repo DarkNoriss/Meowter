@@ -7,8 +7,6 @@ import { CardAvatar } from './CardAvatar';
 import { CardReplies } from './CardReplies';
 
 export const MeowCard = ({ meow }: { meow: MeowWithAuthor }) => {
-  // if (meow.replies.length > 0) console.log(meow);
-
   return (
     <article className='border-white-smoll !border-t-0 px-2 lg:px-4'>
       <div className='flex max-w-full flex-row py-3'>
