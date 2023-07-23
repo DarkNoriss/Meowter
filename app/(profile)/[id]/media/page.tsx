@@ -1,9 +1,9 @@
-const ProfileMedia = ({ params }: { params: { id: string } }) => {
+const ProfileMedia = () => {
   return (
-    <div className='flex-center'>
+    <div className="flex-center">
       <span>Media</span>
     </div>
-  );
-};
+  )
+}
 
-export default ProfileMedia;
+export default ProfileMedia
