@@ -10,7 +10,7 @@ export const CardReactionLike = ({ meowId, likes, divClasses, type }: { meowId: 
   const [sendingLike, setSendingLike] = useState(false);
   const queryClient = useQueryClient();
 
-  const liked: boolean = !!likes.find((like: Like) => like.userId === session?.user.id);
+  const liked: boolean = !!likes?.find((like: Like) => like.userId === session?.user.id);
 
   const handleLikeMeow = async () => {
     if (!session || sendingLike) return;
