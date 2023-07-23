@@ -1,27 +1,40 @@
-import { prisma } from '@/utils/connectToDb';
-import { getServerSession } from 'next-auth';
-import { options } from '../auth/[...nextauth]/options';
+import { prisma } from "@/utils/connectToDb"
+import { getServerSession } from "next-auth"
+import { options } from "../auth/[...nextauth]/options"
+import { Like } from "@prisma/client"
 
 export const POST = async (req: Request) => {
-  const session = await getServerSession(options);
-  const { id } = await req.json();
+  const session = await getServerSession(options)
+  const { meowId, replyId } = (await req.json()) as Like
+  console.log(meowId, replyId)
 
   try {
     const like = await prisma.like.findFirst({
       where: {
         userId: session?.user.id,
-        meowId: id,
+        ...(meowId ? { meowId } : {}),
+        ...(replyId ? { replyId } : {}),
       },
-    });
+    })
 
     if (like) {
-      return new Response(JSON.stringify({ exists: true }), { status: 200 });
+      await prisma.like.delete({
+        where: { id: like.id },
+      })
+
+      return new Response("Removed like!", { status: 200 })
     } else {
-      return new Response(JSON.stringify({ exists: false }), { status: 200 });
+      await prisma.like.create({
+        data: {
+          userId: session?.user.id,
+          ...(meowId ? { meowId } : {}),
+          ...(replyId ? { replyId } : {}),
+        },
+      })
+
+      return new Response("Added like!", { status: 200 })
     }
   } catch (e) {
-    return new Response('Failed to check if like exists', { status: 500 });
+    return new Response("Failed to check if like exists", { status: 500 })
   }
-};
-
-export const revalidate = 0;
+}
