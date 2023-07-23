@@ -1,6 +1,6 @@
 const ProfileHighlights = ({ params }: { params: { id: string } }) => {
   return (
-    <div className='flex-center flex-col'>
+    <div className="flex-center flex-col">
       <div>
         <span>Verified only</span>
       </div>
@@ -11,7 +11,7 @@ const ProfileHighlights = ({ params }: { params: { id: string } }) => {
         <span>Get Verified</span>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProfileHighlights;
+export default ProfileHighlights
