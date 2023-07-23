@@ -11,7 +11,11 @@ export const GET = async (req: Request, { params }: { params: { id: string } }) 
     const userMeows: MeowWithAuthor = await prisma.meow.findMany({
       where: { userId: user.id },
       orderBy: { createdAt: 'desc' },
-      include: { user: true, likes: true },
+      include: {
+        user: true,
+        likes: true,
+        replies: { include: { user: true } },
+      },
     });
 
     return new Response(JSON.stringify(userMeows), { status: 200 });
