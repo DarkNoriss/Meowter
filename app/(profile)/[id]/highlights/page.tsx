@@ -1,4 +1,4 @@
-const ProfileHighlights = ({ params }: { params: { id: string } }) => {
+const ProfileHighlights = () => {
   return (
     <div className="flex-center flex-col">
       <div>

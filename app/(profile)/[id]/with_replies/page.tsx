@@ -1,4 +1,4 @@
-const ProfileReplies = ({ params }: { params: { id: string } }) => {
+const ProfileReplies = () => {
   return (
     <div className="flex-center">
       <span>Replies</span>

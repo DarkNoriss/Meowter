@@ -1,10 +1,10 @@
-import ReplyIcon from "@/public/assets/icons/reply.svg"
-import { useState } from "react"
-import { clsx } from "clsx"
 import { Reply } from "@prisma/client"
+import { clsx } from "clsx"
 import { useSession } from "next-auth/react"
-import { ReplyModal } from "./ReplyModal"
+import { useState } from "react"
+import ReplyIcon from "@/public/assets/icons/reply.svg"
 import { MeowWithAuthor } from "@/types/custom-types"
+import { ReplyModal } from "./ReplyModal"
 
 export const CardReactionReply = ({
   meow,
@@ -20,7 +20,7 @@ export const CardReactionReply = ({
   const { data: session } = useSession()
   const [modalIsOpen, setIsOpen] = useState(false)
 
-  const commented: boolean = !!replies?.find((reply: Reply) => reply.userId === session?.user.id)
+  const commented = !!replies?.find((reply: Reply) => reply.userId === session?.user.id)
 
   const openModal = () => session?.user && setIsOpen(true)
   const closeModal = () => setIsOpen(false)
@@ -35,7 +35,7 @@ export const CardReactionReply = ({
         )}
         onClick={() => (type === "meow" ? openModal() : null)}
       >
-        <div className="p-2 group-hover:rounded-full group-hover:bg-blue-600 group-hover:bg-opacity-25">
+        <div className="p-2 group-hover:rounded-full group-hover:bg-blue-600/25">
           <ReplyIcon alt="reply" className="aspect-square h-5" />
         </div>
         <span className="flex-center px-3 text-sm">{replies?.length !== 0 ? replies?.length : ""}</span>

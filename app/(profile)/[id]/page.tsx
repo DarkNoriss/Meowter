@@ -1,8 +1,8 @@
 "use client"
 
+import { useQuery } from "@tanstack/react-query"
 import { Feed } from "@/components/Feed"
 import { MeowWithAuthor } from "@/types/custom-types"
-import { useQuery } from "@tanstack/react-query"
 
 const Profile = ({ params }: { params: { id: string } }) => {
   const { data } = useQuery({ queryKey: ["userMeows"], queryFn: () => fetchUserMeows(params.id) }) as MeowWithAuthor

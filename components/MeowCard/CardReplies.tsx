@@ -1,11 +1,10 @@
+import { ReplyWithAuthor } from "@/types/custom-types"
+import { CardAvatar } from "./CardAvatar"
 import { CardContext } from "./CardContext"
 import { CardHeader } from "./CardHeader"
 import { CardReactions } from "./CardReactions"
-import { CardAvatar } from "./CardAvatar"
-import { ReplyWithAuthor } from "@/types/custom-types"
 
 export const CardReplies = ({ replies }: { replies: ReplyWithAuthor[] }) => {
-  // console.log(replies);
   return (
     <div>
       {replies.map((reply, index, { length }) => (

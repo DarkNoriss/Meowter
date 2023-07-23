@@ -1,9 +1,9 @@
-import LikeIcon from "@/public/assets/icons/like.svg"
 import { Like } from "@prisma/client"
 import { useQueryClient } from "@tanstack/react-query"
 import { clsx } from "clsx"
 import { useSession } from "next-auth/react"
 import { useState } from "react"
+import LikeIcon from "@/public/assets/icons/like.svg"
 
 export const CardReactionLike = ({
   meowId,
@@ -20,7 +20,7 @@ export const CardReactionLike = ({
   const [sendingLike, setSendingLike] = useState(false)
   const queryClient = useQueryClient()
 
-  const liked: boolean = !!likes?.find((like: Like) => like.userId === session?.user.id)
+  const liked = !!likes?.find((like: Like) => like.userId === session?.user.id)
 
   const handleLike = async () => {
     if (!session || sendingLike) return
@@ -49,7 +49,7 @@ export const CardReactionLike = ({
       )}
       onClick={handleLike}
     >
-      <div className="p-2 group-hover:rounded-full group-hover:bg-red-600 group-hover:bg-opacity-25">
+      <div className="p-2 group-hover:rounded-full group-hover:bg-red-600/25 ">
         <LikeIcon alt="like" className="aspect-square h-5" />
       </div>
       <span className="flex-center px-3 text-sm">{likes?.length !== 0 ? likes?.length : ""}</span>

@@ -1,14 +1,14 @@
 "use client"
 
+import { useQuery } from "@tanstack/react-query"
 import Image from "next/image"
 import Link from "next/link"
-import CalendarIcon from "@/public/assets/icons/calendar.svg"
-import ArrowIcon from "@/public/assets/icons/arrow.svg"
 import { useSession } from "next-auth/react"
 import { ProfileNavigation } from "@/components/Profile/ProfileNavigation"
-import { formatDateProfile } from "@/utils/formatDate"
-import { useQuery } from "@tanstack/react-query"
+import ArrowIcon from "@/public/assets/icons/arrow.svg"
+import CalendarIcon from "@/public/assets/icons/calendar.svg"
 import { UserWithMeows } from "@/types/custom-types"
+import { formatDateProfile } from "@/utils/formatDate"
 
 const ProfileLayout = ({ children, params }: { children: React.ReactNode; params: { id: string } }) => {
   const { data: session } = useSession()
@@ -18,7 +18,7 @@ const ProfileLayout = ({ children, params }: { children: React.ReactNode; params
     <>
       {data && (
         <div key={data.id}>
-          <div className="border-white-smoll bg-transblur sticky top-0 z-10 flex h-14 w-full max-w-xl items-center !border-t-0 px-4 backdrop-blur-md backdrop-filter">
+          <div className="border-white-smoll bg-transblur sticky top-0 z-10 flex h-14 w-full max-w-xl items-center !border-t-0 px-4 backdrop-blur-md">
             <Link href="/" className="btnhover mr-4 p-2" passHref>
               <ArrowIcon alt="Arrow" className="aspect-square h-6 fill-gray-100" />
             </Link>

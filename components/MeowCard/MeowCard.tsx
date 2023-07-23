@@ -1,9 +1,9 @@
 import React from "react"
 import { MeowWithAuthor } from "@/types/custom-types"
-import { CardHeader } from "./CardHeader"
-import { CardContext } from "./CardContext"
-import { CardReactions } from "./CardReactions"
 import { CardAvatar } from "./CardAvatar"
+import { CardContext } from "./CardContext"
+import { CardHeader } from "./CardHeader"
+import { CardReactions } from "./CardReactions"
 import { CardReplies } from "./CardReplies"
 
 export const MeowCard = ({ meow }: { meow: MeowWithAuthor }) => {
