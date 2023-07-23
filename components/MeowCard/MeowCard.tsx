@@ -14,7 +14,7 @@ export const MeowCard = ({ meow }: { meow: MeowWithAuthor }) => {
       <div className='flex max-w-full flex-row py-3'>
         <div className='mr-3 flex flex-col pt-3'>
           <CardAvatar avatarUrl={meow.user.avatar} />
-          {meow.replies.length > 0 && (
+          {meow.replies?.length > 0 && (
             <div className='flex-center -mb-8 flex-1 pt-1'>
               <div className='h-full w-[2px] -translate-x-1/2 bg-gray-600'></div>
             </div>
@@ -26,7 +26,7 @@ export const MeowCard = ({ meow }: { meow: MeowWithAuthor }) => {
           <CardReactions meow={meow} type='meow' />
         </div>
       </div>
-      {meow.replies.length > 0 && <CardReplies replies={meow.replies} />}
+      {meow.replies?.length > 0 && <CardReplies replies={meow.replies} />}
     </article>
   );
 };
