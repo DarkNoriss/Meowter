@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth"
-import { options } from "../../auth/[...nextauth]/options"
 import { prisma } from "@/utils/connectToDb"
+import { options } from "../../auth/[...nextauth]/options"
 
 type ResponseData = {
   context: string

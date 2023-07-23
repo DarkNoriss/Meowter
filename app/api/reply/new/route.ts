@@ -1,7 +1,7 @@
-import { getServerSession } from "next-auth"
-import { options } from "../../auth/[...nextauth]/options"
-import { prisma } from "@/utils/connectToDb"
 import { Reply } from "@prisma/client"
+import { getServerSession } from "next-auth"
+import { prisma } from "@/utils/connectToDb"
+import { options } from "../../auth/[...nextauth]/options"
 
 export const POST = async (req: Request) => {
   const session = await getServerSession(options)

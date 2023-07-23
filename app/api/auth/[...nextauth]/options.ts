@@ -1,7 +1,7 @@
-import GoogleProvider from 'next-auth/providers/google';
-import { NextAuthOptions } from 'next-auth';
-import { strToLink } from '@/utils/strToLink';
-import { prisma } from '@/utils/connectToDb';
+import { NextAuthOptions } from "next-auth"
+import GoogleProvider from "next-auth/providers/google"
+import { prisma } from "@/utils/connectToDb"
+import { strToLink } from "@/utils/strToLink"
 
 export const options: NextAuthOptions = {
   providers: [
@@ -13,20 +13,20 @@ export const options: NextAuthOptions = {
   callbacks: {
     async session({ session }) {
       const sessionUser = await prisma.user.findUnique({
-        where: { email: session.user.email || '' },
-      });
-      session.user.id = sessionUser?.id.toString();
-      session.user.link = sessionUser?.userlink;
+        where: { email: session.user.email || "" },
+      })
+      session.user.id = sessionUser?.id.toString()
+      session.user.link = sessionUser?.userlink
 
-      return session;
+      return session
     },
 
     async signIn({ profile }) {
       try {
         await prisma.$transaction(async (prisma) => {
           const userExists = await prisma.user.findUnique({
-            where: { email: profile?.email || '' },
-          });
+            where: { email: profile?.email || "" },
+          })
 
           if (!userExists && profile) {
             await prisma.user.create({
@@ -36,15 +36,15 @@ export const options: NextAuthOptions = {
                 userlink: strToLink(profile?.name as string),
                 avatar: (profile?.image as string) ?? (profile?.picture as string),
               },
-            });
+            })
           }
-        });
+        })
 
-        return true;
-      } catch (err: any) {
-        console.log('Error checking if user exists: ', err.message);
-        return false;
+        return true
+      } catch (error) {
+        console.log("Error checking if user exists: ", error)
+        return false
       }
     },
   },
-};
+}
