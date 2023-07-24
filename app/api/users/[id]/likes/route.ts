@@ -1,4 +1,4 @@
-import { prisma } from "@/utils/connectToDb"
+import { prisma } from "@/app/lib/connectToDb"
 
 export const GET = async (req: Request, { params }: { params: { id: string } }) => {
   try {

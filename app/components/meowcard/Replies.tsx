@@ -1,10 +1,10 @@
 import { ReplyWithAuthor } from "@/types/custom-types"
-import { CardAvatar } from "./CardAvatar"
-import { CardContext } from "./CardContext"
-import { CardHeader } from "./CardHeader"
-import { CardReactions } from "./CardReactions"
+import { CardAvatar } from "./Avatar"
+import { CardContext } from "./Context"
+import { CardHeader } from "./Header"
+import { CardReactions } from "./Reactions"
 
-export const CardReplies = ({ replies }: { replies: ReplyWithAuthor[] }) => {
+export const CardReplies = async ({ replies }: { replies: ReplyWithAuthor[] }) => {
   return (
     <div>
       {replies.map((reply, index, { length }) => (

@@ -1,19 +1,14 @@
-"use client"
+import { getServerSession } from "next-auth/next"
+import { Feed } from "@/app/components/Feed"
+import { prisma } from "@/app/lib/connectToDb"
+import { options } from "./api/auth/[...nextauth]/options"
+import { Form } from "./components/form/Form"
 
-import { useQuery } from "@tanstack/react-query"
-import { useSession } from "next-auth/react"
-import { useEffect } from "react"
-import { Feed } from "@/components/Feed"
-import { Form } from "@/components/Form/Form"
-import { MeowWithAuthor } from "@/types/custom-types"
+const Home = async () => {
+  const sessionData = getServerSession(options)
+  const meowsData = getMeows()
 
-const Home = () => {
-  const { data: session } = useSession()
-  const { data, refetch } = useQuery({ queryKey: ["meows"], queryFn: fetchMeows })
-
-  useEffect(() => {
-    refetch()
-  }, [session, refetch])
+  const [session, meows] = await Promise.all([sessionData, meowsData])
 
   return (
     <div>
@@ -22,7 +17,7 @@ const Home = () => {
       </div>
       <div className="-z-10">
         {session && <Form />}
-        <Feed meows={data as MeowWithAuthor[]} />
+        <Feed meows={meows} />
       </div>
     </div>
   )
@@ -30,8 +25,22 @@ const Home = () => {
 
 export default Home
 
-const fetchMeows = async () => {
-  const response = await fetch("/api/meow")
-  const data = await response.json()
-  return data
+const getMeows = async () => {
+  const meows = await prisma.meow.findMany({
+    orderBy: { createdAt: "desc" },
+    include: {
+      user: true,
+      likes: true,
+      replies: {
+        include: {
+          user: true,
+          likes: true,
+        },
+      },
+    },
+  })
+
+  return meows
 }
+
+export const revalidate = 1

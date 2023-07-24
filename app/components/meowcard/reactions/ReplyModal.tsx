@@ -2,11 +2,11 @@ import { useQueryClient } from "@tanstack/react-query"
 import { clsx } from "clsx"
 import Image from "next/image"
 import { RefObject, useEffect, useRef, useState } from "react"
-import { ExpandingTextarea } from "@/components/Form/ExpandingTextarea"
-import { ImageAvatar } from "@/components/Navbar/ImageAvatar"
+import { ExpandingTextarea } from "@/app/components/form/ExpandingTextarea"
+import { ImageAvatar } from "@/app/components/navbar/ImageAvatar"
 import CloseIcon from "@/public/assets/icons/close.svg"
 import { MeowWithAuthor } from "@/types/custom-types"
-import { CardContext } from "../CardContext"
+import { CardContext } from "../Context"
 
 export const ReplyModal = ({ closeModal, meow }: { closeModal: () => void; meow: MeowWithAuthor }) => {
   const [text, setText] = useState("")

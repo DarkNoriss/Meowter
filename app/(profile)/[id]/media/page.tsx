@@ -1,4 +1,4 @@
-const ProfileMedia = () => {
+const ProfileMedia = async () => {
   return (
     <div className="flex-center">
       <span>Media</span>

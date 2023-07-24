@@ -1,30 +1,30 @@
-"use client"
-
-import { useQuery } from "@tanstack/react-query"
 import Image from "next/image"
 import Link from "next/link"
-import { useSession } from "next-auth/react"
-import { ProfileNavigation } from "@/components/Profile/ProfileNavigation"
+import { getServerSession } from "next-auth/next"
+import { ProfileNavigation } from "@/app/(profile)/[id]/ProfileNavigation"
+import { options } from "@/app/api/auth/[...nextauth]/options"
+import { prisma } from "@/app/lib/connectToDb"
+import { formatDateProfile } from "@/app/lib/formatDate"
 import ArrowIcon from "@/public/assets/icons/arrow.svg"
 import CalendarIcon from "@/public/assets/icons/calendar.svg"
-import { UserWithMeows } from "@/types/custom-types"
-import { formatDateProfile } from "@/utils/formatDate"
 
-const ProfileLayout = ({ children, params }: { children: React.ReactNode; params: { id: string } }) => {
-  const { data: session } = useSession()
-  const { data } = useQuery({ queryKey: ["user"], queryFn: () => fetchUser(params.id) }) as UserWithMeows
+const ProfileLayout = async ({ children, params }: { children: React.ReactNode; params: { id: string } }) => {
+  const sessionData = getServerSession(options)
+  const userData = getUser(params.id)
 
-  return (
-    <>
-      {data && (
-        <div key={data.id}>
+  const [session, user] = await Promise.all([sessionData, userData])
+
+  if (user)
+    return (
+      <>
+        <div key={user.id}>
           <div className="border-white-smoll bg-transblur sticky top-0 z-10 flex h-14 w-full max-w-xl items-center !border-t-0 px-4 backdrop-blur-md">
             <Link href="/" className="btnhover mr-4 p-2" passHref>
               <ArrowIcon alt="Arrow" className="aspect-square h-6 fill-gray-100" />
             </Link>
             <div className="flex flex-col">
-              <span className="text-xl font-bold">{data.username}</span>
-              <span className="text-sm text-gray-500">{data.meows.length} Meows</span>
+              <span className="text-xl font-bold">{user.username}</span>
+              <span className="text-sm text-gray-500">{user.meows.length} Meows</span>
             </div>
           </div>
           <div className="border-white-smoll !border-t-0">
@@ -35,7 +35,7 @@ const ProfileLayout = ({ children, params }: { children: React.ReactNode; params
                   <div className="relative">
                     <div className="absolute bottom-1/2 -translate-y-1/4">
                       <Image
-                        src={data.avatar}
+                        src={user.avatar}
                         alt="Avatar"
                         height={135}
                         width={135}
@@ -51,14 +51,14 @@ const ProfileLayout = ({ children, params }: { children: React.ReactNode; params
                 )}
               </div>
               <div className=" mb-3 flex flex-col">
-                <span className="text-xl font-bold">{data.username}</span>
-                <span className="text-sm font-normal text-gray-500 lg:text-base">@{data.userlink}</span>
+                <span className="text-xl font-bold">{user.username}</span>
+                <span className="text-sm font-normal text-gray-500 lg:text-base">@{user.userlink}</span>
               </div>
               <div className="flex flex-row fill-gray-500 font-normal text-gray-500">
-                {data.birthdayDate && <span className="mr-5 text-sm lg:text-base">Born</span>}
+                {user.birthdayDate && <span className="mr-5 text-sm lg:text-base">Born</span>}
                 <div className="flex-center flex-row">
                   <CalendarIcon className={"mr-1 aspect-square h-5"} />
-                  <span className="text-sm lg:text-base">Joined {formatDateProfile(data.createdAt)}</span>
+                  <span className="text-sm lg:text-base">Joined {formatDateProfile(user.createdAt)}</span>
                 </div>
               </div>
             </div>
@@ -66,15 +66,17 @@ const ProfileLayout = ({ children, params }: { children: React.ReactNode; params
           <ProfileNavigation params={params} />
           {children}
         </div>
-      )}
-    </>
-  )
+      </>
+    )
 }
 
 export default ProfileLayout
 
-const fetchUser = async (id: string) => {
-  const response = await fetch(`/api/users/${id}`)
-  const data = await response.json()
-  return data
+const getUser = async (id: string) => {
+  const userWithMeows = await prisma.user.findUnique({
+    where: { userlink: id },
+    include: { meows: true },
+  })
+
+  return userWithMeows
 }

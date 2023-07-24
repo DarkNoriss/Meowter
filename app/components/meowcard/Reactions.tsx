@@ -3,10 +3,10 @@ import RemeowIcon from "@/public/assets/icons/remeow.svg"
 import ShareIcon from "@/public/assets/icons/share.svg"
 import ViewIcon from "@/public/assets/icons/view.svg"
 import { MeowWithAuthor } from "@/types/custom-types"
-import { CardReactionLike } from "./Reactions/Like"
-import { CardReactionReply } from "./Reactions/Reply"
+import { CardReactionLike } from "./reactions/Like"
+import { CardReactionReply } from "./reactions/Reply"
 
-export const CardReactions = ({ meow, type }: { meow: MeowWithAuthor; type: string }) => {
+export const CardReactions = async ({ meow, type }: { meow: MeowWithAuthor; type: string }) => {
   const { replies, likes } = meow
 
   const remeowed = false

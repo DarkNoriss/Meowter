@@ -1,4 +1,4 @@
-const ProfileReplies = () => {
+const ProfileReplies = async () => {
   return (
     <div className="flex-center">
       <span>Replies</span>

@@ -1,3 +1,5 @@
+"use client"
+
 import { Like } from "@prisma/client"
 import { useQueryClient } from "@tanstack/react-query"
 import { clsx } from "clsx"
