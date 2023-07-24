@@ -1,6 +1,6 @@
 import { Reply } from "@prisma/client"
 import { getServerSession } from "next-auth"
-import { prisma } from "@/utils/connectToDb"
+import { prisma } from "@/app/lib/connectToDb"
 import { options } from "../../auth/[...nextauth]/options"
 
 export const POST = async (req: Request) => {

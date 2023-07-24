@@ -1,4 +1,4 @@
-const ProfileHighlights = () => {
+const ProfileHighlights = async () => {
   return (
     <div className="flex-center flex-col">
       <div>

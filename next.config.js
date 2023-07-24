@@ -1,18 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverActions: true,
+  },
   images: {
-    domains: ['lh3.googleusercontent.com'],
+    domains: ["lh3.googleusercontent.com"],
   },
   serverRuntimeConfig: {
     externalServer: true,
   },
-  webpack(config, { isServer }) {
+  webpack(config) {
     // Configures webpack to handle SVG files with SVGR. SVGR optimizes and transforms SVG files
     // into React components. See https://react-svgr.com/docs/next/
 
     // Grab the existing rule that handles SVG imports
-    // @ts-ignore - rules is a private property that is not typed
-    const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
+    const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.(".svg"))
 
     config.module.rules.push(
       // Reapply the existing rule, but only for svg imports ending in ?url
@@ -26,15 +28,15 @@ const nextConfig = {
         test: /\.svg$/i,
         issuer: fileLoaderRule.issuer,
         resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
-        use: ['@svgr/webpack'],
+        use: ["@svgr/webpack"],
       }
-    );
+    )
 
     // Modify the file loader rule to ignore *.svg, since we have it handled now.
-    fileLoaderRule.exclude = /\.svg$/i;
+    fileLoaderRule.exclude = /\.svg$/i
 
-    return config;
+    return config
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

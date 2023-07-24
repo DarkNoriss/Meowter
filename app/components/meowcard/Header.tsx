@@ -2,7 +2,7 @@ import Link from "next/link"
 import DotsIcon from "@/public/assets/icons/dots.svg"
 import { MeowWithAuthor } from "@/types/custom-types"
 
-export const CardHeader = ({ meow }: { meow: MeowWithAuthor }) => {
+export const CardHeader = async ({ meow }: { meow: MeowWithAuthor }) => {
   return (
     <div className="flex flex-row justify-between">
       <Link href={`/${meow.user.userlink}`} className="flex cursor-pointer flex-row" passHref>

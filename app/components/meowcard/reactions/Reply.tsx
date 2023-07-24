@@ -1,3 +1,5 @@
+"use client"
+
 import { Reply } from "@prisma/client"
 import { clsx } from "clsx"
 import { useSession } from "next-auth/react"

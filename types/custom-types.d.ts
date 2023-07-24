@@ -7,13 +7,13 @@ export type UserWithMeows = Prisma.MeowGetPayload<{
         author: true
       }
     }
-  } & User
+  }
 }>
 
 export type MeowWithAuthor = Prisma.MeowGetPayload<{
   include: {
     user: true
-  } & Meow
+  }
 }>
 
 export type CommentType = {

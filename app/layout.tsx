@@ -1,8 +1,8 @@
-import { Login } from "@/components/Login"
-import { Navbar } from "@/components/Navbar/Navbar"
-import { SideBar } from "@/components/Sidebar/SideBar"
-import { Providers } from "@/utils/providers"
+import { Login } from "@/app/components/Login"
+import { Navbar } from "@/app/components/navbar/Navbar"
+import { SideBar } from "@/app/components/sidebar/SideBar"
 import "@/styles/globals.css"
+import { Providers } from "./components/Providers"
 
 export const metadata = {
   title: "Meowter - Your Social Network for Cats",
@@ -32,18 +32,18 @@ export const metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Providers>
-      <html lang="en">
-        <body>
+    <html lang="en">
+      <body>
+        <Providers>
           <div className="flex-center min-h-screen max-w-full flex-row">
             <Navbar />
             <main className="h-screen w-screen max-w-xl !border-y-0">{children}</main>
             <SideBar />
             <Login />
           </div>
-        </body>
-      </html>
-    </Providers>
+        </Providers>
+      </body>
+    </html>
   )
 }
 

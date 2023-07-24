@@ -1,7 +1,7 @@
 import { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
-import { prisma } from "@/utils/connectToDb"
-import { strToLink } from "@/utils/strToLink"
+import { prisma } from "@/app/lib/connectToDb"
+import { strToLink } from "@/app/lib/strToLink"
 
 export const options: NextAuthOptions = {
   providers: [

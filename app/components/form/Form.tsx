@@ -1,16 +1,15 @@
 "use client"
 
-import { useQueryClient } from "@tanstack/react-query"
 import { clsx } from "clsx"
 import { useSession } from "next-auth/react"
 import { useState } from "react"
+import { sendMeow } from "@/app/lib/sendMeow"
 import { ExpandingTextarea } from "./ExpandingTextarea"
-import { ImageAvatar } from "../Navbar/ImageAvatar"
+import { ImageAvatar } from "../navbar/ImageAvatar"
 
 export const Form = () => {
   const { data: session } = useSession()
   const [text, setText] = useState("")
-  const queryClient = useQueryClient()
   const [sendingMeow, setSendingMeow] = useState<boolean>(false)
 
   const placeholder = "What is happening?!"
@@ -21,12 +20,11 @@ export const Form = () => {
 
     try {
       await sendMeow(text)
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.error(error)
     } finally {
       setText("")
       setSendingMeow(false)
-      queryClient.invalidateQueries(["meows"])
     }
   }
 
@@ -55,16 +53,4 @@ export const Form = () => {
       )}
     </>
   )
-}
-
-const sendMeow = async (text: string) => {
-  const response = await fetch("/api/meow/new", {
-    method: "POST",
-    body: JSON.stringify({
-      context: text,
-    }),
-  })
-
-  const data = await response.json()
-  return data
 }
