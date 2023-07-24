@@ -45,4 +45,5 @@ const getUserLikes = async (id: string) => {
   return userLikes
 }
 
-export const cache = "no-store"
+export const revalidate = 1
+// export const cache = "no-store"

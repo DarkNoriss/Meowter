@@ -30,4 +30,5 @@ const getUserMeows = async (params: { id: string }) => {
   return userMeows
 }
 
-export const cache = "no-store"
+export const revalidate = 1
+// export const cache = "no-store"
