@@ -5,7 +5,7 @@ import { CardHeader } from "./Header"
 import { CardReactions } from "./Reactions"
 import { CardReplies } from "./Replies"
 
-export const MeowCard = async ({ meow, reply }: { meow: MeowWithAuthor; reply: ReplyWithAuthor }) => {
+export const MeowCard = async ({ meow, reply }: { meow: MeowWithAuthor; reply?: ReplyWithAuthor }) => {
   // if (!meow?.user) console.log(meow)
 
   return (
