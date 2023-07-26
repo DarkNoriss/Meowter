@@ -2,7 +2,12 @@
 const fs = require("fs")
 
 module.exports = {
-  extends: ["next", "prettier", "plugin:@typescript-eslint/recommended", "plugin:tailwindcss/recommended"],
+  extends: [
+    "next/core-web-vitals",
+    "prettier",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended",
+  ],
   rules: {
     "@next/next/no-html-link-for-pages": "off",
     "@typescript-eslint/no-unused-vars": [

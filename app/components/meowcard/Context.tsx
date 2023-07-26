@@ -1,6 +1,6 @@
 import clsx from "clsx"
 
-export const CardContext = async ({ context }: { context: string }) => {
+export const CardContext = ({ context }: { context: string }) => {
   const words = context.split(" ")
 
   const hasLongWord = words.some((word) => word.length > 20)

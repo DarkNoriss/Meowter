@@ -1,3 +1,5 @@
+"use client"
+
 import { useQueryClient } from "@tanstack/react-query"
 import { clsx } from "clsx"
 import Image from "next/image"
