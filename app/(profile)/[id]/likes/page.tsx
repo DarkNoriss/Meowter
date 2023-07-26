@@ -4,7 +4,7 @@ import { LikeWithMeows } from "@/types/custom-types"
 
 const ProfileLikes = async ({ params }: { params: { id: string } }) => {
   const userLikes = await getUserLikes(params.id)
-  if (userLikes) console.log("GAY", userLikes)
+
   return (
     <>
       {userLikes?.map((like: LikeWithMeows) => (
