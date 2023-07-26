@@ -10,7 +10,7 @@ import CloseIcon from "@/public/assets/icons/close.svg"
 import { MeowWithAuthor } from "@/types/custom-types"
 import { CardContext } from "../Context"
 
-export const ReplyModal = ({ closeModal, meow }: { closeModal: () => void; meow: MeowWithAuthor }) => {
+const ReplyModal = ({ closeModal, meow }: { closeModal: () => void; meow: MeowWithAuthor }) => {
   const [text, setText] = useState("")
   const [sendingReply, setSendingReply] = useState<boolean>(false)
   const queryClient = useQueryClient()
@@ -123,6 +123,8 @@ export const ReplyModal = ({ closeModal, meow }: { closeModal: () => void; meow:
     </div>
   )
 }
+
+export default ReplyModal
 
 const sendReply = async (meowId: string, text: string) => {
   const response = await fetch("/api/reply/new", {
