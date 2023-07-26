@@ -2,11 +2,13 @@
 
 import { Reply } from "@prisma/client"
 import { clsx } from "clsx"
+import dynamic from "next/dynamic"
 import { useSession } from "next-auth/react"
 import { useState } from "react"
 import ReplyIcon from "@/public/assets/icons/reply.svg"
 import { MeowWithAuthor } from "@/types/custom-types"
-import { ReplyModal } from "./ReplyModal"
+
+const ModalComponent = dynamic(() => import("./ReplyModal"))
 
 export const CardReactionReply = ({
   meow,
@@ -42,7 +44,7 @@ export const CardReactionReply = ({
         </div>
         <span className="flex-center px-3 text-sm">{replies?.length !== 0 ? replies?.length : ""}</span>
       </div>
-      {modalIsOpen && <ReplyModal closeModal={closeModal} meow={meow} />}
+      {modalIsOpen && <ModalComponent closeModal={closeModal} meow={meow} />}
     </>
   )
 }
