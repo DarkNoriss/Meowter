@@ -41,7 +41,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <body className="min-h-screen antialiased">
         <Providers>
           {/* <Navbar /> */}
-          <div className="container mx-auto h-full max-w-7xl">
+          <div className="container mx-auto h-full max-w-xl">
             {children}
             {/* <main className="h-screen w-screen max-w-xl !border-y-0">{children}</main> */}
             {/* <SideBar /> */}
