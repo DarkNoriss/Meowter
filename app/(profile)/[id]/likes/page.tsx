@@ -1,5 +1,5 @@
 import { MeowCard } from "@/app/components/meowcard/MeowCard"
-import { prisma } from "@/app/lib/connectToDb"
+import { prisma } from "@/app/lib/db"
 import { LikeWithMeows } from "@/types/custom-types"
 
 const ProfileLikes = async ({ params }: { params: { id: string } }) => {

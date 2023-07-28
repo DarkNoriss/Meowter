@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache"
 import { getServerSession } from "next-auth/next"
-import { prisma } from "./connectToDb"
+import { prisma } from "./db"
 import { options } from "../api/auth/[...nextauth]/options"
 
 export const sendMeow = async (text: string) => {

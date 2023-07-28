@@ -1,18 +1,18 @@
-import Image from "next/image"
-import Link from "next/link"
-import { getServerSession } from "next-auth/next"
-import { ProfileNavigation } from "@/app/(profile)/[id]/ProfileNavigation"
-import { options } from "@/app/api/auth/[...nextauth]/options"
-import { prisma } from "@/app/lib/connectToDb"
-import { formatDateProfile } from "@/app/lib/formatDate"
-import ArrowIcon from "@/public/assets/icons/arrow.svg"
-import CalendarIcon from "@/public/assets/icons/calendar.svg"
+import Image from 'next/image'
+import Link from 'next/link'
+import { getServerSession } from 'next-auth/next'
+import { ProfileNavigation } from '@/app/(profile)/[id]/ProfileNavigation'
+import { options } from '@/app/api/auth/[...nextauth]/options'
+import { prisma } from '@/app/lib/db'
+import { formatDateProfile } from '@/app/lib/formatDate'
+import ArrowIcon from '@/public/assets/icons/arrow.svg'
+import CalendarIcon from '@/public/assets/icons/calendar.svg'
 
 const ProfileLayout = async ({ children, params }: { children: React.ReactNode; params: { id: string } }) => {
-  const sessionData = getServerSession(options)
-  const userData = getUser(params.id)
+  // const sessionData = getServerSession(options)
+  // const userData = getUser(params.id)
 
-  const [session, user] = await Promise.all([sessionData, userData])
+  // const [session, user] = await Promise.all([sessionData, userData])
 
   if (user)
     return (
@@ -57,7 +57,7 @@ const ProfileLayout = async ({ children, params }: { children: React.ReactNode; 
               <div className="flex flex-row fill-gray-500 font-normal text-gray-500">
                 {user.birthdayDate && <span className="mr-5 text-sm lg:text-base">Born</span>}
                 <div className="flex-center flex-row">
-                  <CalendarIcon className={"mr-1 aspect-square h-5"} />
+                  <CalendarIcon className={'mr-1 aspect-square h-5'} />
                   <span className="text-sm lg:text-base">Joined {formatDateProfile(user.createdAt)}</span>
                 </div>
               </div>

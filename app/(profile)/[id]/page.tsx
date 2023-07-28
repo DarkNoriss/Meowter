@@ -1,5 +1,5 @@
 import { Feed } from "@/app/components/Feed"
-import { prisma } from "@/app/lib/connectToDb"
+import { prisma } from "@/app/lib/db"
 import { MeowWithAuthor } from "@/types/custom-types"
 
 const Profile = async ({ params }: { params: { id: string } }) => {

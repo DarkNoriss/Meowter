@@ -1,6 +1,6 @@
 import { Like } from "@prisma/client"
 import { getServerSession } from "next-auth"
-import { prisma } from "@/app/lib/connectToDb"
+import { prisma } from "@/app/lib/db"
 import { options } from "../auth/[...nextauth]/options"
 
 export const POST = async (req: Request) => {

@@ -1,9 +1,9 @@
-import { NextAuthOptions } from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
-import { prisma } from "@/app/lib/connectToDb"
-import { strToLink } from "@/app/lib/strToLink"
+import { getServerSession, NextAuthOptions } from 'next-auth'
+import GoogleProvider from 'next-auth/providers/google'
+import { db } from './db'
+import { strToLink } from './strToLink'
 
-export const options: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID as string,
@@ -12,8 +12,8 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session }) {
-      const sessionUser = await prisma.user.findUnique({
-        where: { email: session.user.email || "" },
+      const sessionUser = await db.user.findUnique({
+        where: { email: session.user.email || '' },
       })
       session.user.id = sessionUser?.id.toString()
       session.user.link = sessionUser?.userlink
@@ -23,9 +23,9 @@ export const options: NextAuthOptions = {
 
     async signIn({ profile }) {
       try {
-        await prisma.$transaction(async (prisma) => {
+        await db.$transaction(async (prisma) => {
           const userExists = await prisma.user.findUnique({
-            where: { email: profile?.email || "" },
+            where: { email: profile?.email || '' },
           })
 
           if (!userExists && profile) {
@@ -42,9 +42,11 @@ export const options: NextAuthOptions = {
 
         return true
       } catch (error) {
-        console.log("Error checking if user exists: ", error)
+        console.log('Error checking if user exists: ', error)
         return false
       }
     },
   },
 }
+
+export const getAuthSession = () => getServerSession(authOptions)
