@@ -1,15 +1,14 @@
 import { Reply } from "@prisma/client"
-import { getServerSession } from "next-auth"
-import { prisma } from "@/app/lib/connectToDb"
-import { options } from "../../auth/[...nextauth]/options"
+import { getAuthSession } from "@/lib/auth"
+import { db } from "@/lib/db"
 
 export const POST = async (req: Request) => {
-  const session = await getServerSession(options)
+  const session = await getAuthSession()
   const { meowId, text } = (await req.json()) as Reply
 
   try {
     if (session) {
-      const newReply = await prisma.reply.create({
+      const newReply = await db.reply.create({
         data: {
           userId: session.user.id as string,
           meowId,

@@ -1,15 +1,14 @@
 import Image from "next/image"
 import Link from "next/link"
-import { getServerSession } from "next-auth/next"
-import { ProfileNavigation } from "@/app/(profile)/[id]/ProfileNavigation"
-import { options } from "@/app/api/auth/[...nextauth]/options"
-import { prisma } from "@/app/lib/connectToDb"
-import { formatDateProfile } from "@/app/lib/formatDate"
+import { ProfileNavigation } from "@/components/ProfileNavigation"
+import { getAuthSession } from "@/lib/auth"
+import { db } from "@/lib/db"
+import { formatDateProfile } from "@/lib/formatDate"
 import ArrowIcon from "@/public/assets/icons/arrow.svg"
 import CalendarIcon from "@/public/assets/icons/calendar.svg"
 
 const ProfileLayout = async ({ children, params }: { children: React.ReactNode; params: { id: string } }) => {
-  const sessionData = getServerSession(options)
+  const sessionData = getAuthSession()
   const userData = getUser(params.id)
 
   const [session, user] = await Promise.all([sessionData, userData])
@@ -73,7 +72,7 @@ const ProfileLayout = async ({ children, params }: { children: React.ReactNode; 
 export default ProfileLayout
 
 const getUser = async (id: string) => {
-  const userWithMeows = await prisma.user.findUnique({
+  const userWithMeows = await db.user.findUnique({
     where: { userlink: id },
     include: { meows: true },
   })

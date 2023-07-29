@@ -1,5 +1,5 @@
-import { MeowCard } from "@/app/components/meowcard/MeowCard"
-import { prisma } from "@/app/lib/connectToDb"
+import { MeowCard } from "@/components/meowcard/MeowCard"
+import { db } from "@/lib/db"
 import { LikeWithMeows } from "@/types/custom-types"
 
 const ProfileLikes = async ({ params }: { params: { id: string } }) => {
@@ -17,12 +17,12 @@ const ProfileLikes = async ({ params }: { params: { id: string } }) => {
 export default ProfileLikes
 
 const getUserLikes = async (id: string) => {
-  const user = await prisma.user.findUnique({
+  const user = await db.user.findUnique({
     where: { userlink: id },
   })
 
   if (!user) return
-  const userLikes = await prisma.like.findMany({
+  const userLikes = await db.like.findMany({
     where: { userId: user.id },
     orderBy: { meow: { createdAt: "desc" } },
     include: {

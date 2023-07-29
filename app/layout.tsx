@@ -1,8 +1,9 @@
-import { Login } from "@/app/components/Login"
-import { Navbar } from "@/app/components/navbar/Navbar"
-import { SideBar } from "@/app/components/sidebar/SideBar"
+import { Login } from "@/components/Login"
+import { Navbar } from "@/components/navbar/Navbar"
+import { Providers } from "@/components/Providers"
+import { SideBar } from "@/components/sidebar/SideBar"
+
 import "@/styles/globals.css"
-import { Providers } from "./components/Providers"
 
 export const metadata = {
   title: "Meowter - Your Social Network for Cats",

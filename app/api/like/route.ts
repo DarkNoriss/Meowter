@@ -1,15 +1,14 @@
 import { Like } from "@prisma/client"
-import { getServerSession } from "next-auth"
-import { prisma } from "@/app/lib/connectToDb"
-import { options } from "../auth/[...nextauth]/options"
+import { getAuthSession } from "@/lib/auth"
+import { db } from "@/lib/db"
 
 export const POST = async (req: Request) => {
-  const session = await getServerSession(options)
+  const session = await getAuthSession()
   const { meowId, replyId } = (await req.json()) as Like
   console.log(meowId, replyId)
 
   try {
-    const like = await prisma.like.findFirst({
+    const like = await db.like.findFirst({
       where: {
         userId: session?.user.id,
         ...(meowId ? { meowId } : {}),
@@ -18,13 +17,13 @@ export const POST = async (req: Request) => {
     })
 
     if (like) {
-      await prisma.like.delete({
+      await db.like.delete({
         where: { id: like.id },
       })
 
       return new Response("Removed like!", { status: 200 })
     } else {
-      await prisma.like.create({
+      await db.like.create({
         data: {
           userId: session?.user.id,
           ...(meowId ? { meowId } : {}),

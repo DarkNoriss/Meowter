@@ -1,11 +1,10 @@
-import { getServerSession } from "next-auth/next"
-import { Feed } from "@/app/components/Feed"
-import { prisma } from "@/app/lib/connectToDb"
-import { options } from "./api/auth/[...nextauth]/options"
-import { Form } from "./components/form/Form"
+import { Feed } from "@/components/Feed"
+import { Form } from "@/components/form/Form"
+import { getAuthSession } from "@/lib/auth"
+import { db } from "@/lib/db"
 
 const Home = async () => {
-  const sessionData = getServerSession(options)
+  const sessionData = getAuthSession()
   const meowsData = getMeows()
 
   const [session, meows] = await Promise.all([sessionData, meowsData])
@@ -26,7 +25,7 @@ const Home = async () => {
 export default Home
 
 const getMeows = async () => {
-  const meows = await prisma.meow.findMany({
+  const meows = await db.meow.findMany({
     orderBy: { createdAt: "desc" },
     include: {
       user: true,

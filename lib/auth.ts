@@ -1,9 +1,9 @@
-import { NextAuthOptions } from "next-auth"
+import { getServerSession, NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
-import { prisma } from "@/app/lib/connectToDb"
-import { strToLink } from "@/app/lib/strToLink"
+import { db } from "@/lib/db"
+import { strToLink } from "@/lib/strToLink"
 
-export const options: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID as string,
@@ -12,7 +12,7 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session }) {
-      const sessionUser = await prisma.user.findUnique({
+      const sessionUser = await db.user.findUnique({
         where: { email: session.user.email || "" },
       })
       session.user.id = sessionUser?.id.toString()
@@ -23,7 +23,7 @@ export const options: NextAuthOptions = {
 
     async signIn({ profile }) {
       try {
-        await prisma.$transaction(async (prisma) => {
+        await db.$transaction(async (prisma) => {
           const userExists = await prisma.user.findUnique({
             where: { email: profile?.email || "" },
           })
@@ -48,3 +48,5 @@ export const options: NextAuthOptions = {
     },
   },
 }
+
+export const getAuthSession = () => getServerSession(authOptions)
