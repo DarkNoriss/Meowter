@@ -6,8 +6,6 @@ import { CardReactions } from "./Reactions"
 import { CardReplies } from "./Replies"
 
 export const MeowCard = async ({ meow, reply }: { meow: MeowWithAuthor; reply?: ReplyWithAuthor }) => {
-  // if (!meow?.user) console.log(meow)
-
   return (
     <article className="border-white-smoll !border-t-0 px-2 lg:px-4">
       <div className="flex max-w-full flex-row py-3">
