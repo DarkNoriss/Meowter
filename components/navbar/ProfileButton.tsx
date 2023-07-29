@@ -1,28 +1,15 @@
 "use client"
 
+import { useClickOutside } from "@mantine/hooks"
 import { signOut, useSession } from "next-auth/react"
-import { RefObject, useEffect, useRef, useState } from "react"
+import { useState } from "react"
 import DotsIcon from "@/public/assets/icons/dots.svg"
 import { ImageAvatar } from "./ImageAvatar"
 
 export const ProfileButton = () => {
   const { data: session } = useSession()
   const [open, setOpen] = useState<boolean>(false)
-  const menuRef: RefObject<HTMLDivElement> = useRef(null)
-
-  useEffect(() => {
-    const handler = (event: MouseEvent) => {
-      if (!menuRef.current?.contains(event.target as Node)) {
-        setOpen(false)
-      }
-    }
-
-    document.body.addEventListener("click", handler)
-
-    return () => {
-      document.body.removeEventListener("click", handler)
-    }
-  }, [])
+  const ref = useClickOutside(() => setOpen(false))
 
   const handleOpen = () => {
     if (!open) setOpen(true)
@@ -30,7 +17,7 @@ export const ProfileButton = () => {
 
   if (session)
     return (
-      <div className="relative" onClick={handleOpen} ref={menuRef}>
+      <div className="relative" onClick={handleOpen} ref={ref}>
         <div className={`${open ? "" : "btnhover"} my-3 flex w-full items-center p-3`}>
           <ImageAvatar />
           <div className="hidden w-full flex-row xl:flex">
