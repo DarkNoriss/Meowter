@@ -14,33 +14,10 @@ const ReplyModal = ({ closeModal, meow }: { closeModal: () => void; meow: MeowWi
   const [text, setText] = useState("")
   const [sendingReply, setSendingReply] = useState<boolean>(false)
   const queryClient = useQueryClient()
+
   const modalRef: RefObject<HTMLDivElement> = useRef(null)
 
   const placeholder = "Meow your reply!"
-
-  useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-        closeModal()
-      }
-    }
-
-    const handleEscapeKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        closeModal()
-      }
-    }
-
-    document.addEventListener("click", handleOutsideClick)
-    document.addEventListener("keydown", handleEscapeKey)
-    document.body.classList.add("overflow-hidden")
-
-    return () => {
-      document.removeEventListener("click", handleOutsideClick)
-      document.removeEventListener("keydown", handleEscapeKey)
-      document.body.classList.remove("overflow-hidden")
-    }
-  }, [closeModal])
 
   const createReply = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

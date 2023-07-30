@@ -1,3 +1,4 @@
+import { ReactNode } from "react"
 import { Login } from "@/components/Login"
 import { Navbar } from "@/components/navbar/Navbar"
 import { Providers } from "@/components/Providers"
@@ -31,17 +32,18 @@ export const metadata = {
   metadataBase: "https://meowter-cat.vercel.app",
 }
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const RootLayout = ({ children, modal }: { children: ReactNode; modal: ReactNode }) => {
   return (
     <html lang="en">
       <body>
         <Providers>
+          {modal}
           <div className="flex-center min-h-screen max-w-full flex-row">
             <Navbar />
             <main className="h-screen w-screen max-w-xl !border-y-0">{children}</main>
             <SideBar />
-            <Login />
           </div>
+          <Login />
         </Providers>
       </body>
     </html>
