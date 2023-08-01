@@ -38,9 +38,9 @@ const RootLayout = ({ children, modal }: { children: ReactNode; modal: ReactNode
       <body>
         <Providers>
           {modal}
-          <div className="flex-center min-h-screen max-w-full flex-row">
+          <div className="container mx-auto flex items-start">
             <Navbar />
-            <main className="h-screen w-screen max-w-xl !border-y-0">{children}</main>
+            <main className="min-h-screen max-w-full grow border-x sm:max-w-[600px]">{children}</main>
             <SideBar />
           </div>
           <Login />

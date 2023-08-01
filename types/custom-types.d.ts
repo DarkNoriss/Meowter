@@ -10,9 +10,11 @@ export type UserWithMeows = Prisma.MeowGetPayload<{
   }
 }>
 
-export type MeowWithAuthor = Prisma.MeowGetPayload<{
+export type MeowWithUserLikesReplies = Prisma.MeowGetPayload<{
   include: {
     user: true
+    replies: true
+    likes: true
   }
 }>
 
